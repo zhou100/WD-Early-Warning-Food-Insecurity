@@ -93,6 +93,10 @@ mw_concordance =  mw_concordance %>% dplyr::select(ea_id,FNID)%>% na.omit() %>% 
 Malawi_aggregate = Malawi_aggregate  %>% dplyr::distinct()%>% mutate( ea_id = as.character(ea_id) ) 
 Malawi_aggregate = dplyr::left_join(Malawi_aggregate,mw_concordance,by = "ea_id")
 
+
+
+
+
 ##################################################################################################
 # Join the IPC value 
 ##################################################################################################

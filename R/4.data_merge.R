@@ -27,13 +27,17 @@ rm(list = ls())
 # read household data 
 mw.lsms = read.csv("data/clean/MW_household.csv",stringsAsFactors = FALSE)
 
-mw.lsms$ea_id = as.character(mw.lsms$ea_id)
-mw.lsms$yearmon = as.yearmon(mw.lsms$yearmon)
-mw.lsms$rural =  ifelse(mw.lsms$reside=="rural",1,0)
+mw.lsms = mw.lsms %>%
+  mutate(ea_id = as.character(ea_id)) %>%
+  mutate(yearmon = as.yearmon(yearmon)) %>%
+  mutate(rural = ifelse(reside=="rural",1,0)) %>%
+  mutate(head_gender = ifelse(head_gender=="Male",1,0))
+  
 
+ 
 # remove columns that can not be used in the prediction anlaysis 
 mw.lsms = mw.lsms %>% 
-          dplyr::select(-cellphone_cost,-Reason1,-Reason2,-Reason3,-MAHFP,-hh_a01,-head_age,-slope,-reside) %>%
+          dplyr::select(-cellphone_cost,-Reason1,-Reason2,-Reason3,-MAHFP,-hh_a01,-slope,-reside) %>%
           filter(!is.na(FS_year) & !is.na(FCS) & !is.na(rCSI)) 
 
 # check for missing values 
@@ -56,6 +60,7 @@ mw.lsms.fill = mw.lsms %>%
 # check if the missing still exist 
 
 colSums(is.na(mw.lsms.fill))
+
 
 # read price data 
 load("data/clean/market/mw_price_final.RData")
@@ -121,19 +126,47 @@ lapply(mw.master.hh, class)
 
 
 
-mw.master.hh = mw.master.hh %>% dplyr::select (-case_id,-ea_id,-TA_names,-VID,-cropyear,-year,-Month,-yearmon,-date)
+mw.master.hh = mw.master.hh %>% dplyr::select (-case_id,-ea_id,-VID,-cropyear,-year,-Month,-yearmon,-date)
 
 
 mw.master.clust = mw.master.hh %>% 
-  group_by(ea_id,FS_year,FNID) %>%   
-  dplyr::select(-FNID,-head_gender,-head_edlevel) %>%
+  group_by(ea_id,FS_year,FNID,TA_names) %>%   
+  dplyr::select(-FNID,-head_edlevel) %>%
   dplyr::summarise_all(funs(mean(.,na.rm=TRUE)))  
 
 colSums(is.na(mw.master.clust))
 
 lapply(mw.master.clust, class)
 
+# rescale data 
+mw.master.clust = mw.master.clust %>% 
+  mutate(logFCS= log(FCS)) %>%
+  mutate(raincytot = raincytot/1000) %>% 
+  mutate(elevation = elevation/1000) 
 
+
+
+# Create TA level averages  
+
+mw.master.clust= mw.master.clust %>%
+  group_by(TA_names,FS_year) %>%
+  mutate(TA_maize_price  = mean(clust_maize_price,na.rm=TRUE)) %>%
+  mutate(TA_rice_price  = mean(clust_rice_price,na.rm=TRUE)) %>%
+  mutate(TA_nuts_price  = mean(clust_nuts_price,na.rm=TRUE)) %>%
+  mutate(TA_beans_price  = mean(clust_beans_price,na.rm=TRUE)) %>%
+  mutate(TA_maize_mktthin  = mean(clust_maize_mktthin,na.rm=TRUE)) %>%
+  mutate(TA_rice_mktthin  = mean(clust_rice_mktthin,na.rm=TRUE)) %>%
+  mutate(TA_nuts_mktthin  = mean(clust_nuts_mktthin,na.rm=TRUE)) %>%
+  mutate(TA_beans_mktthin  = mean(clust_beans_mktthin,na.rm=TRUE)) %>%
+  mutate(TA_raincytot  = mean(raincytot,na.rm=TRUE)) %>%
+  mutate(TA_day1rain  = mean(day1rain,na.rm=TRUE)) %>%
+  mutate(TA_maxdaysnorain = mean(maxdaysnorain,na.rm=TRUE)) %>%
+  mutate(TA_floodmax  = mean(floodmax,na.rm=TRUE)) %>%
+  mutate(TA_heatdays  = mean(heatdays,na.rm=TRUE)) %>%
+  mutate(TA_gdd  = mean(gdd,na.rm=TRUE)) %>%
+  mutate(TA_tmean  = mean(tmean,na.rm=TRUE))  %>%
+  distinct()
+  
 
 # colnames(mw.master.hh)
 write.csv(mw.master.hh, file= "data/mw_dataset_hh.csv",row.names = FALSE)
