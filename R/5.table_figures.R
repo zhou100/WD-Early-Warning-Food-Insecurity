@@ -5,6 +5,8 @@
 rm(list = ls())
 require(tidyverse)
 
+# FUCKED UP ON JOINING THE IPC ZONE
+
 mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
 
 mw.cluster = mw.cluster %>% 
@@ -23,9 +25,47 @@ mw.2013.cluster= mw.cluster %>%
 
 
 
- ###########################################
+###########################################
 ## Replicate Table 1: summary statistics   
 ###########################################
+# read hh level data 
+mw.hh = read.csv("data/mw_dataset_hh.csv",stringsAsFactors = FALSE)
+
+# Summary at the household level 
+table1.summary.hh = mw.hh %>% 
+mutate(logFCS = log(FCS)) %>%
+mutate(FS_year = if_else(FS_year!=2013,2010,2013)) %>%
+group_by(FS_year) %>% 
+dplyr::select(logFCS,rCSI,HDDS) %>%
+gather(-FS_year,key="var",value ="value") %>%
+group_by(FS_year,var) %>%
+summarise(mean=mean(value), median=median(value),sd=sd(value),min=min(value),max=max(value) )  
+ 
+print(table1.summary)
+
+
+# read cluster level data 
+mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
+
+nrow(mw.cluster %>% dplyr::filter(FS_year!=2013))
+nrow(mw.cluster %>% dplyr::filter(FS_year==2013))
+
+table1.summary.cluster = mw.cluster %>% 
+mutate(log_price = log(clust_maize_price) ) %>%  
+mutate(FS_year = if_else(FS_year!=2013,2010,2013)) %>%
+dplyr::select(FS_year,logFCS,rCSI,HDDS,
+IPC1,IPC12,raincytot,day1rain,maxdaysnorain,floodmax,
+log_price,clust_maize_mktthin,ag_percent,
+elevation,nutri_rent_moderate_constraint,
+dist_road,dist_admarc,roof_natural,number_celphones,hhsize,
+head_age,head_gender,asset_index) %>%
+group_by(FS_year) %>%
+gather(-FS_year,key="var",value ="value") %>%
+group_by(FS_year,var) %>%
+summarise(mean=mean(value,na.rm = TRUE), median=median(value,na.rm = TRUE),sd=sd(value,na.rm = TRUE),min=min(value,na.rm = TRUE),max=max(value,na.rm = TRUE) )  
+
+
+print(table1.summary.cluster)
 
 
 
@@ -136,7 +176,7 @@ lm.rCSI<-train(rCSI ~ IPC1+IPC12+raincytot + day1rain + maxdaysnorain + floodmax
                  clust_maize_price +  clust_maize_mktthin + ag_percent + 
                  elevation  + nutri_rent_moderate_constraint + 
                  dist_road + dist_admarc + roof_natural + number_celphones +hhsize + 
-                 head_gender + asset_inde, data = train2010, method = "lm")
+                 head_gender + asset_index, data = train2010, method = "lm")
 
 predicted.rCSI = predict(lm.rCSI, test2013, se.fit = TRUE)
 
