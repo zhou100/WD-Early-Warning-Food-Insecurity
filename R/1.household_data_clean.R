@@ -36,11 +36,29 @@ mw.concord = Malawi_aggregate %>% dplyr::select(ea_id,lat_modified,lon_modified)
 
 write.csv(mw.concord,file="data/clean/concordance/Malawi_coord.csv",row.names = FALSE)
  
-#############################################
-# Spatially join the LHZ and get a concordance table using GIS
-#############################################
-mw.cluster.lhz = read.csv("data/clean/concordance/Malawi_ea_lhz_concordance.csv",stringsAsFactors = FALSE)
-mw.cluster.lhz = mw.cluster.lhz %>% dplyr::select(ea_id,FNID)
+
+length(unique(Malawi_aggregate$ea_id)) 
+
+# 768
+
+
+##########################################################################################
+# Spatially join the LHZ and get a concordance table 
+# this concordance is directely obtained using ArcGIS/QGIS spatial joining function
+# lhz Shapefile :data/shapefiles/livelihood_zone/malawi/livelihood zone 2012/MW_Admin1_LHZ_2012.3
+##########################################################################################
+mw.cluster.lhz = read.csv("data/clean/concordance/mw_ea_lhz_concordance.csv",stringsAsFactors = FALSE)
+colnames(mw.cluster.lhz)
+mw.cluster.lhz = mw.cluster.lhz %>% dplyr::select(ea_id,FNID) %>% distinct()
+
+nrow(mw.cluster.lhz[!duplicated(mw.cluster.lhz$ea_id),])
+
+
+length(unique(mw.cluster.lhz$ea_id)) 
+
+nrow(mw.cluster.lhz %>% distinct(ea_id))
+
+
 write.csv(mw.cluster.lhz,file="data/clean/concordance/mw_cluster_lhz.csv",row.names = FALSE)
 
 ##################################################################################################
@@ -69,23 +87,27 @@ Malawi_aggregate["yearmon"]= as.yearmon(yearmon,"%Y-%m")
 
 # Check the column names 
 # colnames(Malawi_aggregate)
-
-# Create an asset index based on a number of assets 
-mw.asset = Malawi_aggregate[3:18]
-mw.asset[is.na(mw.asset)]=0
-mw.asset.pca <- prcomp(na.omit(mw.asset),
-                       center = TRUE,
-                       scale. = TRUE) 
-
-#summary(mw.asset.pca)
-
-mw.asset.pca.df= as.data.frame(mw.asset.pca$x)
-# Use the first direction 
-Malawi_aggregate["asset_index"] = mw.asset.pca.df$PC1
+##################################################################
+# DID the asset index in Stata instead 
+##################################################################
+# # Create an asset index based on a number of assets 
+# mw.asset = Malawi_aggregate[3:18]
+# mw.asset[is.na(mw.asset)]=0
+# mw.asset.pca <- prcomp(na.omit(mw.asset),
+#                        center = TRUE,
+#                        scale. = TRUE) 
+# 
+# #summary(mw.asset.pca)
+# 
+# mw.asset.pca.df= as.data.frame(mw.asset.pca$x)
+# # Use the first direction 
+# Malawi_aggregate["asset_index"] = mw.asset.pca.df$PC1
 
 Malawi_aggregate = Malawi_aggregate %>% 
   dplyr::select(-lat_modified,-hh_wgt,-lon_modified,-region,-survey_round,-terrain_rough, -country,-nutri_avail,-nutri_rentention)  %>% distinct()
 
+
+Malawi_lsms_ea = Malawi_aggregate
  
 mw_concordance <-  read.csv("data/clean/concordance/mw_cluster_lhz.csv")
 mw_concordance =  mw_concordance %>% dplyr::select(ea_id,FNID)%>% na.omit() %>% dplyr::distinct()%>% mutate_all(funs(as.character))

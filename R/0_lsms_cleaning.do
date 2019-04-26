@@ -10,14 +10,20 @@ capture log close
 clear
 set more off 
 
-cd "C:\Users\Administrator\WD-Early-Warning-Food-Insecurity\Data\Raw\LSMS"
+* cd "C:\Users\Administrator\WD-Early-Warning-Food-Insecurity\data\raw\LSMS"
+
+
+
+cd "/Users/yujunzhou/Box Sync/Research/WD-Early-Warning-Food-Insecurity/data/raw/LSMS/"
+ 
+
 
 
 ********************************************************************************
 *** Cleaning of 2010 LSMS data 
 ********************************************************************************
 
-use Malawi_2010\HH_MOD_G2.dta,clear
+use Malawi_2010/HH_MOD_G2.dta,clear
 
 *_______________________________________________________________________________
 
@@ -101,7 +107,7 @@ graph box FCS, over(FCS_Thresh)  */
 * H Fats/Oil => Weight = 0.5
 ********************************************************************************
 set more off 
-use Malawi_2010\HH_MOD_G2.dta,clear
+use Malawi_2010/HH_MOD_G2.dta,clear
 
 *Recoding of outliers (change 8 days to 7 days)
 replace hh_g08c=7 if hh_g08c==8
@@ -146,7 +152,7 @@ save mw2010, replace
 *the CSI) is designed to capture quantity or sufficiency of consumption. 
 
 set more off 
-use "Malawi_2010\HH_MOD_H",clear
+use "Malawi_2010/HH_MOD_H",clear
 
 //Questions relating to COPING STRATEGIES (Full labels from Survey REPORT)
 *In the past 7 days, did you worry that your household would not have enough food
@@ -172,6 +178,10 @@ gen rCSI=1*hh_h02a + 1*hh_h02b + 2*hh_h02c + 2*hh_h02d +2*hh_h02e
 * replace rCSI=0 if hh_h01==2
 label var rCSI "HH Reduced Coping Strategies Index"
 
+
+* Limit rCSI values to not exceed 42 
+
+replace rCSI = 42 if rCSI>42
 
 ** rCSI cut-offs:  0-4 safe, 5-10 moderate, >11 insecure 
 
@@ -211,7 +221,7 @@ save mw2010, replace
 
 clear
 set more off 
-use "Malawi_2010\HH_MOD_H"
+use "Malawi_2010/HH_MOD_H"
 
 *Past 12 Months Experienced Food Shortage
 tab  hh_h04
@@ -271,7 +281,7 @@ save mw2010, replace
 ********************************************************************************
 clear
 set more off 
-use "Malawi_2010\HH_MOD_H"
+use "Malawi_2010/HH_MOD_H"
 
 *List of variables with labels (string)
 label dir
@@ -368,7 +378,7 @@ save mw2010, replace
 *_______________________________________________________________________________
 
 set more off 
-use "Malawi_2010\HH_MOD_A_FILT",clear
+use "Malawi_2010/HH_MOD_A_FILT",clear
 
  
  
@@ -403,7 +413,7 @@ save mw2010, replace
 
 
 * Merge in geolocation 
-use "Malawi_2010\HouseholdGeovariables.dta",clear
+use "Malawi_2010/HouseholdGeovariables.dta",clear
 
 keep case_id ea_id lat_modi lon_modi srtm_eaf srtm_eaf_5_15 sq1 sq2 dist_road dist_admarc dist_popcenter afmnslp_pct    fsrad3_agpct 
 rename srtm_eaf elevation
@@ -418,7 +428,7 @@ drop _merge
 save mw2010, replace
 
 * Merge in the basic information
-use "Malawi_2010\ihs3_summary.dta",clear
+use "Malawi_2010/ihs3_summary.dta",clear
 
 
 keep case_id ea_id intmonth intyear head_age head_gender head_edlevel  hhsize
@@ -529,6 +539,17 @@ drop _merge
 
 drop if FCS ==0 
 drop if HDDS ==0
+
+
+
+* generate asset index from the dummies 
+
+
+pca Refrigerator  Television Radio Bicycle Motorcycle Car 
+rotate
+predict asset_index2
+
+label variable asset_index2 "Asset index"
 
 
 save "FCS_2010_Malawi.dta", replace
@@ -696,6 +717,13 @@ tab hh_h02a
 gen rCSI=1*hh_h02a + 1*hh_h02b + 2*hh_h02c + 2*hh_h02d +2*hh_h02e
 
 label var rCSI "HH Reduced Coping Strategies Index"
+
+
+
+* Limit rCSI values to not exceed 42 
+
+replace rCSI = 42 if rCSI>42
+
 
 /*
 ***Summary Characteristics and Graphs (Bar Charts and Box Plot)
@@ -921,6 +949,16 @@ drop _merge
 drop if FCS ==0 
 drop if HDDS ==0
 
+
+* generate asset index 
+pca Refrigerator  Television Radio Bicycle Motorcycle Car 
+rotate
+predict asset_index2
+
+label variable asset_index2 "Asset index"
+
+
+
 rename y2_hhid case_id 
 save "FCS_2013_Malawi.dta", replace
 
@@ -939,5 +977,10 @@ append using FCS_2013_Malawi
 save Malawi_aggregate.dta,replace  
 
 gen country = "Malawi"
+
+save "/Users/yujunzhou/Box Sync/Research/WD-Early-Warning-Food-Insecurity/data/clean/LSMS/Malawi_aggregate.dta", replace
+
+
+
 save C:\Users\Administrator\WD-Early-Warning-Food-Insecurity\Data\Clean\LSMS\Malawi_aggregate.dta,replace  
 export delimited C:\Users\Administrator\WD-Early-Warning-Food-Insecurity\Data\Clean\LSMS\Malawi_aggregate.csv,replace 
