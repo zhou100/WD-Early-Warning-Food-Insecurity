@@ -31,19 +31,20 @@ mw.lsms = mw.lsms %>%
   mutate(ea_id = as.character(ea_id)) %>%
   mutate(yearmon = as.yearmon(yearmon)) %>%
   mutate(rural = ifelse(reside=="rural",1,0)) %>%
-  mutate(head_gender = ifelse(head_gender=="Male",1,0))
-  
+  mutate(hh_gender = ifelse(hh_gender=="Male",1,2)) 
 
  
 # remove columns that can not be used in the prediction anlaysis 
-mw.lsms = mw.lsms %>% 
+mw.lsms = mw.lsms %>%
+          mutate(ea_id = as.character(ea_id) ) %>%
           dplyr::select(-cellphone_cost,-Reason1,-Reason2,-Reason3,-MAHFP,-hh_a01,-slope,-reside) %>%
           filter(!is.na(FS_year) & !is.na(FCS) & !is.na(rCSI)) 
+
 
 # check for missing values 
 colSums(is.na(mw.lsms))
 
-
+ 
 
 # fill in missing values by the ones in the same year/month and same cluster 
 mw.lsms.fill = mw.lsms %>% 
@@ -54,9 +55,10 @@ mw.lsms.fill = mw.lsms %>%
   mutate(dist_road= ifelse(is.na(dist_road), mean(dist_road, na.rm=TRUE), dist_road)) %>% 
   mutate(dist_popcenter= ifelse(is.na(dist_popcenter), mean(dist_popcenter, na.rm=TRUE), dist_popcenter)) %>% 
   mutate(dist_admarc= ifelse(is.na(dist_admarc), mean(dist_admarc, na.rm=TRUE), dist_admarc)) %>% 
-  mutate(ag_percent= ifelse(is.na(ag_percent), mean(ag_percent, na.rm=TRUE), ag_percent)) %>% 
-  mutate(elevation= ifelse(is.na(elevation), mean(elevation, na.rm=TRUE), elevation)) 
-  
+  mutate(percent_ag= ifelse(is.na(percent_ag), mean(percent_ag, na.rm=TRUE), percent_ag)) %>% 
+  mutate(elevation= ifelse(is.na(elevation), mean(elevation, na.rm=TRUE), elevation)) %>% 
+  mutate(hh_age= ifelse(is.na(hh_age), mean(hh_age, na.rm=TRUE), hh_age)) 
+
 # check if the missing still exist 
 
 colSums(is.na(mw.lsms.fill))
@@ -98,6 +100,8 @@ mw.current.price.impute["yearmon"] = mw.current.price.impute["yearmon_lag1"]
 
 mw.current.price.impute = mw.current.price.impute %>% dplyr::select(-yearmon_lag1)
 
+mw.lsms.fill  = mw.lsms.fill %>% mutate(yearmon = as.character(yearmon))
+mw.current.price.impute  = mw.current.price.impute %>% mutate(yearmon = as.character(yearmon))
 
 
 mw.master.hh = left_join(mw.lsms.fill,mw.current.price.impute, by = c("ea_id","yearmon"))
@@ -124,14 +128,17 @@ lapply(mw.master.hh, class)
 
 
 
+#########################################
+# Keep the data set (both cluster and household level )
+#########################################
 
+mw.master.hh = mw.master.hh %>% 
+  dplyr::select (-case_id,-ea_id,-VID,-cropyear,-year,-Month,-yearmon,-date)
 
-mw.master.hh = mw.master.hh %>% dplyr::select (-case_id,-ea_id,-VID,-cropyear,-year,-Month,-yearmon,-date)
-
-
+# Collapse to cluster level  
 mw.master.clust = mw.master.hh %>% 
-  group_by(ea_id,FS_year,FNID,TA_names) %>%   
-  dplyr::select(-FNID,-head_edlevel) %>%
+  group_by(ea_id,FS_year) %>%   
+  dplyr::select(-FNID,-TA_names) %>%
   dplyr::summarise_all(funs(mean(.,na.rm=TRUE)))  
 
 colSums(is.na(mw.master.clust))
@@ -145,6 +152,14 @@ mw.master.clust = mw.master.clust %>%
   mutate(elevation = elevation/1000) 
 
 
+
+TA_concordance = mw.master.hh %>% ungroup() %>% select(ea_id,TA_names,FNID) %>% distinct() 
+TA_concordance=TA_concordance[!duplicated(TA_concordance$ea_id),] 
+
+sum(duplicated(TA_concordance$ea_id))
+
+# Join TA/FNID names 
+mw.master.clust =left_join(mw.master.clust,TA_concordance,by="ea_id")
 
 # Create TA level averages  
 

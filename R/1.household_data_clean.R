@@ -39,8 +39,7 @@ write.csv(mw.concord,file="data/clean/concordance/Malawi_coord.csv",row.names = 
 
 length(unique(Malawi_aggregate$ea_id)) 
 
-# 768
-
+ 
 
 ##########################################################################################
 # Spatially join the LHZ and get a concordance table 
@@ -48,18 +47,17 @@ length(unique(Malawi_aggregate$ea_id))
 # lhz Shapefile :data/shapefiles/livelihood_zone/malawi/livelihood zone 2012/MW_Admin1_LHZ_2012.3
 ##########################################################################################
 mw.cluster.lhz = read.csv("data/clean/concordance/mw_ea_lhz_concordance.csv",stringsAsFactors = FALSE)
-colnames(mw.cluster.lhz)
+# colnames(mw.cluster.lhz)
 mw.cluster.lhz = mw.cluster.lhz %>% dplyr::select(ea_id,FNID) %>% distinct()
 
+
+# remove the duplicated joins ( one ea_id mapped to different livelihood zones)
 nrow(mw.cluster.lhz[!duplicated(mw.cluster.lhz$ea_id),])
 
 
-length(unique(mw.cluster.lhz$ea_id)) 
+mw.cluster.lhz.matched = mw.cluster.lhz[!duplicated(mw.cluster.lhz$ea_id),]
 
-nrow(mw.cluster.lhz %>% distinct(ea_id))
-
-
-write.csv(mw.cluster.lhz,file="data/clean/concordance/mw_cluster_lhz.csv",row.names = FALSE)
+write.csv(mw.cluster.lhz.matched,file="data/clean/concordance/mw_cluster_lhz.csv",row.names = FALSE)
 
 ##################################################################################################
 ##### Malawi hh data cleaning 
@@ -70,6 +68,7 @@ Malawi_aggregate = read.csv("data/clean/LSMS/Malawi_aggregate.csv",stringsAsFact
 
 Malawi_aggregate = Malawi_aggregate %>%
  mutate(Month=month.name[FS_month] ) %>% 
+ mutate( roof_natural_inverse = 1- roof_natural ) %>% 
  mutate(nutri_avail = if_else(nutri_avail != "Severe Constraint" & nutri_avail != "Moderate Constraint" ,"No Constraint",nutri_avail) )  %>%
  mutate(nutri_rentention = if_else(nutri_rentention != "Severe Constraint" & nutri_rentention != "Moderate Constraint","No Constraint",nutri_rentention))  %>%
  mutate(dummy_terrain_rough = if_else(terrain_rough=="Mid altitude mountains" & terrain_rough=="Rugged lowlands" & terrain_rough== "High-altitude plains", 1,0 )) 
@@ -112,11 +111,10 @@ Malawi_lsms_ea = Malawi_aggregate
 mw_concordance <-  read.csv("data/clean/concordance/mw_cluster_lhz.csv")
 mw_concordance =  mw_concordance %>% dplyr::select(ea_id,FNID)%>% na.omit() %>% dplyr::distinct()%>% mutate_all(funs(as.character))
 
-Malawi_aggregate = Malawi_aggregate  %>% dplyr::distinct()%>% mutate( ea_id = as.character(ea_id) ) 
-Malawi_aggregate = dplyr::left_join(Malawi_aggregate,mw_concordance,by = "ea_id")
+Malawi_lsms_ea = Malawi_lsms_ea  %>% dplyr::distinct()%>% mutate( ea_id = as.character(ea_id) ) 
+Malawi_lsms_ea = dplyr::left_join(Malawi_lsms_ea,mw_concordance,by = "ea_id")
 
-
-
+# length(unique(Malawi_lsms_ea$ea_id))
 
 
 ##################################################################################################
@@ -188,7 +186,11 @@ FEWS_IPC_long = FEWS_IPC %>%
   mutate(year = substr(Date, 3, 6)) %>%
   mutate(month = substr(Date, 7, 8)) %>%
   mutate(year=as.numeric(year)) %>%
-  mutate(month = as.numeric(month))
+  mutate(month = as.numeric(month)) %>%
+  dplyr::filter(!is.na(FNID_OLD)) %>% 
+  dplyr::filter(!IPC_value==99) %>% 
+  distinct()
+
 
 # generate year mon 
 source("R/functions/Yearmon.R")
@@ -208,13 +210,22 @@ FEWS_IPC_long_lag=  FEWS_IPC_long %>%
   
 FEWS_IPC_long_lag = FEWS_IPC_long_lag %>% dplyr::select(FNID,yearmon,IPC1,IPC12)
 
-
-Malawi_aggregate = 
-  dplyr::left_join(Malawi_aggregate,FEWS_IPC_long_lag,by = c("FNID"="FNID","yearmon"="yearmon"))
-
-
-
-write.csv(Malawi_aggregate,"data/clean/MW_household.csv",row.names = FALSE)
+FEWS_IPC_duplicate = FEWS_IPC_long_lag %>%
+  dplyr::filter(!is.na(FNID)) %>% 
+  distinct() %>%
+  arrange(FNID,yearmon)
 
 
+ 
 
+Malawi_lsms_ea = 
+  dplyr::left_join(Malawi_lsms_ea,FEWS_IPC_duplicate,by = c("FNID"="FNID","yearmon"="yearmon"))
+
+
+ length(unique(Malawi_lsms_ea$ea_id))
+
+write.csv(Malawi_lsms_ea,"data/clean/MW_household.csv",row.names = FALSE)
+
+
+S = Malawi_lsms_ea %>% filter(FS_year==2013) 
+length(unique(S$ea_id))

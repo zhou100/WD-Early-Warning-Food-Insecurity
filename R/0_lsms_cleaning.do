@@ -10,11 +10,11 @@ capture log close
 clear
 set more off 
 
-* cd "C:\Users\Administrator\WD-Early-Warning-Food-Insecurity\data\raw\LSMS"
+cd "C:\Users\Administrator\WD-Early-Warning-Food-Insecurity\data\raw\LSMS"
 
 
-
-cd "/Users/yujunzhou/Box Sync/Research/WD-Early-Warning-Food-Insecurity/data/raw/LSMS/"
+* Mac version
+*cd "/Users/yujunzhou/Box Sync/Research/WD-Early-Warning-Food-Insecurity/data/raw/LSMS/"
  
 
 
@@ -42,6 +42,8 @@ use Malawi_2010/HH_MOD_G2.dta,clear
 * H Fats/Oil => Weight = 0.5
 * I Sugar/Sugar Products/Honey: Weight = 0.5
 * J Spices/Condiments: Weight = 0
+
+
 ********************************************************************************
 /*gen weighted score FOR CEREALS AND ROOTS*/
 *Listing of the various food categories
@@ -54,21 +56,29 @@ replace hh_g08c=7 if hh_g08c ==8
 replace hh_g08a="AB" if hh_g08a=="A" | hh_g08a=="B"
 replace hh_g08b="Main Staples; cereals and grains, roots and tubers" ///
 if hh_g08a=="AB"
-collapse (mean)hh_g08c, by(case_id visit ea_id hh_g08a hh_g08b)
+collapse (max)hh_g08c, by(case_id visit ea_id hh_g08a hh_g08b)
 label var hh_g08c "# Days specific food is eaten"
 
 ***Specifying Weights Different Food Categories
 gen FWeight = 0
 replace FWeight=2 if hh_g08a=="AB"
+*replace FWeight=2 if hh_g08a=="B"
 replace FWeight=3 if hh_g08a=="C"
-replace FWeight=1 if hh_g08a=="D" | hh_g08a=="F"
-replace FWeight=4 if hh_g08a=="E" | hh_g08a=="G"
-replace FWeight=0.5 if hh_g08a=="H" | hh_g08a=="I"
+replace FWeight=1 if hh_g08a=="D" 
+replace FWeight=1 if hh_g08a=="F" 
+replace FWeight=4 if hh_g08a=="E" 
+replace FWeight=4 if hh_g08a=="G"
+replace FWeight=0.5 if hh_g08a=="H"
+replace FWeight=0.5 if hh_g08a=="I"
+replace FWeight=0 if hh_g08a=="J" 
+
 label var FWeight "Food weight"
 
 ***Computing Weighted Food Categories
 gen FCS = hh_g08c*FWeight
 label var FCS "Food Consumption Score"
+
+
 
 **Aggregating FCS by households
 collapse (sum)FCS, by(case_id)
@@ -415,13 +425,21 @@ save mw2010, replace
 * Merge in geolocation 
 use "Malawi_2010/HouseholdGeovariables.dta",clear
 
-keep case_id ea_id lat_modi lon_modi srtm_eaf srtm_eaf_5_15 sq1 sq2 dist_road dist_admarc dist_popcenter afmnslp_pct    fsrad3_agpct 
+gen percent_ag = 0.6 if fsrad3_lcmaj== 20| fsrad3_lcmaj== 30
+replace  percent_ag = 1 if fsrad3_lcmaj== 14
+replace  percent_ag = 0 if percent_ag==.
+label variable percent_ag "percent of ag within 1km"
+
+
+
+keep case_id ea_id lat_modi lon_modi srtm_eaf srtm_eaf_5_15 sq1 sq2 dist_road dist_admarc dist_popcenter afmnslp_pct    percent_ag 
 rename srtm_eaf elevation
 rename srtm_eaf_5_15 terrain_rough
 rename sq1 nutri_avail
 rename sq2 nutri_rentention
-rename fsrad3_agpct ag_percent
 rename afmnslp_pct slope
+
+
 
 merge m:m case_id using mw2010
 drop _merge
@@ -431,9 +449,12 @@ save mw2010, replace
 use "Malawi_2010/ihs3_summary.dta",clear
 
 
-keep case_id ea_id intmonth intyear head_age head_gender head_edlevel  hhsize
+keep case_id ea_id intmonth intyear head_age head_gender hhsize
 rename intmonth FS_month
 rename intyear FS_year
+rename head_age hh_age
+rename head_gender hh_gender
+
 
 merge m:m case_id using mw2010
 drop if _merge ==2
@@ -587,7 +608,7 @@ save "FCS_2010_Malawi.dta", replace
 use Malawi_2013/HH_MOD_G2.dta,clear
 
 *list hh_g08a  hh_g08c
-*tab hh_g08a,nolabel
+tab hh_g08a,nolabel
 tab hh_g08a
 
 
@@ -595,17 +616,18 @@ tab hh_g08a
 replace hh_g08c=7 if hh_g08c==8
 *Combining Cereals and roots (Category A and Category B)
 replace hh_g08a=1 if hh_g08a==1 | hh_g08a==2
-*replace hh_g08b="Main Staples; cereals and grains, roots and tubers" if hh_g08a=="AB"
 collapse (max)hh_g08c, by(y2_hhid      hh_g08a )
 label var hh_g08c "# Days specific food is eaten"
 
 ***Specifying Weights Different Food Categories
 gen FWeight = 0
 replace FWeight=2 if hh_g08a==1
+*replace FWeight=2 if hh_g08a==2
 replace FWeight=3 if hh_g08a==3
 replace FWeight=1 if hh_g08a==4 | hh_g08a==6
-replace FWeight=4 if hh_g08a==5 | hh_g08a==4
-replace FWeight=0.5 if hh_g08a==8 | hh_g08a==9
+replace FWeight=4 if hh_g08a==5 | hh_g08a==7
+replace FWeight=0.5 if hh_g08a==8 |hh_g08a==9  
+replace FWeight=0 if hh_g08a==10
 label var FWeight "Food weight"
 
  ***Computing Weighted Food Categories
@@ -826,11 +848,36 @@ drop _merge
 save malawi_2013, replace
 
 
+
+* Merge in household gender, education level and age 
+
+use "Malawi_2013/IHS2013_PNAS",clear
+
+keep y2_hhid  hh_age hh_gender 
+
+
+*Merge the Datafile
+merge m:m y2_hhid using malawi_2013
+drop _merge
+save malawi_2013, replace
+
+
+
+
+
 * Merge in geolocation 
  use "Malawi_2013/HouseholdGeovariables_IHPS",clear
 
+ gen percent_ag = 0.6 if fsrad3_lcmaj== 20| fsrad3_lcmaj== 30
+replace  percent_ag = 1 if fsrad3_lcmaj== 14
+replace  percent_ag = 0 if percent_ag==.
+label variable percent_ag "percent of ag within 1km"
+
+
+ 
+ 
 keep y2_hhid LAT_DD_MOD  LON_DD_MOD dist_road dist_popcenter dist_admarc /*
-*/fsrad3_agpct srtm_1k srtm_mwi_5_15 sq1 sq2    
+*/percent_ag srtm_1k srtm_mwi_5_15 sq1 sq2    
 
 rename  LAT_DD_MOD lat_modified
 rename LON_DD_MOD lon_modified 
@@ -838,8 +885,7 @@ rename srtm_1k elevation
 rename srtm_mwi_5_15 terrain_rough
 rename sq1 nutri_avail
 rename sq2 nutri_rentention
-rename fsrad3_agpct ag_percent
-
+ 
 
 merge m:m y2_hhid using malawi_2013
 drop _merge
@@ -978,7 +1024,8 @@ save Malawi_aggregate.dta,replace
 
 gen country = "Malawi"
 
-save "/Users/yujunzhou/Box Sync/Research/WD-Early-Warning-Food-Insecurity/data/clean/LSMS/Malawi_aggregate.dta", replace
+* Mac version
+* save "/Users/yujunzhou/Box Sync/Research/WD-Early-Warning-Food-Insecurity/data/clean/LSMS/Malawi_aggregate.dta", replace
 
 
 
