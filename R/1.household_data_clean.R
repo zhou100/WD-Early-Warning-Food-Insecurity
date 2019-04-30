@@ -197,6 +197,13 @@ source("R/functions/Yearmon.R")
 
 FEWS_IPC_long = yearmon(FEWS_IPC_long,year_var = "year",month_var = "month")
 
+FEWS_IPC_long2009 = FEWS_IPC_long %>% filter (year <2010)
+
+table(FEWS_IPC_long2009$IPC_value)
+
+MW2012C3030306 Oct 2009
+
+
 # generate 12 month lag 
 
 FEWS_IPC_long_lag=  FEWS_IPC_long %>%
@@ -208,6 +215,9 @@ FEWS_IPC_long_lag=  FEWS_IPC_long %>%
   mutate(FNID= FNID_OLD) %>%
   ungroup()
   
+
+IPC12_2 = FEWS_IPC_long_lag %>% dplyr::filter(FNID =="MW2012C3030306")
+
 FEWS_IPC_long_lag = FEWS_IPC_long_lag %>% dplyr::select(FNID,yearmon,IPC1,IPC12)
 
 FEWS_IPC_duplicate = FEWS_IPC_long_lag %>%
@@ -222,6 +232,8 @@ Malawi_lsms_ea =
   dplyr::left_join(Malawi_lsms_ea,FEWS_IPC_duplicate,by = c("FNID"="FNID","yearmon"="yearmon"))
 
 
+Malawi_lsms_ea %>% dplyr::filter(FNID =="MW2012C3030306") %>% select(yearmon,IPC12)
+
  length(unique(Malawi_lsms_ea$ea_id))
 
 write.csv(Malawi_lsms_ea,"data/clean/MW_household.csv",row.names = FALSE)
@@ -229,3 +241,10 @@ write.csv(Malawi_lsms_ea,"data/clean/MW_household.csv",row.names = FALSE)
 
 S = Malawi_lsms_ea %>% filter(FS_year==2013) 
 length(unique(S$ea_id))
+
+
+
+
+
+
+
