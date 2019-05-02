@@ -27,6 +27,22 @@ rm(list = ls())
 # read household data 
 mw.lsms = read.csv("data/clean/MW_household.csv",stringsAsFactors = FALSE)
 
+concoord_lhz_ea = mw.lsms %>% distinct(FNID,ea_id)
+
+
+# Locate ipczones where we don't have IPC values 
+library(readxl)
+FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "Common Unit", skip = 2)
+FEWS_IPC = FEWS_IPC %>% dplyr::filter(!is.na(FNID_OLD))
+# We have only 39 livelihood zones that have IPC 
+length(unique(FEWS_IPC$FNID_OLD))
+ 
+# 18 livelihood zones don't have IPC value
+unique(concoord_lhz_ea$FNID[!(concoord_lhz_ea$FNID  %in% FEWS_IPC$FNID_OLD)])
+
+# 2 IPC zones we don't have LSMS data (one on the island, one don't have observation)
+FEWS_IPC$FNID_OLD[! (FEWS_IPC$FNID_OLD %in% concoord_lhz_ea$FNID)]
+
 mw.lsms = mw.lsms %>%
   mutate(ea_id = as.character(ea_id)) %>%
   mutate(yearmon = as.yearmon(yearmon)) %>%
@@ -132,6 +148,7 @@ lapply(mw.master.hh, class)
 # Keep the data set (both cluster and household level )
 #########################################
 
+
 mw.master.hh = mw.master.hh %>% 
   dplyr::select (-case_id,-ea_id,-VID,-cropyear,-year,-Month,-yearmon,-date)
 
@@ -152,8 +169,8 @@ mw.master.clust = mw.master.clust %>%
   mutate(elevation = elevation/1000) 
 
 
-
-TA_concordance = mw.master.hh %>% ungroup() %>% select(ea_id,TA_names,FNID) %>% distinct() 
+TA_concordance = mw.master.hh %>% ungroup() %>% 
+  dplyr::select(ea_id,TA_names,FNID) %>% distinct() 
 TA_concordance=TA_concordance[!duplicated(TA_concordance$ea_id),] 
 
 sum(duplicated(TA_concordance$ea_id))

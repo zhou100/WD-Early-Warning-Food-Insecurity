@@ -153,28 +153,34 @@ save( clust.mw.day1rain,file="data/clean/weather/clust_day1rain.RData" )
 
 #################################################################################
 #### generate maxdaysno rain 
-########### longest dry spell during the rainy season (Oct-Mar) per crop year (May-Apr)"
+########### longest consequetive days without rain
+#### during the rainy season (Oct-Mar) per crop year (May-Apr)"
 #################################################################################
+
+library(runner)
 
 maxdaysnorain.lhz.mw = 
   rain.MW.cropyear[[1]] %>%
   dplyr::group_by(cropyear) %>%
   dplyr::arrange(Date) %>%
   dplyr::select(-cropyear,-year,-month) %>%
-  dplyr::mutate_all(funs(ifelse(.==0,1,0))) %>% # 1 indicates that the day has 0 rainfall
-  dplyr::group_by(cropyear) %>%
-  dplyr::summarise_all(funs(length(Date[.==1]))) %>%   # count the days with 0 rain
-  dplyr::select(-Date)
+  dplyr::mutate_all(funs(ifelse(.==0,1,NA))) %>% # 1 indicates that the day has 0 rainfall
+  dplyr::select(-Date) %>%
+  dplyr::mutate_all(funs(streak_run(.,na_rm=FALSE))) %>% # count the number of consecutive days of 0 rain
+  group_by(cropyear) %>%
+  dplyr::summarise_all(funs(max(.,na.rm = TRUE)))   # count the days with 0 rain
+  
 
 maxdaysnorain.clust.mw = 
   rain.MW.cropyear[[2]] %>%
   dplyr::group_by(cropyear) %>%
   dplyr::arrange(Date) %>%
   dplyr::select(-cropyear,-year,-month) %>%
-  dplyr::mutate_all(funs(ifelse(.==0,1,0))) %>% # indicate that the day has 0 rainfall
-  dplyr::group_by(cropyear) %>%
-  dplyr::summarise_all(funs(length(Date[.==1])))  %>%  # count the days with 0 rain
-  dplyr::select(-Date)
+  dplyr::mutate_all(funs(ifelse(.==0,1,NA))) %>% # 1 indicates that the day has 0 rainfall,otherwise remove the value
+  dplyr::select(-Date) %>%
+  dplyr::mutate_all(funs(streak_run(.,na_rm=FALSE))) %>% # count the number of consecutive days of 0 rain
+  group_by(cropyear) %>%
+  dplyr::summarise_all(funs(max(.,na.rm = TRUE)))   # count the max days with 0 rain
 
  
  
@@ -216,6 +222,39 @@ save(maxdaysnorain.clust.mw,file="data/clean/weather/clust_maxdaysnorain.RData" 
  save(rain.cytot.clust.mw,file="data/clean/weather/clust_rain_cytot.RData" )
  
  
+ #################################################################################
+ #### generate max rain 
+ ###########  "maximum of rainfall from Oct to Apr in one month by ipczone/cluster and cropyear" 
+ #################################################################################
+ 
+ 
+ # rain.TZMW.list = list(precip_lhz_tz,precip_lhz_mw,precip_clust_tz,precip_clust_mw)
+ # rain.UG.list = list(precip_lhz_ug,precip_clust_ug)
+ 
+ maxrain.lhz.mw = 
+   rain.MW.cropyear[[1]] %>%
+   dplyr::group_by(cropyear) %>%
+   dplyr::arrange(Date) %>%
+   dplyr::select(-cropyear,-year,-month) %>%
+   dplyr::select(-Date) %>%
+    dplyr::summarise_all(funs(max(.,na.rm = TRUE))) # count the max rain amount 
+ 
+ #colnames(rain.cytot.lhz.mw)
+ 
+ maxrain.clust.mw = 
+   rain.MW.cropyear[[2]] %>%
+   dplyr::group_by(cropyear) %>%
+   dplyr::arrange(Date) %>%
+   dplyr::select(-cropyear,-year,-month) %>%
+   dplyr::select(-Date) %>%
+   dplyr::summarise_all(funs(max(.,na.rm = TRUE))) # count the max rain amount 
+ 
+ # colnames(rain.cytot.clust.mw)
+ 
+ 
+ save(maxrain.lhz.mw,file="data/clean/weather/lhz_maxrain.RData" )
+ save(maxrain.clust.mw,file="data/clean/weather/clust_maxrain.RData" )
+ 
  
 #################################################################################
 #### generate mean temperature in the growing season   
@@ -225,7 +264,6 @@ mw_tmin <- read.csv("data/raw/temperature/mw_daily_tmin.csv")
 mw_tmax <- read.csv("data/raw/temperature/mw_daily_tmax.csv")
 
 source("R/functions/CropYearTZMW.R") 
-source("R/functions/CropYearUG.R") 
 
 temp.MW.list= list(mw_tmax,mw_tmin)
 
@@ -242,13 +280,6 @@ temp.MW.list.format = lapply(temp.MW.list, function(x){formatTempDF(x)})
 
 temp.MW.cropyear = lapply(temp.MW.list.format, function(x){CropYearTZMW(x)})
 
-##########################################################
-## create mean temp variable for Uganda
-##########################################################
-
-##########################################################
-## create mean temp variable for Tanzania 
-##########################################################
 
 mw.date = temp.MW.cropyear[[1]]$Date
 mw.cropyear = temp.MW.cropyear[[2]]$cropyear
@@ -295,9 +326,6 @@ mw.gdd = mw.temp.mean.full %>%
 save(mw.gdd, file="data/clean/weather/gdd.RData")
 
 
-
-
-
 #################################################################################
 #### generate heat days  (>30 c )
 ###########  number of days where temp was between 8 to 32 C (Tmax + Tmin)/2 . Deschênes and Greenstone (2007) yield  on weather 
@@ -335,12 +363,16 @@ load("data/clean/weather/gdd.RData")
 load("data/clean/weather/tmean.RData")
 load("data/clean/weather/heatday.RData")
 
+load("data/clean/weather/lhz_maxrain.RData")
+load("data/clean/weather/clust_maxrain.RData")
+
+
 source("R/functions/WeatherTranspose.R") 
 
-mw.clust.list = list(rain.cytot.clust.mw,clust.mw.day1rain,maxdaysnorain.clust.mw)
+mw.clust.list = list(rain.cytot.clust.mw,clust.mw.day1rain,maxdaysnorain.clust.mw,maxrain.clust.mw)
  
  
-mw.lhz.list = list(lhz.mw.day1rain, mw.gdd,mw.tmean,rain.cytot.lhz.mw,maxdaysnorain.lhz.mw,mw.heatday)
+mw.lhz.list = list(lhz.mw.day1rain, mw.gdd,mw.tmean,rain.cytot.lhz.mw,maxdaysnorain.lhz.mw,mw.heatday,maxrain.lhz.mw)
  
 mw.clust.list.transpose= lapply(mw.clust.list, WeatherTranspose)
  
@@ -374,31 +406,57 @@ source("R/functions/FnidV.R")
 mw.lhz.list.transpose = lapply(mw.lhz.list.transpose,function(x){FnidV(x,fnid_to_v)})
 
 
-# mw.lhz.list = list(lhz.mw.day1rain, mw.gdd,mw.tmean,rain.cytot.lhz.mw,maxdaysnorain.lhz.mw)
+#mw.lhz.list = list(lhz.mw.day1rain, mw.gdd,mw.tmean,rain.cytot.lhz.mw,
+# maxdaysnorain.lhz.mw,mw.heatday,maxrain.lhz.mw)
+
 
 # MW2012C3020515 MW2012C3031005  MW2012C3031206
 
 flood_mw_fnid = c("MW2012C3020515","MW2012C3031005","MW2012C3031206")
 
-floodmax.lhz.mw.noflood = mw.lhz.list.transpose[[4]] %>% dplyr::filter(!id %in% flood_mw_fnid)%>% mutate(value =0 )
-floodmax.lhz.mw.flood = mw.lhz.list.transpose[[4]] %>% dplyr::filter(id %in% flood_mw_fnid)
+
+# Generate max daily rain in flood region 
+length(mw.lhz.list)
+floodmax.lhz.mw.noflood = mw.lhz.list.transpose[[7]] %>% 
+  dplyr::filter(!(id %in% flood_mw_fnid))%>% mutate(value =0 )
+
+
+floodmax.lhz.mw.flood = mw.lhz.list.transpose[[7]] %>% 
+  dplyr::filter(id %in% flood_mw_fnid)
 
 floodmax_lhz_mw = dplyr::bind_rows(floodmax.lhz.mw.noflood,floodmax.lhz.mw.flood)
 # flood max should be in the same year 
 floodmax_lhz_mw["FS_year"] =floodmax_lhz_mw["cropyear"] 
+
+
 
 # select the clusters that are in the flood prone region 
 mw_flood_clust = 
   mw_concordance %>% dplyr::filter(FNID %in% flood_mw_fnid)  %>% dplyr::select(id)
 # mw_flood_clust 
 
-# create flood max at mw clust
+# create flood max at mw clust level 
+# the maximum amount of rainfall in the current month 
+
 # mw.clust.list = list(rain.cytot.clust.mw,clust.mw.day1rain,maxdaysnorain.clust.mw)
+# the first 
+
 
 mw.clust.list.transpose[[1]]$id = as.character(mw.clust.list.transpose[[1]]$id)
 
-floodmax_clust_mw_flood = mw.clust.list.transpose[[1]] %>% dplyr::filter(id %in% mw_flood_clust)%>% mutate(value =0 )
-floodmax_clust_mw_noflood = mw.clust.list.transpose[[1]] %>% dplyr::filter(!id %in% mw_flood_clust)
+
+
+#mw.clust.list = list(rain.cytot.clust.mw,clust.mw.day1rain,maxdaysnorain.clust.mw,
+# maxrain.clust.mw)
+
+
+floodmax_clust_mw_flood = mw.clust.list.transpose[[4]] %>% 
+  dplyr::filter(!id %in% mw_flood_clust$id)%>% mutate(value =0 )
+
+floodmax_clust_mw_noflood = mw.clust.list.transpose[[4]] %>% 
+  dplyr::filter(id %in% mw_flood_clust$id)
+
+
 floodmax_clust_mw = dplyr::bind_rows(floodmax_clust_mw_noflood,floodmax_clust_mw_flood)
 
 # flood max should be in the same year , so change the FS_year to the current year, instead of one year before
