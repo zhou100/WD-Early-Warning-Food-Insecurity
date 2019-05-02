@@ -124,6 +124,13 @@ Malawi_lsms_ea = dplyr::left_join(Malawi_lsms_ea,mw_concordance,by = "ea_id")
 library(readxl)
 FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "Common Unit", skip = 2)
 
+
+require(tidyverse)
+
+length(unique(FEWS_IPC$FNID_OLD))
+length(unique(FEWS_IPC$FNID))
+
+
 colnames(FEWS_IPC)
 # We mostly need 2009-2011 and 2012-2013 values.
 

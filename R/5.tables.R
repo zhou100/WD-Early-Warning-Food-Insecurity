@@ -1,6 +1,24 @@
 ####################################################################################################################################
-# Goal : This script aims to replicate the tables and figures used in this paper 
+# Goal : This script aims to replicate the tables used in this paper 
 # Yujun Zhou -  04/17/19
+
+# Make the IPC value missing map 
+# 
+# Quarter 
+# 
+# Fixed effect in the regression table 
+# 
+# Region/ ipczone fixed effect 
+# 
+# 
+# Or quarter by region fixed effect 
+# 
+# Report the level of fixed effects 
+# 
+# Variables ( Lasso choose varibale, drop some )
+
+
+
 ###################################################################
 rm(list = ls())
 require(tidyverse)
@@ -8,7 +26,7 @@ require(tidyverse)
 
 mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
 
-mw.cluster
+length(unique(mw.cluster$FNID))
 
 #mw.cluster2010= mw.cluster[mw.cluster$FS_year<2013 & mw.cluster$FNID=="MW2012C3010102" ,]
 #"MW2012C3010102" %in% unique(mw.cluster2010$FNID)
