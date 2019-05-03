@@ -124,6 +124,11 @@ Malawi_lsms_ea = dplyr::left_join(Malawi_lsms_ea,mw_concordance,by = "ea_id")
 library(readxl)
 FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "Common Unit", skip = 2)
 
+FEWSNET_Malawi_Classification_edited <- read_excel("data/raw/IPC_value/FEWSNET_Malawi_Classification_edited.xlsx")
+
+MW_HFIC_FEWSNET_20171016 <- read_excel("data/raw/IPC_value/MW_HFIC_FEWSNET_20171016.xlsx")
+
+length(unique(MW_HFIC_FEWSNET_20171016$FNID))
 
 require(tidyverse)
 
@@ -141,6 +146,35 @@ FEWS_IPC = FEWS_IPC %>% dplyr::select(-FNID,-CN,-ADMIN1,-ADMIN2,-LZCODE,-LZNAMEE
   CS201007,CS201010,CS201101,CS201104,CS201107,CS201110,CS201201,CS201204,
   CS201210,CS201301,CS201304,CS201307,CS201310)
 
+ 
+  IPC_zones_2016 = FEWS_IPC %>%  distinct(FNID,CS200907) %>%  distinct()
+ write.csv(IPC_zones_2016,"data/raw/IPC_value/IPC_zones_2016.csv",row.names = FALSE)
+
+ IPC_zones_2012 = FEWS_IPC %>%  distinct(FNID_OLD,CS201007)  
+ 
+ 
+ 
+ ipc2012.duplicate = IPC_zones_2012 %>% 
+   group_by(FNID_OLD) %>% 
+   dplyr::filter(n()>1) %>%
+   arrange(FNID_OLD) %>%
+   dplyr::filter(CS201007!=99)
+ 
+ ipc2012.not.duplicate = IPC_zones_2012 %>% 
+   group_by(FNID_OLD) %>% 
+   dplyr::filter(n()==1) %>%
+   arrange(FNID_OLD)  
+   
+  
+   
+  IPC_zones_2012.map = bind_rows(ipc2012.duplicate,ipc2012.not.duplicate)
+  
+  table(IPC_zones_2012.map$CS201007)
+#   duplicated(IPC_zones_2012.map$FNID_OLD)
+ write.csv(IPC_zones_2012.map,"data/raw/IPC_value/IPC_zones_2012.csv",row.names = FALSE)
+ 
+ 
+   
 # Expand the value from quaterly to monthly 
  FEWS_IPC= FEWS_IPC  %>% 
   mutate(CS200908 = CS200907) %>%
@@ -208,7 +242,7 @@ FEWS_IPC_long2009 = FEWS_IPC_long %>% filter (year <2010)
 
 table(FEWS_IPC_long2009$IPC_value)
 
-MW2012C3030306 Oct 2009
+# MW2012C3030306 Oct 2009
 
 
 # generate 12 month lag 
