@@ -31,17 +31,17 @@ concoord_lhz_ea = mw.lsms %>% distinct(FNID,ea_id)
 
 
 # Locate ipczones where we don't have IPC values 
-library(readxl)
-FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "Common Unit", skip = 2)
-FEWS_IPC = FEWS_IPC %>% dplyr::filter(!is.na(FNID_OLD))
-# We have only 39 livelihood zones that have IPC 
-length(unique(FEWS_IPC$FNID_OLD))
- 
-# 18 livelihood zones don't have IPC value
-unique(concoord_lhz_ea$FNID[!(concoord_lhz_ea$FNID  %in% FEWS_IPC$FNID_OLD)])
-
-# 2 IPC zones we don't have LSMS data (one on the island, one don't have observation)
-FEWS_IPC$FNID_OLD[! (FEWS_IPC$FNID_OLD %in% concoord_lhz_ea$FNID)]
+# library(readxl)
+# FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "Common Unit", skip = 2)
+# FEWS_IPC = FEWS_IPC %>% dplyr::filter(!is.na(FNID_OLD))
+# # We have only 39 livelihood zones that have IPC 
+# length(unique(FEWS_IPC$FNID_OLD))
+#  
+# # 18 livelihood zones don't have IPC value
+# unique(concoord_lhz_ea$FNID[!(concoord_lhz_ea$FNID  %in% FEWS_IPC$FNID_OLD)])
+# 
+# # 2 IPC zones we don't have LSMS data (one on the island, one don't have observation)
+# FEWS_IPC$FNID_OLD[! (FEWS_IPC$FNID_OLD %in% concoord_lhz_ea$FNID)]
 
 mw.lsms = mw.lsms %>%
   mutate(ea_id = as.character(ea_id)) %>%
@@ -198,7 +198,38 @@ mw.master.clust= mw.master.clust %>%
   mutate(TA_gdd  = mean(gdd,na.rm=TRUE)) %>%
   mutate(TA_tmean  = mean(tmean,na.rm=TRUE))  %>%
   distinct()
-  
+
+
+# generate quarter and month fixed effect 
+
+mw.master.clust = mw.master.clust %>% 
+  mutate( quarter1 = if_else( FS_month<4,1,0 ) ) %>%
+  mutate( quarter2 = if_else( FS_month>4 & FS_month<7,1,0 ) ) %>%
+  mutate( quarter3 = if_else( FS_month>6 & FS_month<10,1,0 ) ) %>%
+  mutate( quarter4 = if_else( FS_month>9,1,0 ) ) %>%
+  mutate( month1 = if_else( FS_month==1,1,0 ) ) %>%
+  mutate( month2 = if_else( FS_month==2,1,0 ) ) %>%
+  mutate( month3 = if_else( FS_month==3,1,0 ) ) %>%
+  mutate( month4 = if_else( FS_month==4,1,0 ) ) %>%
+  mutate( month5 = if_else( FS_month==5,1,0 ) ) %>%
+  mutate( month6 = if_else( FS_month==6,1,0 ) ) %>%
+  mutate( month7 = if_else( FS_month==7,1,0 ) ) %>%
+  mutate( month8 = if_else( FS_month==8,1,0 ) ) %>%
+  mutate( month9 = if_else( FS_month==9,1,0 ) ) %>%
+  mutate( month10 = if_else( FS_month==10,1,0 ) ) %>%
+  mutate( month11 = if_else( FS_month==11,1,0 ) ) %>%
+  mutate( month12 = if_else( FS_month==12,1,0 ) )  
+
+
+# generate dummies for each FNID 
+
+library(fastDummies)
+mw.master.clust = fastDummies::dummy_cols(mw.master.clust, select_columns = "FNID")
+
+
+
+
+
 
 # colnames(mw.master.hh)
 write.csv(mw.master.hh, file= "data/mw_dataset_hh.csv",row.names = FALSE)

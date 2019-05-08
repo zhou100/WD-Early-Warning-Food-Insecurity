@@ -35,6 +35,7 @@ mw.cluster = mw.cluster %>%
   mutate(clust_maize_price  = log(clust_maize_price))
 colSums(is.na(mw.cluster))
 
+mw.cluster[is.na(mw.cluster$IPC1),]$FNID
 
 # Split by year 
 unique(mw.cluster$FS_year)
@@ -93,7 +94,6 @@ summarise(mean=mean(value,na.rm = TRUE), median=median(value,na.rm = TRUE),sd=sd
 
 print(table1.summary.cluster)
 
-mw.cluster$IPC12
 
 
 ###########################################
@@ -102,25 +102,27 @@ mw.cluster$IPC12
 
 # mw.reg= mw.2010.cluster %>% na.omit(IPC12)
 
-logFCS.ols <- lm(logFCS ~ IPC1+raincytot + day1rain + maxdaysnorain + floodmax + 
+logFCS.ols <- lm(logFCS ~ IPC1+IPC12+raincytot + day1rain + maxdaysnorain  + 
                    clust_maize_price +  clust_maize_mktthin + percent_ag + 
                    elevation  + nutri_rent_moderate_constraint   + 
                    dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
-                   hh_age + hh_gender + asset_index2, data=mw.2010.cluster)  # build linear regression model on logFCS
+                   hh_age + hh_gender + asset_index2+ quarter1 + quarter2 +quarter3, data=mw.2010.cluster)  # build linear regression model on logFCS
 
 
-hdds.ols <- lm(HDDS ~ IPC1+raincytot + day1rain + maxdaysnorain + floodmax + 
+hdds.ols <- lm(HDDS ~ IPC1+IPC12+ raincytot + day1rain + maxdaysnorain  + 
                  clust_maize_price +  clust_maize_mktthin + percent_ag + 
                  elevation  + nutri_rent_moderate_constraint   + 
                  dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
-                 hh_age + hh_gender + asset_index2, data=mw.2010.cluster)  # build linear regression model on HDDS
+                 hh_age + hh_gender + asset_index2+ quarter1 + quarter2 +quarter3, data=mw.2010.cluster)  # build linear regression model on HDDS
 
-rcsi.ols <- lm(rCSI  ~ IPC1+raincytot + day1rain + maxdaysnorain + floodmax + 
-                 clust_maize_price +  clust_maize_mktthin + percent_ag + 
-                 elevation  + nutri_rent_moderate_constraint   + 
-                 dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
-                 hh_age + hh_gender + asset_index2, data=mw.2010.cluster)  # build linear regression model on rCSI
+rcsi.ols <- lm(rCSI  ~ IPC1 +IPC12+ raincytot  + maxdaysnorain + 
+                   hh_gender + percent_ag+ dist_admarc + day1rain + elevation +dist_road +
+                 clust_maize_price +  clust_maize_mktthin  + 
+                   + nutri_rent_moderate_constraint   + 
+                    roof_natural_inverse + number_celphones +hhsize + 
+                 hh_age + asset_index2 + quarter1 + quarter2 +quarter3, data=mw.2010.cluster)  # build linear regression model on rCSI
 
+ 
 stargazer::stargazer(logFCS.ols,hdds.ols,rcsi.ols,type = "text")
 
 
@@ -158,21 +160,21 @@ write.csv(mw.2013.cluster.ipc1,"data/clean/mw.2013.cluster.csv",row.names = FALS
 
 
 # Define Train and Test based on years 
-train2010 = mw.2010.cluster.ipc1 %>% 
-  dplyr::select(logFCS,HDDS,rCSI,IPC1,raincytot,day1rain,maxdaysnorain,floodmax,
-                lhz_maxdaysnorain,lhz_floodmax,
-                clust_maize_price,clust_maize_mktthin,percent_ag,
-                elevation,  nutri_rent_moderate_constraint,
-                dist_road,dist_admarc,roof_natural_inverse,number_celphones,hhsize,hh_age,
-                hh_gender,asset_index2) %>%  na.omit()
-
-test2013 = mw.2013.cluster.ipc1 %>% 
-  dplyr::select(logFCS,HDDS,rCSI,IPC1,raincytot,day1rain,maxdaysnorain,floodmax,
-                lhz_maxdaysnorain,lhz_floodmax,
-                clust_maize_price,clust_maize_mktthin,percent_ag,
-                elevation,  nutri_rent_moderate_constraint,
-                dist_road,dist_admarc,roof_natural_inverse,number_celphones,hhsize,hh_age,
-                hh_gender,asset_index2)  
+# train2010 = mw.2010.cluster.ipc1 %>% 
+#   dplyr::select(logFCS,HDDS,rCSI,IPC1,raincytot,day1rain,maxdaysnorain,floodmax,
+#                 lhz_maxdaysnorain,lhz_floodmax,
+#                 clust_maize_price,clust_maize_mktthin,percent_ag,
+#                 elevation,  nutri_rent_moderate_constraint,
+#                 dist_road,dist_admarc,roof_natural_inverse,number_celphones,hhsize,hh_age,
+#                 hh_gender,asset_index2) %>%  na.omit()
+# 
+# mw.2013.cluster.ipc1 = mw.2013.cluster.ipc1 %>% 
+#   dplyr::select(logFCS,HDDS,rCSI,IPC1,raincytot,day1rain,maxdaysnorain,floodmax,
+#                 lhz_maxdaysnorain,lhz_floodmax,
+#                 clust_maize_price,clust_maize_mktthin,percent_ag,
+#                 elevation,  nutri_rent_moderate_constraint,
+#                 dist_road,dist_admarc,roof_natural_inverse,number_celphones,hhsize,hh_age,
+#                 hh_gender,asset_index2)  
 
 ###################################################################
 ## Full model cluster level predictions 
@@ -182,40 +184,48 @@ lm.logFCS<-train(logFCS ~IPC1 + raincytot + day1rain +   floodmax + maxdaysnorai
                clust_maize_price +  clust_maize_mktthin + percent_ag + 
                elevation  + nutri_rent_moderate_constraint + 
                dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + hh_age+
+               #month1 + month2+ month3+month4 + month5+month6 + month7 + month8 + month9+month10+month11+ 
+               #quarter1+quarter2+quarter3 
+                 
                hh_gender +asset_index2, data = mw.2010.cluster.ipc1, method = "lm")
 
-predicted.logFCS = predict(lm.logFCS, test2013, se.fit = TRUE)
+predicted.logFCS = predict(lm.logFCS, mw.2013.cluster.ipc1, se.fit = TRUE)
 
 
-# cor(predicted.logFCS, test2013$logFCS, method = c("pearson"))^2
+# cor(predicted.logFCS, mw.2013.cluster.ipc1$logFCS, method = c("pearson"))^2
 
-postResample(pred = predicted.logFCS, obs = test2013$logFCS)
+postResample(pred = predicted.logFCS, obs = mw.2013.cluster.ipc1$logFCS)
 
 
 # HDDS
-lm.HDDS<-train(HDDS ~ IPC1+ raincytot + day1rain +     floodmax + maxdaysnorain+
+lm.HDDS<-train(HDDS ~ IPC1+raincytot + day1rain +     floodmax + maxdaysnorain+
                  clust_maize_price +  clust_maize_mktthin + percent_ag + 
                  elevation  + nutri_rent_moderate_constraint +  
                  dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + hh_age+
-                 hh_gender + asset_index2, data = train2010, method = "lm")
+                 quarter1+quarter2+quarter3 +
+                 hh_gender + asset_index2, data = mw.2010.cluster.ipc1, method = "lm")
 
-predicted.HDDS = predict(lm.HDDS, test2013, se.fit = TRUE)
+predicted.HDDS = predict(lm.HDDS, mw.2013.cluster.ipc1, se.fit = TRUE)
 
-cor(predicted.HDDS, test2013$HDDS, method = c("pearson"))^2
+cor(predicted.HDDS, mw.2013.cluster.ipc1$HDDS, method = c("pearson"))^2
+postResample(pred = predicted.HDDS, obs = mw.2013.cluster.ipc1$HDDS)
 
 
 # rCSI
-lm.rCSI<-train(rCSI ~ IPC1 + raincytot + day1rain +  floodmax + maxdaysnorain+
+lm.rCSI<-train(rCSI ~ IPC1 +raincytot + day1rain +  floodmax + maxdaysnorain+
                  clust_maize_price +  clust_maize_mktthin + percent_ag + 
                  elevation  + nutri_rent_moderate_constraint + 
                  dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + hh_age+
-                 hh_gender + asset_index2, data = train2010, method = "lm")
+                 # quarter1+quarter2+quarter3 +
+                 # month1 + month2+ month3+month4 + month5+month6 + month7 + month8 + month9+month10+month11+ 
+                 # FNID_MW2012C3010107+FNID_MW2012C3010210+FNID_MW2012C3010201+FNID_MW2012C3010209+FNID_MW2012C3010309+FNID_MW2012C3010508+FNID_MW2012C3010311+FNID_MW2012C3010417+FNID_MW2012C3010409+FNID_MW2012C3010517+FNID_MW2012C3010503+FNID_MW2012C3020103+FNID_MW2012C3020209+FNID_MW2012C3020211+FNID_MW2012C3020213+FNID_MW2012C3020203+FNID_MW2012C3020303+FNID_MW2012C3020403+FNID_MW2012C3020515+FNID_MW2012C3020513+FNID_MW2012C3020603+FNID_MW2012C3020619+FNID_MW2012C3020703+FNID_MW2012C3020803+FNID_MW2012C3020813+FNID_MW2012C3020913+FNID_MW2012C3020815+FNID_MW2012C3030115+FNID_MW2012C3030112+FNID_MW2012C3030114+FNID_MW2012C3999918+FNID_MW2012C3030204+FNID_MW2012C3030214+FNID_MW2012C3030206+FNID_MW2012C3030304+FNID_MW2012C3030314+FNID_MW2012C3030306+FNID_MW2012C3030414+FNID_MW2012C3030404+FNID_MW2012C3030514+FNID_MW2012C3030519+FNID_MW2012C3030506+FNID_MW2012C3030613+FNID_MW2012C3031313+FNID_MW2012C3030716+FNID_MW2012C3030714+FNID_MW2012C3030804+FNID_MW2012C3030816+FNID_MW2012C3030904+FNID_MW2012C3031005+FNID_MW2012C3031105+FNID_MW2012C3031213+FNID_MW2012C3031206+FNID_MW2012C3030606 +
+                 hh_gender + asset_index2, data = mw.2010.cluster.ipc1, method = "lm")
 
-predicted.rCSI = predict(lm.rCSI, test2013, se.fit = TRUE)
+predicted.rCSI = predict(lm.rCSI, mw.2013.cluster.ipc1, se.fit = TRUE)
 
-cor(predicted.rCSI, test2013$rCSI, method = c("pearson"))^2
+cor(predicted.rCSI, mw.2013.cluster.ipc1$rCSI, method = c("pearson"))^2
 
-postResample(pred = predicted.rCSI, obs = test2013$rCSI)
+postResample(pred = predicted.rCSI, obs = mw.2013.cluster.ipc1$rCSI)
 
 ###################################################################
 ## IPC value model cluster level predictions 
@@ -223,28 +233,28 @@ postResample(pred = predicted.rCSI, obs = test2013$rCSI)
 # logFCS  IPC value model
 lm.logFCS.ipc<-train(logFCS ~IPC1, data = mw.2010.cluster.ipc1, method = "lm")
 
-predicted.logFCS.ipc = predict(lm.logFCS.ipc, test2013, se.fit = TRUE)
+predicted.logFCS.ipc = predict(lm.logFCS.ipc, mw.2013.cluster.ipc1, se.fit = TRUE)
+postResample(pred = predicted.logFCS.ipc, obs = mw.2013.cluster.ipc1$logFCS)
 
 
-# cor(predicted.logFCS, test2013$logFCS, method = c("pearson"))^2
+# cor(predicted.logFCS, mw.2013.cluster.ipc1$logFCS, method = c("pearson"))^2
 
-postResample(pred = predicted.logFCS.ipc, obs = test2013$logFCS)
 
 
 # HDDS IPC value model
-lm.HDDS.ipc<-train(HDDS ~ IPC1, data = train2010, method = "lm")
+lm.HDDS.ipc<-train(HDDS ~ IPC1, data = mw.2010.cluster.ipc1, method = "lm")
 
-predicted.HDDS.ipc = predict(lm.HDDS.ipc, test2013, se.fit = TRUE)
+predicted.HDDS.ipc = predict(lm.HDDS.ipc, mw.2013.cluster.ipc1, se.fit = TRUE)
 
-cor(predicted.HDDS.ipc, test2013$HDDS, method = c("pearson"))^2
+cor(predicted.HDDS.ipc, mw.2013.cluster.ipc1$HDDS, method = c("pearson"))^2
 
 
 # rCSI IPC value model
-lm.rCSI.ipc<-train(rCSI ~ IPC1, data = train2010, method = "lm")
+lm.rCSI.ipc<-train(rCSI ~ IPC1, data = mw.2010.cluster.ipc1, method = "lm")
 
-predicted.rCSI.ipc = predict(lm.rCSI.ipc, test2013, se.fit = TRUE)
+predicted.rCSI.ipc = predict(lm.rCSI.ipc, mw.2013.cluster.ipc1, se.fit = TRUE)
 
-cor(predicted.rCSI.ipc, test2013$rCSI, method = c("pearson"))^2
+cor(predicted.rCSI.ipc, mw.2013.cluster.ipc1$rCSI, method = c("pearson"))^2
 
 
 
@@ -258,22 +268,22 @@ cor(predicted.rCSI.ipc, test2013$rCSI, method = c("pearson"))^2
 
 # FCS 28 42  
 
-logFCS  = bind_cols(as.data.frame(predicted.logFCS), as.data.frame(test2013$logFCS))
+logFCS  = bind_cols(as.data.frame(predicted.logFCS), as.data.frame(mw.2013.cluster.ipc1$logFCS))
 names(logFCS) = c("logFCS_predict","logFCS")
 
 logFCS$cat_logFCS<-cut(logFCS$logFCS, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
 logFCS$cat_logFCS_predict<-cut(logFCS$logFCS_predict, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
 # category prediction 
-confusionMatrix(logFCS$cat_logFCS_predict,logFCS$cat_logFCS)
+confusionMatrix(data=logFCS$cat_logFCS_predict,reference=logFCS$cat_logFCS)
 
 logFCS.matrix.full = as.matrix(confusionMatrix(logFCS$cat_logFCS_predict,logFCS$cat_logFCS))
 
 # Percentage of food insecure clusters correctly predicted to be food insecure
 table4.logFCS.full = logFCS.matrix.full[2,2]/(logFCS.matrix.full[2,2] + logFCS.matrix.full[3,2])
-
+table4.logFCS.full
 
 # HDDS 3 6 
-HDDS  = bind_cols(as.data.frame(predicted.HDDS), as.data.frame(test2013$HDDS))
+HDDS  = bind_cols(as.data.frame(predicted.HDDS), as.data.frame(mw.2013.cluster.ipc1$HDDS))
 names(HDDS) = c("HDDS_predict","HDDS")
 HDDS$cat_HDDS<-cut(HDDS$HDDS, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
 HDDS$cat_HDDS_predict<-cut(HDDS$HDDS_predict, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
@@ -284,9 +294,10 @@ HDDS.matrix.full = as.matrix(confusionMatrix(HDDS$cat_HDDS_predict,HDDS$cat_HDDS
 
 # Percentage of food insecure clusters correctly predicted to be food insecure
 table4.HDDS.full = HDDS.matrix.full[2,2]/(HDDS.matrix.full[2,2] + HDDS.matrix.full[3,2])
+table4.HDDS.full
 
 # RCSI 4 17 42
-RCSI  = bind_cols(as.data.frame(predicted.rCSI), as.data.frame(test2013$rCSI))
+RCSI  = bind_cols(as.data.frame(predicted.rCSI), as.data.frame(mw.2013.cluster.ipc1$rCSI))
 names(RCSI) = c("RCSI_predict","RCSI")
 RCSI$cat_RCSI<-cut(RCSI$RCSI, c(-Inf,4,17,42,Inf),labels=c("Food Secure", "Mild","Moderate","Severe"))
 RCSI$cat_RCSI_predict<-cut(RCSI$RCSI_predict, c(-Inf,4,17,42,Inf),labels=c(c("Food Secure", "Mild","Moderate","Severe")))
@@ -296,13 +307,13 @@ confusionMatrix(RCSI$cat_RCSI_predict,RCSI$cat_RCSI)
 RCSI.matrix.full = as.matrix(confusionMatrix(RCSI$cat_RCSI_predict,RCSI$cat_RCSI))
 # Percentage of food insecure clusters correctly predicted to be food insecure
 table4.RCSI.full = RCSI.matrix.full[2,2]/(RCSI.matrix.full[1,2] + RCSI.matrix.full[2,2])
-
+table4.RCSI.full
 
 
 #######################################################################################
 # categorical prediction using IPC only
 ######################################################################################
-logFCS  = bind_cols(as.data.frame(predicted.logFCS.ipc), as.data.frame(test2013$logFCS))
+logFCS  = bind_cols(as.data.frame(predicted.logFCS.ipc), as.data.frame(mw.2013.cluster.ipc1$logFCS))
 names(logFCS) = c("logFCS_predict","logFCS")
 
 logFCS$cat_logFCS<-cut(logFCS$logFCS, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
@@ -317,7 +328,7 @@ table4.logFCS.ipc = logFCS.matrix.ipc[2,2]/(logFCS.matrix.ipc[2,2] + logFCS.matr
 
 
 # HDDS 3 6 
-HDDS  = bind_cols(as.data.frame(predicted.HDDS.ipc), as.data.frame(test2013$HDDS))
+HDDS  = bind_cols(as.data.frame(predicted.HDDS.ipc), as.data.frame(mw.2013.cluster.ipc1$HDDS))
 names(HDDS) = c("HDDS_predict","HDDS")
 HDDS$cat_HDDS<-cut(HDDS$HDDS, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
 HDDS$cat_HDDS_predict<-cut(HDDS$HDDS_predict, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
@@ -330,7 +341,7 @@ HDDS.matrix.ipc = as.matrix(confusionMatrix(HDDS$cat_HDDS_predict,HDDS$cat_HDDS)
 table4.HDDS.ipc = HDDS.matrix.ipc[2,2]/(HDDS.matrix.ipc[2,2] + HDDS.matrix.ipc[3,2])
 
 # RCSI 4 17 42
-RCSI  = bind_cols(as.data.frame(predicted.rCSI.ipc), as.data.frame(test2013$rCSI))
+RCSI  = bind_cols(as.data.frame(predicted.rCSI.ipc), as.data.frame(mw.2013.cluster.ipc1$rCSI))
 names(RCSI) = c("RCSI_predict","RCSI")
 RCSI$cat_RCSI<-cut(RCSI$RCSI, c(-Inf,4,17,42,Inf),labels=c("Food Secure", "Mild","Moderate","Severe"))
 RCSI$cat_RCSI_predict<-cut(RCSI$RCSI_predict, c(-Inf,4,17,42,Inf),labels=c(c("Food Secure", "Mild","Moderate","Severe")))

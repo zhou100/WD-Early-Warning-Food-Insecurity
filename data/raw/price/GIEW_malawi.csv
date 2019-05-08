@@ -1,0 +1,1323 @@
+Price Type,Country,Market,Commodity,Local currency (originally collected),Local measurement unit (originally collected),Date,Value (local currency per kg),"Value (real price, local currency per kg)",Value (USD per kg),Value ( local currency per local measurement unit)
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2007,25.00,31.10,0.17,25.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2007,22.42,27.06,0.16,22.42
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2007,21.17,25.69,0.15,21.17
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2007,19.00,23.55,0.13,19.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2007,18.50,23.46,0.13,18.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2007,18.25,24.00,0.12,18.25
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2007,20.64,27.43,0.14,20.64
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2007,20.00,27.21,0.14,20.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2007,21.00,27.12,0.15,21.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2007,22.00,28.21,0.15,22.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2007,24.50,30.53,0.17,24.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2007,30.00,36.44,0.21,30.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2008,30.00,34.64,0.21,30.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2008,40.00,44.72,0.28,40.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2008,60.00,67.30,0.42,60.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2008,44.74,51.30,0.31,44.74
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2008,35.00,41.12,0.24,35.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2008,37.50,45.46,0.26,37.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2008,56.00,68.40,0.39,56.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2008,58.66,73.17,0.41,58.66
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2008,56.00,66.15,0.39,56.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2008,55.81,65.40,0.39,55.81
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2008,58.00,65.94,0.41,58.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2008,52.00,57.45,0.36,52.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2009,72.00,75.55,0.51,72.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2009,72.00,73.41,0.51,72.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2009,67.61,69.25,0.48,67.61
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2009,51.25,53.81,0.36,51.25
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2009,40.00,43.23,0.28,40.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2009,39.93,44.64,0.28,39.93
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2009,40.74,46.06,0.28,40.74
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2009,42.38,49.03,0.30,42.38
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2009,43.77,48.10,0.31,43.77
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2009,43.52,47.54,0.30,43.52
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2009,43.97,46.65,0.30,43.97
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2009,44.02,45.21,0.30,44.02
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2010,44.06,42.88,0.29,44.06
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2010,44.27,41.72,0.29,44.27
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2010,39.95,37.77,0.26,39.95
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2010,35.63,34.61,0.23,35.63
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2010,31.31,31.39,0.20,31.31
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2010,31.52,32.76,0.20,31.52
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2010,31.78,33.48,0.21,31.78
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2010,32.04,34.58,0.21,32.04
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2010,31.64,32.50,0.20,31.64
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2010,32.04,32.80,0.21,32.04
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2010,31.95,31.86,0.21,31.95
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2010,31.85,30.77,0.21,31.85
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2011,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2011,46.00,42.10,0.27,46.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2011,44.00,38.73,0.26,44.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2012,70.00,57.93,0.42,70.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2012,68.00,54.01,0.40,68.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2012,56.00,44.35,0.33,56.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2012,53.00,42.74,0.31,53.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2012,50.00,39.92,0.20,50.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2012,57.50,46.50,0.21,57.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2012,62.50,50.36,0.22,62.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2012,62.50,49.93,0.22,62.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2012,67.50,50.13,0.23,67.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2012,70.00,50.73,0.22,70.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2012,68.00,46.70,0.21,68.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2012,82.16,53.74,0.24,82.16
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2013,90.00,56.70,0.26,90.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2013,100.00,59.07,0.27,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2013,165.00,97.32,0.42,165.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2013,132.50,79.81,0.37,132.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2013,113.33,68.37,0.31,113.33
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2013,110.00,68.91,0.33,110.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2013,110.00,70.35,0.33,110.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2013,128.88,82.91,0.38,128.88
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2013,136.66,83.10,0.38,136.66
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2013,140.00,83.08,0.36,140.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2013,140.00,79.39,0.34,140.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2013,139.89,76.23,0.32,139.89
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2014,170.00,85.07,0.39,170.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2014,145.00,68.74,0.33,145.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2014,120.00,57.03,0.28,120.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2014,120.00,58.30,0.29,120.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2014,99.00,45.83,0.24,99.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2014,90.00,46.00,0.22,90.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2014,90.00,47.03,0.22,90.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2014,92.00,47.53,0.23,92.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2014,92.00,45.21,0.22,92.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2014,80.00,38.50,0.18,80.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2014,80.00,36.68,0.16,80.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2014,80.00,35.12,0.16,80.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2015,100.00,41.28,0.21,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2015,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2015,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2015,130.00,53.15,0.29,130.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2015,160.00,65.87,0.36,160.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2015,135.50,57.13,0.30,135.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2015,135.00,57.75,0.28,135.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2015,135.00,56.70,0.25,135.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2015,141.25,55.93,0.25,141.25
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2015,150.00,57.89,0.27,150.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2015,157.50,57.96,0.27,157.50
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2015,170.00,59.77,0.26,170.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2016,213.33,71.34,0.30,213.33
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2016,240.00,77.06,0.32,240.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2016,250.00,82.38,0.35,250.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2016,250.00,84.53,0.36,250.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2016,180.00,61.02,0.25,180.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2016,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2016,235.00,81.43,0.32,235.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2016,240.00,82.12,0.33,240.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2016,240.00,77.16,0.33,240.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2016,248.00,76.09,0.34,248.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2016,260.00,76.20,0.35,260.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2017,245.00,69.34,0.33,245.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2017,245.00,69.34,0.33,245.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2017,220.00,62.59,0.30,220.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2017,95.00,28.02,0.13,95.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2017,110.00,33.19,0.15,110.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2017,110.00,33.97,0.15,110.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2017,,,,
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2017,100.00,31.29,0.13,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2017,100.00,30.14,0.13,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,10/1/2017,100.00,29.69,0.13,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,11/1/2017,100.00,28.48,0.13,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,12/1/2017,100.00,27.37,0.13,100.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,1/1/2018,108.00,28.28,0.14,108.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,2/1/2018,121.44,31.13,0.16,121.44
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,3/1/2018,125.72,32.53,0.17,125.72
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,4/1/2018,125.75,33.81,0.17,125.75
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,5/1/2018,130.13,35.19,0.17,130.13
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,6/1/2018,131.25,35.58,0.17,131.25
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,7/1/2018,139.17,37.48,0.19,139.17
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,8/1/2018,140.00,37.18,0.19,140.00
+Retail,Malawi,Lilongwe,Maize,Kwacha,Kg,9/1/2018,156.11,40.66,0.21,156.11
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2007,100.00,124.42,0.71,100.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2007,105.00,126.74,0.75,105.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2007,107.50,130.47,0.77,107.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2007,115.00,142.59,0.82,115.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2007,120.00,152.20,0.85,120.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2007,110.00,144.70,0.78,110.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2007,113.33,150.55,0.80,113.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2007,100.00,136.09,0.71,100.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2007,103.33,133.45,0.73,103.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2007,101.25,129.86,0.72,101.25
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2007,103.33,128.76,0.73,103.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2007,100.00,121.47,0.71,100.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2008,100.00,115.48,0.71,100.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2008,100.00,111.81,0.71,100.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2008,110.00,123.39,0.78,110.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2008,130.00,149.07,0.92,130.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2008,145.00,170.38,1.03,145.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2008,150.00,181.86,1.06,150.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2008,173.33,211.72,1.23,173.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2008,182.50,227.60,1.29,182.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2008,183.33,216.58,1.30,183.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2008,176.25,206.56,1.25,176.25
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2008,190.00,216.03,1.35,190.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2008,200.00,220.98,1.42,200.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2009,210.00,220.37,1.49,210.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2009,266.67,271.90,1.89,266.67
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2009,237.22,242.99,1.68,237.22
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2009,236.33,248.09,1.68,236.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2009,190.00,205.38,1.35,190.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2009,161.25,180.29,1.14,161.25
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2009,164.67,186.22,1.17,164.67
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2009,186.85,216.19,1.32,186.85
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2009,181.91,199.92,1.29,181.91
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2009,174.83,191.00,1.24,174.83
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2009,181.03,192.07,1.26,181.03
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2009,179.32,184.17,1.23,179.32
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2010,177.58,172.80,1.20,177.58
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2010,188.46,177.57,1.25,188.46
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2010,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2010,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2010,190.00,190.46,1.25,190.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2010,187.46,194.86,1.24,187.46
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2010,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2010,190.00,205.02,1.25,190.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2010,188.33,193.43,1.24,188.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2010,163.33,167.19,1.08,163.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2010,160.00,159.50,1.06,160.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2010,180.00,173.94,1.19,180.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2011,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2011,240.00,219.70,1.46,240.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2011,280.00,246.46,1.70,280.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2012,300.00,248.29,1.81,300.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2012,291.25,231.33,1.73,291.25
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2012,300.00,237.60,1.80,300.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2012,300.00,241.94,1.80,300.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2012,300.00,239.57,1.20,300.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2012,340.73,275.58,1.25,340.73
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2012,323.85,260.98,1.18,323.85
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2012,340.54,272.08,1.23,340.54
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2012,350.00,259.95,1.19,350.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2012,350.00,253.67,1.13,350.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2012,325.66,223.65,1.01,325.66
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2012,367.72,240.51,1.11,367.72
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2013,380.25,239.59,1.10,380.25
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2013,375.50,221.82,1.04,375.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2013,381.23,224.86,0.98,381.23
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2013,382.57,230.44,1.08,382.57
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2013,398.97,240.69,1.12,398.97
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2013,398.66,249.75,1.20,398.66
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2013,400.00,255.82,1.20,400.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2013,400.00,257.32,1.19,400.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2013,433.33,263.50,1.23,433.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2013,412.75,244.96,1.06,412.75
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2013,430.72,244.27,1.05,430.72
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2013,466.67,254.30,1.09,466.67
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2014,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2014,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2014,478.05,227.22,1.14,478.05
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2014,491.25,238.67,1.21,491.25
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2014,465.54,215.52,1.16,465.54
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2014,455.04,232.58,1.14,455.04
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2014,414.50,216.63,1.04,414.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2014,455.04,235.09,1.14,455.04
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2014,466.67,229.35,1.16,466.67
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2014,425.75,204.90,0.96,425.75
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2014,431.04,197.64,0.87,431.04
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2014,450.51,197.80,0.92,450.51
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2015,474.41,195.84,1.02,474.41
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2015,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2015,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2015,450.00,183.98,1.02,450.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2015,450.00,185.26,1.02,450.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2015,450.00,189.75,1.02,450.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2015,454.32,194.36,0.96,454.32
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2015,453.05,190.31,0.84,453.05
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2015,452.48,179.16,0.80,452.48
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2015,471.05,181.82,0.85,471.05
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2015,550.00,202.40,0.94,550.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2015,533.33,187.53,0.83,533.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2016,600.00,200.66,0.85,600.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2016,675.00,216.75,0.90,675.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2016,750.00,247.15,1.06,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2016,750.00,253.59,1.08,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2016,700.00,237.31,0.99,700.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2016,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2016,750.00,259.90,1.04,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2016,750.00,256.65,1.03,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2016,750.00,241.14,1.03,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2016,750.00,230.13,1.03,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2016,783.33,229.60,1.07,783.33
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2017,800.00,226.43,1.09,800.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2017,843.75,238.81,1.15,843.75
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2017,850.00,241.83,1.16,850.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2017,850.00,250.77,1.16,850.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2017,750.00,226.32,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2017,500.00,154.41,0.68,500.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2017,600.00,174.79,0.82,600.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2017,750.00,234.74,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2017,750.00,226.06,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,10/1/2017,750.00,222.73,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,11/1/2017,750.00,213.62,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,12/1/2017,750.00,205.30,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,1/1/2018,750.00,196.41,1.02,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,2/1/2018,816.11,209.24,1.11,816.11
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,3/1/2018,924.84,239.33,1.26,924.84
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,4/1/2018,954.16,256.57,1.30,954.16
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,5/1/2018,952.50,257.61,1.30,952.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,6/1/2018,887.50,240.59,1.21,887.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,7/1/2018,912.50,245.75,1.24,912.50
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,8/1/2018,750.00,199.20,1.03,750.00
+Retail,Malawi,Lilongwe,Rice,Kwacha,Kg,9/1/2018,930.69,242.43,1.28,930.69
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2007,24.68,30.70,0.17,24.68
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2007,24.79,29.93,0.17,24.79
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2007,24.97,30.31,0.17,24.97
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2007,23.04,28.58,0.16,23.04
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2007,19.78,25.08,0.14,19.78
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2007,18.13,23.86,0.12,18.13
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2007,17.80,23.66,0.12,17.80
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2007,16.30,22.19,0.11,16.30
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2007,17.46,22.56,0.12,17.46
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2007,21.54,27.62,0.15,21.54
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2007,26.75,33.33,0.19,26.75
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2007,35.00,42.51,0.24,35.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2008,39.36,45.45,0.28,39.36
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2008,44.68,49.95,0.31,44.68
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2008,40.00,44.87,0.28,40.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2008,40.00,45.87,0.28,40.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2008,40.00,47.00,0.28,40.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2008,40.00,48.49,0.28,40.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2008,47.00,57.41,0.33,47.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2008,65.00,81.06,0.46,65.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2008,60.04,70.94,0.42,60.04
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2008,56.93,66.72,0.40,56.93
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2008,54.59,62.08,0.38,54.59
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2008,55.29,61.10,0.39,55.29
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2009,73.69,77.34,0.52,73.69
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2009,75.00,76.47,0.53,75.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2009,79.30,81.23,0.56,79.30
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2009,52.16,54.76,0.37,52.16
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2009,39.34,42.53,0.27,39.34
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2009,32.04,35.82,0.22,32.04
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2009,37.59,42.50,0.26,37.59
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2009,41.18,47.64,0.29,41.18
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2009,43.79,48.12,0.31,43.79
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2009,50.52,55.20,0.35,50.52
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2009,45.97,48.78,0.32,45.97
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2009,45.91,47.16,0.31,45.91
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2010,45.84,44.61,0.31,45.84
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2010,48.66,45.85,0.32,48.66
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2010,46.02,43.50,0.30,46.02
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2010,42.45,41.23,0.28,42.45
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2010,31.37,31.44,0.20,31.37
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2010,30.82,32.04,0.20,30.82
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2010,32.15,33.87,0.21,32.15
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2010,34.81,37.57,0.23,34.81
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2010,33.90,34.82,0.22,33.90
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2010,34.77,35.59,0.23,34.77
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2010,35.00,34.89,0.23,35.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2010,38.79,37.49,0.25,38.79
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2011,33.68,30.74,0.22,33.68
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2011,28.56,25.15,0.18,28.56
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2011,24.17,21.32,0.16,24.17
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2011,19.77,17.93,0.13,19.77
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2011,17.40,16.30,0.11,17.40
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2011,18.26,17.73,0.12,18.26
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2011,19.50,19.12,0.12,19.50
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2011,28.64,28.72,0.17,28.64
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2011,28.77,27.42,0.17,28.77
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2011,34.93,33.06,0.20,34.93
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2011,38.40,35.16,0.23,38.40
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2011,40.83,35.93,0.24,40.83
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2012,65.55,54.25,0.39,65.55
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2012,49.59,39.39,0.29,49.59
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2012,46.18,36.57,0.27,46.18
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2012,36.54,29.46,0.22,36.54
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2012,37.38,29.85,0.15,37.38
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2012,41.97,33.94,0.15,41.97
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2012,53.47,43.09,0.19,53.47
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2012,55.54,44.38,0.20,55.54
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2012,62.09,46.12,0.21,62.09
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2012,63.88,46.30,0.20,63.88
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2012,66.12,45.40,0.20,66.12
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2012,69.04,45.15,0.20,69.04
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2013,92.05,57.99,0.26,92.05
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2013,92.62,54.72,0.25,92.62
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2013,117.08,69.05,0.30,117.08
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2013,101.83,61.33,0.28,101.83
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2013,98.41,59.37,0.27,98.41
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2013,93.05,58.29,0.28,93.05
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2013,91.55,58.55,0.27,91.55
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2013,126.61,81.45,0.37,126.61
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,9/1/2013,148.63,90.38,0.42,148.63
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,10/1/2013,147.19,87.36,0.38,147.19
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,11/1/2013,149.21,84.62,0.36,149.21
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,12/1/2013,138.00,75.20,0.32,138.00
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,1/1/2014,168.11,84.13,0.38,168.11
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,2/1/2014,173.50,82.26,0.40,173.50
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,3/1/2014,120.06,57.06,0.28,120.06
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,4/1/2014,87.26,42.40,0.21,87.26
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,5/1/2014,74.26,34.37,0.18,74.26
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,6/1/2014,77.44,39.58,0.19,77.44
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,7/1/2014,,,,
+Retail,Malawi,Liwonde,Maize,Kwacha,Kg,8/1/2014,88.41,45.67,0.22,88.41
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2007,15.86,19.74,0.11,15.86
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2007,14.27,17.23,0.10,14.27
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2007,14.50,17.59,0.10,14.50
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2007,15.68,19.44,0.11,15.68
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2007,16.17,20.50,0.11,16.17
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2007,14.50,19.07,0.10,14.50
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2007,13.31,17.68,0.09,13.31
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2007,14.64,19.93,0.10,14.64
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2007,15.14,19.56,0.10,15.14
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2007,16.25,20.84,0.11,16.25
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2007,18.70,23.30,0.13,18.70
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2007,23.26,28.25,0.16,23.26
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2008,33.11,38.23,0.23,33.11
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2008,42.59,47.63,0.30,42.59
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2008,39.47,44.28,0.28,39.47
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2008,38.88,44.59,0.27,38.88
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2008,34.22,40.21,0.24,34.22
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2008,34.59,41.95,0.24,34.59
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2008,45.86,56.01,0.32,45.86
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2008,54.86,68.42,0.39,54.86
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2008,54.43,64.30,0.38,54.43
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2008,53.93,63.20,0.38,53.93
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2008,64.25,73.05,0.45,64.25
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2008,74.56,82.39,0.53,74.56
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2009,75.72,79.46,0.53,75.72
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2009,76.87,78.38,0.54,76.87
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2009,67.61,69.25,0.48,67.61
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2009,54.11,56.80,0.38,54.11
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2009,31.39,33.94,0.22,31.39
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2009,30.32,33.91,0.21,30.32
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2009,29.78,33.67,0.21,29.78
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2009,33.27,38.49,0.23,33.27
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2009,33.75,37.09,0.24,33.75
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2009,31.11,33.98,0.22,31.11
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2009,34.72,36.83,0.24,34.72
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2009,36.31,37.30,0.25,36.31
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2010,37.90,36.88,0.25,37.90
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2010,37.97,35.78,0.25,37.97
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2010,38.06,35.98,0.25,38.06
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2010,28.12,27.32,0.18,28.12
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2010,18.20,18.24,0.12,18.20
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2010,19.79,20.58,0.13,19.79
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2010,21.39,22.54,0.14,21.39
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2010,23.00,24.81,0.15,23.00
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2010,20.94,21.50,0.13,20.94
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2010,22.68,23.21,0.15,22.68
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2010,23.05,22.98,0.15,23.05
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2010,25.18,24.33,0.16,25.18
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2011,28.04,25.60,0.18,28.04
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2011,29.79,26.22,0.19,29.79
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2011,30.42,26.83,0.20,30.42
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2011,32.93,29.87,0.21,32.93
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2011,29.05,27.22,0.19,29.05
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2011,25.20,24.48,0.16,25.20
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2011,30.15,29.58,0.20,30.15
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2011,30.77,30.85,0.19,30.77
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2011,31.87,30.38,0.19,31.87
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2011,34.18,32.35,0.20,34.18
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2011,36.49,33.40,0.22,36.49
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2011,39.18,34.48,0.23,39.18
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2012,55.70,46.10,0.33,55.70
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2012,50.68,40.26,0.30,50.68
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2012,46.00,36.43,0.27,46.00
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2012,36.27,29.25,0.21,36.27
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2012,34.72,27.72,0.13,34.72
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2012,43.75,35.38,0.16,43.75
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2012,48.65,39.21,0.17,48.65
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2012,50.29,40.18,0.18,50.29
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2012,51.93,38.57,0.17,51.93
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2012,54.66,39.62,0.17,54.66
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2012,57.31,39.35,0.17,57.31
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2012,74.77,48.91,0.22,74.77
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2013,84.05,52.95,0.24,84.05
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2013,86.87,51.32,0.24,86.87
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2013,119.41,70.43,0.30,119.41
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2013,103.86,62.56,0.29,103.86
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2013,91.94,55.47,0.25,91.94
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2013,84.50,52.93,0.25,84.50
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2013,89.94,57.52,0.27,89.94
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2013,101.66,65.40,0.30,101.66
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2013,106.33,64.65,0.30,106.33
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2013,106.84,63.41,0.27,106.84
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2013,117.45,66.61,0.28,117.45
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2013,127.16,69.29,0.29,127.16
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2014,155.42,77.78,0.35,155.42
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2014,150.19,71.20,0.34,150.19
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2014,125.05,59.43,0.30,125.05
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2014,99.91,48.54,0.24,99.91
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2014,77.29,35.78,0.19,77.29
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2014,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2014,63.22,33.04,0.15,63.22
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2014,65.87,34.03,0.16,65.87
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2014,57.04,28.03,0.14,57.04
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2014,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2014,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2014,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2015,80.05,33.05,0.17,80.05
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2015,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2015,88.41,35.56,0.20,88.41
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2015,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2015,122.79,50.55,0.27,122.79
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2015,122.70,51.74,0.28,122.70
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2015,112.27,48.03,0.23,112.27
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2015,116.43,48.90,0.21,116.43
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2015,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2015,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2015,149.19,54.90,0.25,149.19
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,12/1/2015,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,1/1/2016,211.38,70.69,0.29,211.38
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,2/1/2016,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,3/1/2016,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,4/1/2016,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,5/1/2016,185.02,62.72,0.26,185.02
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,6/1/2016,208.05,71.51,0.29,208.05
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,7/1/2016,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,8/1/2016,,,,
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,9/1/2016,204.53,66.85,0.28,204.53
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,10/1/2016,201.77,64.87,0.27,201.77
+Retail,Malawi,Lizulu,Maize,Kwacha,Kg,11/1/2016,212.38,65.16,0.29,212.38
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2007,18.60,23.14,0.13,18.60
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2007,20.50,24.74,0.14,20.50
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2007,20.06,24.35,0.14,20.06
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2007,15.02,18.63,0.10,15.02
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2007,13.65,17.32,0.09,13.65
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2007,19.13,25.17,0.13,19.13
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2007,17.12,22.74,0.12,17.12
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2007,16.67,22.68,0.11,16.67
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2007,18.29,23.63,0.13,18.29
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2007,18.89,24.24,0.13,18.89
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2007,22.00,27.41,0.15,22.00
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2007,30.03,36.47,0.21,30.03
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2008,33.50,38.70,0.23,33.50
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2008,48.54,54.28,0.34,48.54
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2008,62.33,69.92,0.44,62.33
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2008,44.86,51.45,0.31,44.86
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2008,28.64,33.66,0.20,28.64
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2008,26.55,32.20,0.18,26.55
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2008,46.90,57.29,0.33,46.90
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2008,47.36,59.06,0.33,47.36
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2008,48.75,57.59,0.34,48.75
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2008,48.27,56.58,0.34,48.27
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2008,51.52,58.59,0.36,51.52
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2008,53.33,58.92,0.37,53.33
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2009,54.40,57.09,0.38,54.40
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2009,54.33,55.39,0.38,54.33
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2009,49.90,51.12,0.35,49.90
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2009,45.49,47.75,0.32,45.49
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2009,35.02,37.85,0.24,35.02
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2009,31.14,34.82,0.22,31.14
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2009,30.19,34.13,0.21,30.19
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2009,33.54,38.81,0.23,33.54
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2009,32.15,35.34,0.22,32.15
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2009,30.81,33.66,0.21,30.81
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2009,48.31,51.25,0.33,48.31
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2009,48.34,49.64,0.33,48.34
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2010,48.36,47.06,0.32,48.36
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2010,48.38,45.58,0.32,48.38
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2010,48.41,45.77,0.32,48.41
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2010,46.86,45.52,0.31,46.86
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2010,48.40,48.52,0.32,48.40
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2010,48.43,50.35,0.32,48.43
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2010,42.24,44.50,0.28,42.24
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2010,32.93,35.53,0.21,32.93
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2010,51.75,53.16,0.34,51.75
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2010,50.88,52.08,0.33,50.88
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2010,52.22,52.05,0.34,52.22
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2010,37.65,36.39,0.24,37.65
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2011,33.93,30.97,0.22,33.93
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2011,37.70,33.20,0.25,37.70
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2011,41.04,36.21,0.27,41.04
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2011,41.22,37.39,0.27,41.22
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2011,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2011,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2011,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2011,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2011,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2011,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2011,26.60,24.35,0.16,26.60
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2011,29.79,26.23,0.18,29.79
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2012,44.40,36.74,0.26,44.40
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2012,51.95,41.26,0.31,51.95
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2012,52.58,41.64,0.31,52.58
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2012,35.25,28.43,0.21,35.25
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2012,37.50,29.94,0.15,37.50
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2012,40.06,32.40,0.14,40.06
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2012,45.63,36.77,0.16,45.63
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2012,49.84,39.82,0.18,49.84
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2012,54.97,40.83,0.18,54.97
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2012,57.43,41.62,0.18,57.43
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2012,59.88,41.12,0.18,59.88
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2012,62.29,40.74,0.18,62.29
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2013,89.44,56.36,0.25,89.44
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2013,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2013,96.08,56.67,0.24,96.08
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2013,125.41,75.54,0.35,125.41
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2013,125.12,75.48,0.35,125.12
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2013,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2013,129.27,82.67,0.38,129.27
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2013,129.44,83.27,0.38,129.44
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2013,129.35,78.65,0.36,129.35
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2013,127.44,75.63,0.32,127.44
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2013,130.53,74.03,0.32,130.53
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2013,130.67,71.21,0.30,130.67
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2014,135.58,67.85,0.31,135.58
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2014,107.11,52.03,0.26,107.11
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2014,106.58,49.34,0.26,106.58
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2014,110.50,54.30,0.27,110.50
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2014,66.66,30.56,0.13,66.66
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2014,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2015,103.38,42.68,0.22,103.38
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2015,99.51,39.40,0.22,99.51
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2015,99.51,40.02,0.22,99.51
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2015,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2015,96.80,39.85,0.22,96.80
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2015,101.84,42.94,0.23,101.84
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2015,102.77,43.96,0.21,102.77
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2015,103.19,43.34,0.19,103.19
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2015,105.16,41.64,0.18,105.16
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2015,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2015,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2015,108.33,38.09,0.17,108.33
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2016,179.86,60.15,0.25,179.86
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2016,219.33,70.43,0.29,219.33
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2016,212.03,69.87,0.30,212.03
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2016,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2016,173.88,58.94,0.24,173.88
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2016,181.82,62.49,0.25,181.82
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2016,211.11,73.15,0.29,211.11
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2016,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2016,234.16,75.28,0.32,234.16
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2016,242.50,74.40,0.33,242.50
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2016,250.42,73.40,0.34,250.42
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2017,233.49,66.08,0.32,233.49
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2017,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2017,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2017,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2017,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2017,86.11,26.59,0.11,86.11
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2017,93.47,27.23,0.12,93.47
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2017,80.12,25.07,0.10,80.12
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,9/1/2017,78.95,23.79,0.10,78.95
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,10/1/2017,80.55,23.92,0.11,80.55
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,11/1/2017,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,12/1/2017,85.45,23.39,0.11,85.45
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,1/1/2018,78.84,20.64,0.10,78.84
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,2/1/2018,84.22,21.59,0.11,84.22
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,3/1/2018,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,4/1/2018,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,5/1/2018,82.23,22.24,0.11,82.23
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,6/1/2018,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,7/1/2018,,,,
+Retail,Malawi,Mzimba,Maize,Kwacha,Kg,8/1/2018,108.33,28.77,0.14,108.33
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2007,29.44,35.53,0.21,29.44
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2007,30.07,36.50,0.21,30.07
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2007,30.71,38.09,0.21,30.71
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2007,31.31,39.72,0.22,31.31
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2007,29.10,38.28,0.20,29.10
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2007,38.00,50.48,0.27,38.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2007,39.15,53.29,0.27,39.15
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2007,40.33,52.08,0.28,40.33
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2007,30.90,39.64,0.22,30.90
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2007,43.65,54.39,0.31,43.65
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2007,43.75,53.15,0.31,43.75
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2008,39.66,45.81,0.28,39.66
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2008,38.97,43.58,0.27,38.97
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2008,38.00,42.62,0.27,38.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2008,40.56,46.52,0.28,40.56
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2008,39.08,45.92,0.27,39.08
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2008,35.40,42.93,0.25,35.40
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2008,37.20,45.44,0.26,37.20
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2008,41.47,51.72,0.29,41.47
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2008,42.20,49.85,0.30,42.20
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2008,40.72,47.73,0.28,40.72
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2008,41.72,47.44,0.29,41.72
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2008,40.40,44.63,0.28,40.40
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2009,45.06,47.28,0.32,45.06
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2009,45.09,45.97,0.32,45.09
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2009,45.13,46.22,0.32,45.13
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2009,42.59,44.71,0.30,42.59
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2009,43.70,47.23,0.31,43.70
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2009,33.61,37.59,0.23,33.61
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2009,38.13,43.11,0.27,38.13
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2009,32.02,37.06,0.22,32.02
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2009,34.29,37.68,0.24,34.29
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2009,36.54,39.92,0.25,36.54
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2009,41.72,44.26,0.29,41.72
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2009,52.54,53.96,0.36,52.54
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2010,63.36,61.65,0.43,63.36
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2010,55.13,51.94,0.36,55.13
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2010,46.43,43.89,0.30,46.43
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2010,39.11,37.98,0.25,39.11
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2010,42.58,42.68,0.28,42.58
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2010,43.04,44.74,0.28,43.04
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2010,41.77,44.02,0.27,41.77
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2010,37.84,40.83,0.25,37.84
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2010,33.66,34.58,0.22,33.66
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2010,30.98,31.72,0.20,30.98
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2010,36.00,35.88,0.23,36.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2010,42.09,40.68,0.27,42.09
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2011,41.77,38.13,0.27,41.77
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2011,39.72,34.98,0.26,39.72
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2011,37.43,33.03,0.24,37.43
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2011,35.13,31.87,0.23,35.13
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2011,37.31,34.95,0.24,37.31
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2011,39.63,38.50,0.26,39.63
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2011,38.47,37.73,0.25,38.47
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2011,37.29,37.40,0.23,37.29
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2011,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2011,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2011,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2011,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2012,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2012,44.20,35.10,0.26,44.20
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2012,48.18,38.15,0.28,48.18
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2012,45.29,36.53,0.27,45.29
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2012,44.31,35.39,0.17,44.31
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2012,119.20,96.41,0.44,119.20
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2012,89.76,72.33,0.32,89.76
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2012,89.51,71.51,0.32,89.51
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2012,94.33,70.06,0.32,94.33
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2012,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2012,101.30,69.57,0.31,101.30
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2012,98.13,64.19,0.29,98.13
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2013,111.97,70.55,0.32,111.97
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2013,116.37,68.74,0.32,116.37
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2013,113.97,67.22,0.29,113.97
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2013,109.23,65.80,0.31,109.23
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2013,105.51,63.65,0.29,105.51
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2013,112.94,70.75,0.34,112.94
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2013,104.93,67.10,0.31,104.93
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2013,104.33,67.11,0.31,104.33
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2013,103.27,62.80,0.29,103.27
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2013,76.20,45.22,0.19,76.20
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2013,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2013,126.00,68.66,0.29,126.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2014,137.25,68.68,0.31,137.25
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2014,116.87,56.78,0.28,116.87
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2014,118.26,60.45,0.29,118.26
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2014,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2014,253.24,116.11,0.51,253.24
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2014,138.46,60.79,0.28,138.46
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2015,290.69,120.00,0.62,290.69
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2015,255.00,100.97,0.57,255.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2015,240.10,96.56,0.54,240.10
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2015,217.52,88.93,0.49,217.52
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2015,255.00,104.98,0.58,255.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2015,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2015,152.50,65.24,0.32,152.50
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2015,193.85,81.42,0.36,193.85
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2015,325.54,128.90,0.58,325.54
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2015,326.48,126.02,0.59,326.48
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2015,206.25,75.90,0.35,206.25
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2015,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2016,340.29,113.80,0.48,340.29
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2016,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2016,201.74,66.48,0.28,201.74
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2016,275.25,93.06,0.39,275.25
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2016,231.11,78.35,0.32,231.11
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2016,209.71,72.08,0.29,209.71
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2016,232.96,80.72,0.32,232.96
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2016,256.42,87.75,0.35,256.42
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2016,347.89,111.85,0.47,347.89
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2016,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2016,338.67,99.27,0.46,338.67
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2017,337.00,95.38,0.46,337.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2017,352.20,99.68,0.48,352.20
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2017,,,,
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2017,381.13,112.44,0.52,381.13
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2017,372.79,112.49,0.51,372.79
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2017,328.23,101.36,0.45,328.23
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2017,306.82,89.38,0.42,306.82
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2017,352.66,110.37,0.48,352.66
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2017,325.54,98.12,0.44,325.54
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,10/1/2017,384.51,114.19,0.52,384.51
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,11/1/2017,367.92,104.79,0.50,367.92
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,12/1/2017,352.66,96.53,0.48,352.66
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,1/1/2018,396.22,103.76,0.54,396.22
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,2/1/2018,388.85,99.69,0.53,388.85
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,3/1/2018,188.55,48.79,0.25,188.55
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,4/1/2018,165.77,44.57,0.22,165.77
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,5/1/2018,155.69,42.11,0.21,155.69
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,6/1/2018,314.85,85.35,0.43,314.85
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,7/1/2018,315.00,84.83,0.43,315.00
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,8/1/2018,264.35,70.21,0.36,264.35
+Retail,Malawi,Mzuzu,Cassava (root),Kwacha,Kg,9/1/2018,341.79,89.03,0.47,341.79
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2007,25.80,32.11,0.18,25.80
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2007,21.81,26.33,0.15,21.81
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2007,23.42,28.42,0.16,23.42
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2007,20.96,26.00,0.14,20.96
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2007,18.45,23.41,0.13,18.45
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2007,14.84,19.52,0.10,14.84
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2007,18.79,24.97,0.13,18.79
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2007,21.57,29.36,0.15,21.57
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2007,22.43,28.96,0.16,22.43
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2007,23.12,29.65,0.16,23.12
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2007,27.13,33.82,0.19,27.13
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2007,37.86,46.00,0.27,37.86
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2008,38.65,44.63,0.27,38.65
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2008,44.70,49.98,0.31,44.70
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2008,45.93,51.53,0.32,45.93
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2008,57.06,65.44,0.40,57.06
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2008,39.34,46.22,0.28,39.34
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2008,40.22,48.77,0.28,40.22
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2008,48.13,58.79,0.34,48.13
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2008,60.75,75.76,0.43,60.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2008,58.13,68.67,0.41,58.13
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2008,58.93,69.07,0.41,58.93
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2008,55.61,63.24,0.39,55.61
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2008,56.61,62.56,0.40,56.61
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2009,56.79,59.60,0.40,56.79
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2009,56.11,57.22,0.39,56.11
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2009,58.15,59.56,0.41,58.15
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2009,49.15,51.59,0.34,49.15
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2009,37.74,40.79,0.26,37.74
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2009,40.02,44.75,0.28,40.02
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2009,34.58,39.10,0.24,34.58
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2009,29.54,34.19,0.21,29.54
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2009,29.73,32.68,0.21,29.73
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2009,29.93,32.69,0.21,29.93
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2009,33.72,35.77,0.23,33.72
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2009,34.65,35.59,0.23,34.65
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2010,35.59,34.63,0.24,35.59
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2010,39.11,36.85,0.25,39.11
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2010,43.81,41.42,0.29,43.81
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2010,37.90,36.81,0.25,37.90
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2010,32.36,32.44,0.21,32.36
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2010,35.40,36.79,0.23,35.40
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2010,33.09,34.87,0.21,33.09
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2010,31.57,34.07,0.20,31.57
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2010,31.80,32.67,0.21,31.80
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2010,33.09,33.88,0.21,33.09
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2010,33.15,33.04,0.21,33.15
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2010,33.09,31.97,0.21,33.09
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2011,33.90,30.95,0.22,33.90
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2011,36.13,31.82,0.23,36.13
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2011,37.41,33.01,0.24,37.41
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2011,38.70,35.11,0.25,38.70
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2011,32.47,30.41,0.21,32.47
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2011,26.14,25.39,0.17,26.14
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2011,27.25,26.72,0.18,27.25
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2011,28.36,28.43,0.17,28.36
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2011,29.00,27.64,0.17,29.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2011,30.06,28.46,0.18,30.06
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2011,35.97,32.93,0.21,35.97
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2011,47.36,41.68,0.28,47.36
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2012,47.77,39.53,0.28,47.77
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2012,65.73,52.20,0.39,65.73
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2012,44.61,35.34,0.26,44.61
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2012,54.20,43.71,0.32,54.20
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2012,50.00,39.92,0.20,50.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2012,49.02,39.64,0.18,49.02
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2012,58.86,47.44,0.21,58.86
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2012,61.83,49.40,0.22,61.83
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2012,59.36,44.09,0.20,59.36
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2012,64.98,47.09,0.20,64.98
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2012,70.58,48.47,0.21,70.58
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2012,90.91,59.46,0.27,90.91
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2013,105.40,66.41,0.30,105.40
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2013,109.75,64.83,0.30,109.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2013,171.88,101.38,0.44,171.88
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2013,144.13,86.82,0.40,144.13
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2013,113.01,68.17,0.31,113.01
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2013,113.86,71.33,0.34,113.86
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2013,104.98,67.14,0.31,104.98
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2013,116.30,74.82,0.34,116.30
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2013,131.77,80.13,0.37,131.77
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2013,116.02,68.86,0.29,116.02
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2013,,,,
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2013,104.83,57.12,0.24,104.83
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2014,157.58,78.86,0.36,157.58
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2014,,,,
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2014,,,,
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2014,83.91,40.76,0.20,83.91
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2014,,,,
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2014,76.05,38.87,0.19,76.05
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2014,81.09,42.38,0.20,81.09
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2014,72.56,37.49,0.18,72.56
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2014,77.77,38.22,0.19,77.77
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2014,80.25,38.62,0.18,80.25
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2014,79.30,36.36,0.16,79.30
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2014,90.23,39.61,0.18,90.23
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2015,97.37,40.19,0.21,97.37
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2015,100.26,39.70,0.22,100.26
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2015,95.00,38.20,0.21,95.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2015,135.19,55.27,0.30,135.19
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2015,120.84,49.75,0.27,120.84
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2015,107.93,45.51,0.24,107.93
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2015,120.76,51.66,0.25,120.76
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2015,125.73,52.81,0.23,125.73
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2015,128.61,50.92,0.22,128.61
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2015,134.14,51.78,0.24,134.14
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2015,139.25,51.24,0.23,139.25
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2015,140.75,49.49,0.22,140.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2016,207.64,69.44,0.29,207.64
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2016,227.88,73.17,0.30,227.88
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2016,175.00,57.67,0.24,175.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2016,168.75,57.05,0.24,168.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2016,150.00,50.85,0.21,150.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2016,202.50,69.60,0.28,202.50
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2016,196.44,68.07,0.27,196.44
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2016,199.00,68.09,0.27,199.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2016,200.00,64.30,0.27,200.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2016,231.33,70.98,0.31,231.33
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2016,,,,
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2017,215.00,60.85,0.29,215.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2017,208.75,59.08,0.28,208.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2017,208.00,59.17,0.28,208.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2017,170.00,50.15,0.23,170.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2017,104.00,31.38,0.14,104.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2017,100.05,30.89,0.13,100.05
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2017,105.33,30.68,0.14,105.33
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2017,95.01,29.74,0.13,95.01
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2017,85.05,25.63,0.11,85.05
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,10/1/2017,88.87,26.39,0.12,88.87
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,11/1/2017,82.11,23.38,0.11,82.11
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,12/1/2017,80.00,21.89,0.10,80.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,1/1/2018,80.00,20.95,0.10,80.00
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,2/1/2018,106.25,27.24,0.14,106.25
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,3/1/2018,107.50,27.81,0.14,107.50
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,4/1/2018,102.50,27.56,0.14,102.50
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,5/1/2018,113.75,30.76,0.15,113.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,6/1/2018,103.75,28.12,0.14,103.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,7/1/2018,108.75,29.28,0.14,108.75
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,8/1/2018,108.87,28.91,0.15,108.87
+Retail,Malawi,Mzuzu,Maize,Kwacha,Kg,9/1/2018,110.12,28.68,0.15,110.12
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2007,110.47,137.45,0.79,110.47
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2007,101.33,122.31,0.72,101.33
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2007,114.62,139.11,0.82,114.62
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2007,110.76,137.33,0.79,110.76
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2007,115.66,146.71,0.82,115.66
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2007,116.04,152.64,0.82,116.04
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2007,85.69,113.85,0.61,85.69
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2007,80.05,108.94,0.57,80.05
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2007,81.15,104.80,0.58,81.15
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2007,85.38,109.52,0.61,85.38
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2007,109.58,136.56,0.78,109.58
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2007,114.11,138.61,0.81,114.11
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2008,111.44,128.71,0.79,111.44
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2008,117.58,131.46,0.83,117.58
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2008,118.58,133.03,0.84,118.58
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2008,106.66,122.32,0.75,106.66
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2008,121.80,143.12,0.86,121.80
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2008,109.16,132.34,0.77,109.16
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2008,110.73,135.26,0.78,110.73
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2008,118.93,148.32,0.84,118.93
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2008,116.50,137.63,0.82,116.50
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2008,125.08,146.59,0.88,125.08
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2008,121.18,137.78,0.86,121.18
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2008,122.80,135.68,0.87,122.80
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2009,143.27,150.35,1.01,143.27
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2009,144.39,147.23,1.02,144.39
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2009,132.00,135.22,0.93,132.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2009,150.32,157.80,1.06,150.32
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2009,136.28,147.32,0.96,136.28
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2009,138.00,154.30,0.98,138.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2009,137.32,155.28,0.97,137.32
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2009,127.33,147.32,0.90,127.33
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2009,124.95,137.33,0.88,124.95
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2009,122.58,133.92,0.87,122.58
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2009,123.56,131.09,0.86,123.56
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2009,142.63,146.50,0.98,142.63
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2010,161.71,157.35,1.09,161.71
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2010,130.99,123.42,0.86,130.99
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2010,128.13,121.14,0.84,128.13
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2010,121.25,117.76,0.80,121.25
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2010,145.42,145.78,0.96,145.42
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2010,174.80,181.70,1.15,174.80
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2010,166.55,175.50,1.10,166.55
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2010,159.80,172.43,1.05,159.80
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2010,160.86,165.22,1.06,160.86
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2010,154.10,157.74,1.02,154.10
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2010,149.97,149.51,0.99,149.97
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2010,151.77,146.67,1.00,151.77
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2011,155.71,142.16,1.03,155.71
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2011,165.36,145.60,1.09,165.36
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2011,161.05,142.08,1.06,161.05
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2011,156.72,142.16,1.03,156.72
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2011,172.55,161.64,1.14,172.55
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2011,170.30,165.41,1.12,170.30
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2011,156.58,153.57,1.03,156.58
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2011,142.86,143.25,0.88,142.86
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2011,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2011,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2011,256.51,234.82,1.56,256.51
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2011,275.32,242.34,1.67,275.32
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2012,294.11,243.43,1.77,294.11
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2012,354.73,281.75,2.11,354.73
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2012,429.61,340.27,2.58,429.61
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2012,412.70,332.84,2.48,412.70
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2012,395.77,316.06,1.59,395.77
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2012,258.38,208.98,0.95,258.38
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2012,298.27,240.37,1.08,298.27
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2012,348.42,278.38,1.25,348.42
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2012,358.61,266.35,1.22,358.61
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2012,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2012,357.44,245.48,1.10,357.44
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2012,440.22,287.93,1.33,440.22
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2013,442.33,278.71,1.28,442.33
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2013,448.72,265.07,1.24,448.72
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2013,453.20,267.31,1.16,453.20
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2013,429.17,258.51,1.21,429.17
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2013,404.13,243.81,1.13,404.13
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2013,354.60,222.15,1.07,354.60
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2013,338.17,216.27,1.01,338.17
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2013,343.97,221.28,1.02,343.97
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2013,359.51,218.62,1.02,359.51
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2013,369.95,219.56,0.95,369.95
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2013,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2013,440.27,239.92,1.02,440.27
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2014,453.76,227.08,1.04,453.76
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2014,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2014,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2014,453.14,220.16,1.12,453.14
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2014,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2014,327.61,167.45,0.82,327.61
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2014,346.17,180.92,0.86,346.17
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2014,347.76,179.67,0.87,347.76
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2014,370.11,181.90,0.92,370.11
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2014,380.45,183.10,0.86,380.45
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2014,409.02,187.54,0.83,409.02
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2014,334.98,147.08,0.68,334.98
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2015,539.15,222.57,1.16,539.15
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2015,600.00,237.57,1.35,600.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2015,607.54,244.35,1.38,607.54
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2015,619.03,253.09,1.40,619.03
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2015,605.09,249.12,1.37,605.09
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2015,433.02,182.59,0.99,433.02
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2015,616.91,263.91,1.31,616.91
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2015,485.13,203.78,0.90,485.13
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2015,455.10,180.20,0.81,455.10
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2015,600.34,231.72,1.08,600.34
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2015,750.35,276.13,1.29,750.35
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2015,675.00,237.34,1.06,675.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2016,710.50,237.61,1.00,710.50
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2016,710.50,228.15,0.95,710.50
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2016,749.97,247.15,1.06,749.97
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2016,750.40,253.73,1.08,750.40
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2016,628.92,213.21,0.89,628.92
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2016,623.50,214.32,0.87,623.50
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2016,687.83,238.35,0.95,687.83
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2016,700.03,239.55,0.96,700.03
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2016,750.00,241.14,1.03,750.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2016,,,,
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2016,750.00,219.83,1.03,750.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2017,727.75,205.98,0.99,727.75
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2017,748.84,211.94,1.02,748.84
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2017,750.00,213.38,1.02,750.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2017,737.38,217.54,1.00,737.38
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2017,600.20,181.12,0.82,600.20
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2017,552.53,170.63,0.75,552.53
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2017,487.00,141.87,0.66,487.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2017,452.60,141.65,0.61,452.60
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2017,600.03,180.85,0.82,600.03
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,10/1/2017,701.52,208.33,0.95,701.52
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,11/1/2017,737.11,209.95,1.00,737.11
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,12/1/2017,750.00,205.30,1.02,750.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,1/1/2018,750.01,196.41,1.02,750.01
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,2/1/2018,749.46,192.15,1.02,749.46
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,3/1/2018,900.30,232.98,1.23,900.30
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,4/1/2018,750.50,201.80,1.02,750.50
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,5/1/2018,750.11,202.87,1.02,750.11
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,6/1/2018,750.44,203.44,1.02,750.44
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,7/1/2018,750.00,201.99,1.02,750.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,8/1/2018,750.00,199.20,1.03,750.00
+Retail,Malawi,Mzuzu,Rice,Kwacha,Kg,9/1/2018,745.19,194.11,1.02,745.19
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2007,14.38,18.23,0.10,14.38
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2007,14.55,19.14,0.10,14.55
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2007,16.22,21.56,0.11,16.22
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2007,16.95,23.06,0.12,16.95
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2007,18.04,23.29,0.12,18.04
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2007,20.76,26.62,0.14,20.76
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2007,20.76,25.87,0.14,20.76
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2007,30.01,36.45,0.21,30.01
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2008,34.18,39.47,0.24,34.18
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2008,39.68,44.37,0.28,39.68
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2008,43.52,48.83,0.30,43.52
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2008,34.59,39.67,0.24,34.59
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2008,32.83,38.57,0.23,32.83
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2008,37.90,45.96,0.26,37.90
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2008,42.99,52.51,0.30,42.99
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2008,55.52,69.24,0.39,55.52
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2008,53.38,63.06,0.37,53.38
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2008,54.33,63.67,0.38,54.33
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2008,57.81,65.73,0.41,57.81
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2008,63.34,69.99,0.45,63.34
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2009,69.22,72.63,0.49,69.22
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2009,70.56,71.95,0.50,70.56
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2009,65.26,66.86,0.46,65.26
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2009,45.36,47.61,0.32,45.36
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2009,34.18,36.95,0.24,34.18
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2009,32.97,36.87,0.23,32.97
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2009,35.56,40.22,0.25,35.56
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2009,37.29,43.14,0.26,37.29
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2009,38.74,42.57,0.27,38.74
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2009,39.97,43.67,0.28,39.97
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2009,41.20,43.72,0.28,41.20
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2009,41.74,42.87,0.28,41.74
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2010,45.29,44.07,0.30,45.29
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2010,46.47,43.78,0.30,46.47
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2010,43.75,41.36,0.29,43.75
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2010,37.56,36.48,0.24,37.56
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2010,30.57,30.65,0.20,30.57
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2010,29.79,30.97,0.19,29.79
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2010,29.70,31.29,0.19,29.70
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2010,30.60,33.02,0.20,30.60
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2010,30.60,31.42,0.20,30.60
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2010,29.56,30.27,0.19,29.56
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2010,30.12,30.03,0.19,30.12
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2010,30.47,29.45,0.20,30.47
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2011,30.79,28.12,0.20,30.79
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2011,31.17,27.44,0.20,31.17
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2011,32.99,29.10,0.21,32.99
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2011,28.65,25.99,0.19,28.65
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2011,23.75,22.24,0.15,23.75
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2011,24.19,23.49,0.16,24.19
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2011,29.15,28.60,0.19,29.15
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2011,28.20,28.28,0.17,28.20
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2011,30.05,28.65,0.18,30.05
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2011,32.75,30.99,0.19,32.75
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2011,36.13,33.08,0.21,36.13
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2011,40.13,35.33,0.24,40.13
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2012,56.22,46.53,0.34,56.22
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2012,52.06,41.35,0.31,52.06
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2012,47.79,37.85,0.28,47.79
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2012,42.20,34.04,0.25,42.20
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2012,39.65,31.66,0.15,39.65
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2012,48.04,38.85,0.17,48.04
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2012,54.11,43.61,0.19,54.11
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2012,55.95,44.70,0.20,55.95
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2012,56.18,41.72,0.19,56.18
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2012,58.59,42.46,0.18,58.59
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2012,63.20,43.41,0.19,63.20
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2012,128.67,84.16,0.38,128.67
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2013,89.38,56.32,0.25,89.38
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2013,112.02,66.18,0.31,112.02
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2013,135.69,80.03,0.34,135.69
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2013,105.79,63.72,0.30,105.79
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2013,85.09,51.34,0.23,85.09
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2013,86.43,54.14,0.26,86.43
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2013,98.76,63.16,0.29,98.76
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2013,115.68,74.41,0.34,115.68
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2013,113.56,69.06,0.32,113.56
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2013,116.69,69.25,0.30,116.69
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2013,119.29,67.65,0.29,119.29
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2013,128.67,70.12,0.30,128.67
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2014,147.88,74.00,0.33,147.88
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2014,126.30,59.88,0.29,126.30
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2014,115.02,54.67,0.27,115.02
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2014,96.76,47.01,0.23,96.76
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2014,84.56,39.15,0.21,84.56
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2014,77.19,39.45,0.19,77.19
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2014,76.65,40.06,0.19,76.65
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2014,78.69,40.66,0.19,78.69
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2014,75.16,36.93,0.18,75.16
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2014,73.16,35.21,0.16,73.16
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2014,71.37,32.72,0.14,71.37
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2014,76.48,33.58,0.15,76.48
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2015,93.12,38.44,0.20,93.12
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2015,94.72,37.50,0.21,94.72
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2015,96.94,38.99,0.22,96.94
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2015,111.15,45.44,0.25,111.15
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2015,103.84,42.75,0.23,103.84
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2015,111.43,46.98,0.25,111.43
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2015,116.73,49.94,0.24,116.73
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2015,123.01,51.67,0.22,123.01
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2015,130.69,51.74,0.23,130.69
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2015,147.53,56.94,0.26,147.53
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2015,147.86,54.41,0.25,147.86
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2015,152.69,53.68,0.23,152.69
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2016,200.36,67.01,0.28,200.36
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2016,241.61,77.58,0.32,241.61
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2016,236.83,78.04,0.33,236.83
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2016,175.64,59.39,0.25,175.64
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2016,173.42,58.79,0.24,173.42
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2016,204.66,70.34,0.28,204.66
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2016,217.53,75.38,0.30,217.53
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2016,222.63,76.18,0.30,222.63
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2016,232.57,76.02,0.32,232.57
+Retail,Malawi,National Average,Maize,Kwacha,Kg,10/1/2016,217.25,69.85,0.29,217.25
+Retail,Malawi,National Average,Maize,Kwacha,Kg,11/1/2016,236.36,72.52,0.32,236.36
+Retail,Malawi,National Average,Maize,Kwacha,Kg,12/1/2016,244.30,71.60,0.33,244.30
+Retail,Malawi,National Average,Maize,Kwacha,Kg,1/1/2017,224.99,63.68,0.30,224.99
+Retail,Malawi,National Average,Maize,Kwacha,Kg,2/1/2017,217.11,61.45,0.29,217.11
+Retail,Malawi,National Average,Maize,Kwacha,Kg,3/1/2017,195.53,55.63,0.26,195.53
+Retail,Malawi,National Average,Maize,Kwacha,Kg,4/1/2017,150.49,44.39,0.20,150.49
+Retail,Malawi,National Average,Maize,Kwacha,Kg,5/1/2017,108.16,32.64,0.14,108.16
+Retail,Malawi,National Average,Maize,Kwacha,Kg,6/1/2017,105.87,32.69,0.14,105.87
+Retail,Malawi,National Average,Maize,Kwacha,Kg,7/1/2017,105.45,30.72,0.14,105.45
+Retail,Malawi,National Average,Maize,Kwacha,Kg,8/1/2017,104.91,32.83,0.14,104.91
+Retail,Malawi,National Average,Maize,Kwacha,Kg,9/1/2017,97.23,29.30,0.13,97.23
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2007,27.03,33.63,0.19,27.03
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2007,21.01,25.36,0.15,21.01
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2007,21.06,25.57,0.15,21.06
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2007,19.18,23.78,0.13,19.18
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2007,14.27,18.09,0.10,14.27
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2007,16.59,21.82,0.11,16.59
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2007,19.22,25.54,0.13,19.22
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2007,19.25,26.19,0.13,19.25
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2007,22.02,28.43,0.15,22.02
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2007,25.95,33.28,0.18,25.95
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2007,28.34,35.31,0.20,28.34
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2007,30.04,36.48,0.21,30.04
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2008,33.77,39.00,0.24,33.77
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2008,44.16,49.38,0.31,44.16
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2008,27.95,31.36,0.19,27.95
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2008,21.40,24.55,0.15,21.40
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2008,31.40,36.90,0.22,31.40
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2008,42.59,51.63,0.30,42.59
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2008,49.75,60.77,0.35,49.75
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2008,61.47,76.67,0.43,61.47
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2008,58.59,69.21,0.41,58.59
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2008,58.88,69.01,0.41,58.88
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2008,69.62,79.17,0.49,69.62
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2008,83.40,92.15,0.59,83.40
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2009,91.29,95.80,0.64,91.29
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2009,77.93,79.45,0.55,77.93
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2009,72.15,73.90,0.51,72.15
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2009,32.52,34.13,0.23,32.52
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2009,28.88,31.22,0.20,28.88
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2009,31.15,34.84,0.22,31.15
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2009,40.93,46.29,0.29,40.93
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2009,41.00,47.43,0.29,41.00
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2009,45.50,50.00,0.32,45.50
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2009,50.00,54.62,0.35,50.00
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2009,45.25,48.00,0.31,45.25
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2009,47.52,48.80,0.32,47.52
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2010,49.79,48.44,0.33,49.79
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2010,51.34,48.38,0.34,51.34
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2010,44.77,42.33,0.29,44.77
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2010,38.91,37.80,0.25,38.91
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2010,38.34,38.44,0.25,38.34
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2010,37.63,39.11,0.24,37.63
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2010,37.41,39.42,0.24,37.41
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2010,37.43,40.39,0.24,37.43
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2010,36.86,37.85,0.24,36.86
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2010,34.84,35.66,0.23,34.84
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2010,35.83,35.72,0.23,35.83
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2010,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2011,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2011,36.36,32.02,0.24,36.36
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2011,40.00,35.29,0.26,40.00
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2011,30.04,27.24,0.19,30.04
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2011,26.86,25.16,0.17,26.86
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2011,31.79,30.87,0.21,31.79
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2011,32.97,32.33,0.21,32.97
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2011,34.15,34.24,0.21,34.15
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2011,45.77,43.63,0.27,45.77
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2011,51.06,48.33,0.30,51.06
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2011,51.59,47.22,0.31,51.59
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2011,51.40,45.24,0.31,51.40
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2012,76.55,63.35,0.46,76.55
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2012,61.91,49.18,0.36,61.91
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2012,52.36,41.47,0.31,52.36
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2012,51.88,41.84,0.31,51.88
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2012,51.38,41.03,0.20,51.38
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2012,61.45,49.71,0.22,61.45
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2012,76.08,61.31,0.27,76.08
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2012,71.44,57.07,0.25,71.44
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2012,70.58,52.42,0.24,70.58
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2012,75.83,54.96,0.24,75.83
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2012,81.08,55.69,0.25,81.08
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2012,91.91,60.11,0.27,91.91
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2013,112.25,70.72,0.32,112.25
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2013,129.66,76.60,0.35,129.66
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2013,116.55,68.75,0.29,116.55
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2013,79.11,47.65,0.22,79.11
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2013,81.83,49.36,0.23,81.83
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2013,88.68,55.55,0.26,88.68
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2013,110.68,70.78,0.33,110.68
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2013,122.22,78.62,0.36,122.22
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2013,119.26,72.52,0.33,119.26
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2013,122.12,72.47,0.31,122.12
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2013,122.87,69.68,0.30,122.87
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2013,150.69,82.11,0.35,150.69
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2014,170.47,85.31,0.39,170.47
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2014,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2014,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2014,104.43,50.73,0.25,104.43
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2014,94.15,43.58,0.23,94.15
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2014,94.04,48.06,0.23,94.04
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2014,91.69,47.92,0.23,91.69
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2014,101.05,52.20,0.25,101.05
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2014,103.05,50.64,0.25,103.05
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2014,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2014,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2014,98.94,43.44,0.20,98.94
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2015,119.05,50.20,0.27,119.05
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2015,131.38,56.20,0.27,131.38
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2015,137.41,57.72,0.25,137.41
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2015,152.25,58.77,0.27,152.25
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2015,155.39,57.18,0.26,155.39
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2015,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2016,240.00,80.26,0.34,240.00
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2016,276.95,88.93,0.37,276.95
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2016,213.33,70.30,0.30,213.33
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2016,230.72,78.01,0.33,230.72
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2016,227.07,76.98,0.32,227.07
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2016,281.10,96.62,0.39,281.10
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2016,271.01,93.91,0.37,271.01
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2016,262.57,89.85,0.36,262.57
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2016,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2016,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2016,232.80,71.43,0.32,232.80
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2016,,,,
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2017,236.05,66.81,0.32,236.05
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2017,236.91,67.05,0.32,236.91
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2017,207.57,59.05,0.28,207.57
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2017,166.49,49.11,0.22,166.49
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2017,112.70,34.01,0.15,112.70
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2017,99.87,30.84,0.13,99.87
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2017,98.58,28.72,0.13,98.58
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2017,121.73,38.10,0.16,121.73
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2017,119.01,35.87,0.16,119.01
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,10/1/2017,122.44,36.36,0.16,122.44
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,11/1/2017,125.95,35.87,0.17,125.95
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,12/1/2017,121.73,33.32,0.16,121.73
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,1/1/2018,131.47,34.43,0.17,131.47
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,2/1/2018,138.44,35.49,0.18,138.44
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,3/1/2018,121.62,31.47,0.16,121.62
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,4/1/2018,97.23,26.14,0.13,97.23
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,5/1/2018,89.45,24.19,0.12,89.45
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,6/1/2018,109.16,29.59,0.14,109.16
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,7/1/2018,140.55,37.85,0.19,140.55
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,8/1/2018,151.94,40.35,0.20,151.94
+Retail,Malawi,Nsanje,Maize,Kwacha,Kg,9/1/2018,144.44,37.62,0.19,144.44
+"Retail	Malawi	Nsanje	Maize	Kwacha	Kg	18-Sep	144.44	37.62	0.19	144.44",,,,,,,,,,
