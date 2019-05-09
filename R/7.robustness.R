@@ -4,13 +4,10 @@
 
 # 1. Update the FEWS IPC data to reflect the corrected values for the zones
 # (My hunch is this will make the IPC perform worse, and variation in the IPC fall).
-rm(list=ls())
-require(tidyverse)
-library(caret)
 
 
-# T-1 price 
 
+ 
 mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
 
 # fs.year.month = mw.hh %>% distinct(FS_year,FS_month,ea_id)
@@ -130,83 +127,9 @@ postResample(pred = predicted.rCSI, obs = mw.2013.cluster$rCSI)
 #####################################################################################
 # 5. swap in GIEWS prices for 4 markets instead of our good price data (R2)
 #####################################################################################
-# Read in GIEWS 
-
-library(readr)
-GIEW_malawi <- read_csv("data/raw/price/GIEW_malawi.csv")
-
-
-colnames(GIEW_malawi)
-
-
-market.address =  unique(GIEW_malawi$Market)[1:5]
-market.address[6] = unique(GIEW_malawi$Market)[7]
-
-source("R/functions/GoogleMapApi.R")
-# map.key = "YOUR KEY HERE"
-
-market.coord = coordFind(market.address)
-write.csv("data/")
-
-source("R/functions/MktNearCluster.R")
-
-market.coord = market.coord %>% dplyr::mutate(mkt = search) %>% dplyr::select(mkt,lat,lon)
-
-Malawi_coord <- read_csv("data/clean/concordance/Malawi_coord.csv")
-
-near.mkt = MktNearCluster(Malawi_coord,market.coord) 
-
-near.mkt  = near.mkt[!duplicated(near.mkt$ea_id),] %>% 
-  distinct(ea_id,near_mkt)
-  
-  
-cluster.yearmon = mw.cluster%>% dplyr::distinct(ea_id,FS_month,FS_year) 
-
-# Join cluster and nearby market 
-cluster.yearmon.mkt = left_join(cluster.yearmon,near.mkt,by="ea_id")
 
 
 
-
-source("R/functions/Yearmon.R")
-
-cluster.yearmon.date  = yearmon(df = cluster.yearmon.mkt,year_var = "FS_year",month_var = "FS_month")
-
-cluster.yearmon.date = cluster.yearmon.date %>% distinct(ea_id,date,near_mkt)
-
-
-# Join price based on date and market 
-colnames(GIEW_malawi)[9]="real_price"
-
-library(imputeTS)
-GIEW.price = GIEW_malawi %>% 
-  dplyr::filter(Commodity == "Maize") %>%
-  dplyr::select(Market,Date,real_price) %>%
-  dplyr::filter(Market!="National Average") %>% 
-  group_by(Market) %>% 
-  dplyr::mutate( real_price = na.kalman(real_price))
-
-GIEW.price.join = GIEW.price %>% 
-  ungroup() %>%
-  dplyr::mutate(mkt = Market) %>% 
-  dplyr::mutate(date = as.Date(Date, "%m/%d/%Y")) %>%
-  dplyr::distinct(mkt,date,real_price)
-
-
- 
-GIEW.cluster.joined= left_join (cluster.yearmon.date,GIEW.price.join,by = c("near_mkt"="mkt","date"="date"))
-
-GIEW.cluster.joined = GIEW.cluster.joined %>% 
-  mutate( GIEW_price= real_price ) %>%
-  distinct(ea_id,date,GIEW_price)
-  
-  
-
-mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
-
-mw.cluster.date =  yearmon(df = mw.cluster,year_var = "FS_year",month_var = "FS_month")
-
-mw.cluster.date.GIEW = left_join(mw.cluster.date, GIEW.cluster.joined, by=c("date"="date","ea_id"="ea_id"))
 ################################################################################
 # 6. Estimate (back of the envelope?) 
 

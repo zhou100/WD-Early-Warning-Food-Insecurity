@@ -432,13 +432,13 @@ label variable percent_ag "percent of ag within 1km"
 
 
 
-keep case_id ea_id lat_modi lon_modi srtm_eaf srtm_eaf_5_15 sq1 sq2 dist_road dist_admarc dist_popcenter afmnslp_pct    percent_ag 
+keep case_id ea_id lat_modi lon_modi   srtm_eaf srtm_eaf_5_15 sq1 sq2 dist_road dist_admarc dist_popcenter afmnslp_pct    percent_ag 
 rename srtm_eaf elevation
 rename srtm_eaf_5_15 terrain_rough
 rename sq1 nutri_avail
 rename sq2 nutri_rentention
 rename afmnslp_pct slope
-
+ 
 
 
 merge m:m case_id using mw2010
@@ -448,8 +448,25 @@ save mw2010, replace
 * Merge in the basic information
 use "Malawi_2010/ihs3_summary.dta",clear
 
+gen area_string = "Urban" if area ==1
+replace area_string = "Rural North" if area ==2
+replace area_string = "Rural Center" if area ==3
+replace area_string = "Rural South" if area ==4
 
-keep case_id ea_id intmonth intyear head_age head_gender hhsize
+
+gen region_string = "North" if area ==1
+replace region_string = "Central" if area ==2
+replace region_string = "South" if area ==3
+
+
+tab urban,nolabel
+
+gen urban_string = "urban" if urban==1
+replace urban_string = "rural" if urban==2
+
+
+
+keep case_id ea_id intmonth intyear head_age head_gender hhsize area_string region_string urban_string
 rename intmonth FS_month
 rename intyear FS_year
 rename head_age hh_age
@@ -835,8 +852,18 @@ set more off
 
 use "Malawi_2013/HH_MOD_A_FILT",clear
 
- 
-keep y2_hhid reside ea_id  hh_a10b district   region 
+tab region
+tab reside
+
+tab region,nolabel
+tab reside,nolabel
+
+decode region,gen(region_string)
+
+decode reside,gen(urban_string)
+
+
+keep y2_hhid reside ea_id  hh_a10b district   region_string  urban_string
  
 rename hh_a10b TA_names 
 rename district hh_a01 

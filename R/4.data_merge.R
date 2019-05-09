@@ -79,8 +79,10 @@ mw.lsms.fill = mw.lsms %>%
 
 colSums(is.na(mw.lsms.fill))
 
-
+####################################################
 # read price data 
+####################################################
+
 load("data/clean/market/mw_price_final.RData")
 
 colnames(mw_price_merge_final) 
@@ -109,21 +111,53 @@ for ( index in  4:ncol(mw.current.price.impute)-1) {
   mw.current.price.impute[col.name.temp] = na.interpolation(unlist(mw.current.price[col.name.temp]),option = "stine")
 }
 
+mw.lsms.fill  = mw.lsms.fill %>% mutate(yearmon = as.character(yearmon))
+
+
+# select only maize price variables 
+mw.current.price.impute.join  = mw.current.price.impute %>% 
+  mutate(yearmon = as.character(yearmon)) %>%
+  mutate(clust_maize_current = clust_maize_price) %>%
+  mutate(lhz_maize_current = lhz_maize_price) %>%
+  mutate(clust_maize_mktthin_current = clust_maize_mktthin) %>%
+  mutate(lhz_maize_mktthin_current = lhz_maize_mktthin) %>%
+  ungroup() %>%
+  dplyr::select(ea_id,yearmon,clust_maize_current,lhz_maize_current, clust_maize_mktthin_current,lhz_maize_mktthin_current)
+  
+
+colnames(mw.current.price.impute.join)
+# Join the current maize price 
+mw.master.hh = left_join(mw.lsms.fill,mw.current.price.impute.join, by = c("ea_id","yearmon"))
+
+
+
+
+
 # create a one month lag for each price 
 mw.current.price.impute["yearmon_lag1"]= mw.current.price.impute$yearmon + 0.1
+mw.lag.price.impute = mw.current.price.impute
 
-mw.current.price.impute["yearmon"] = mw.current.price.impute["yearmon_lag1"]
+mw.lag.price.join = mw.lag.price.impute %>% 
+  mutate(yearmon = yearmon_lag1) %>%
+  mutate(yearmon = as.character(yearmon)) %>%
+  mutate(clust_maize_lag = clust_maize_price) %>%
+  mutate(lhz_maize_lag = lhz_maize_price) %>%
+  mutate(clust_maize_mktthin_lag = clust_maize_mktthin) %>%
+  mutate(lhz_maize_mktthin_lag = lhz_maize_mktthin) %>%
+  ungroup() %>%
+  dplyr::select(ea_id,yearmon,clust_maize_lag,lhz_maize_lag, clust_maize_mktthin_lag,lhz_maize_mktthin_lag)
 
-mw.current.price.impute = mw.current.price.impute %>% dplyr::select(-yearmon_lag1)
-
-mw.lsms.fill  = mw.lsms.fill %>% mutate(yearmon = as.character(yearmon))
-mw.current.price.impute  = mw.current.price.impute %>% mutate(yearmon = as.character(yearmon))
 
 
-mw.master.hh = left_join(mw.lsms.fill,mw.current.price.impute, by = c("ea_id","yearmon"))
+# Join the one month lag  maize price 
+mw.master.hh = left_join(mw.master.hh,mw.lag.price.join, by = c("ea_id","yearmon"))
 
 
+
+#######################################################################
 # read weather data 
+#######################################################################
+
 load("data/clean/weather/mw_weather_final.RData")
 
 mw.weather.final = mw.weather.final %>% dplyr::filter(!is.na(VID) & !is.na(tmean))
@@ -144,18 +178,18 @@ lapply(mw.master.hh, class)
 
 
 
-#########################################
+#################################################################
 # Keep the data set (both cluster and household level )
-#########################################
+#################################################################
 
-
-mw.master.hh = mw.master.hh %>% 
-  dplyr::select (-case_id,-ea_id,-VID,-cropyear,-year,-Month,-yearmon,-date)
-
+require(tidyverse)
+ 
+                
+ 
 # Collapse to cluster level  
 mw.master.clust = mw.master.hh %>% 
   group_by(ea_id,FS_year) %>%   
-  dplyr::select(-FNID,-TA_names) %>%
+  dplyr::select(-case_id,-FNID,-TA_names,-area_string,-region_string,-urban_string,-Month,-FS_year,-VID,-yearmon,-cropyear) %>%
   dplyr::summarise_all(funs(mean(.,na.rm=TRUE)))  
 
 colSums(is.na(mw.master.clust))
@@ -182,14 +216,10 @@ mw.master.clust =left_join(mw.master.clust,TA_concordance,by="ea_id")
 
 mw.master.clust= mw.master.clust %>%
   group_by(TA_names,FS_year) %>%
-  mutate(TA_maize_price  = mean(clust_maize_price,na.rm=TRUE)) %>%
-  mutate(TA_rice_price  = mean(clust_rice_price,na.rm=TRUE)) %>%
-  mutate(TA_nuts_price  = mean(clust_nuts_price,na.rm=TRUE)) %>%
-  mutate(TA_beans_price  = mean(clust_beans_price,na.rm=TRUE)) %>%
-  mutate(TA_maize_mktthin  = mean(clust_maize_mktthin,na.rm=TRUE)) %>%
-  mutate(TA_rice_mktthin  = mean(clust_rice_mktthin,na.rm=TRUE)) %>%
-  mutate(TA_nuts_mktthin  = mean(clust_nuts_mktthin,na.rm=TRUE)) %>%
-  mutate(TA_beans_mktthin  = mean(clust_beans_mktthin,na.rm=TRUE)) %>%
+  mutate(TA_maize_current  = mean(clust_maize_current,na.rm=TRUE)) %>%
+  mutate(TA_maize_lag  = mean(clust_maize_lag,na.rm=TRUE)) %>%
+  mutate(TA_maize_mktthin  = mean(clust_maize_mktthin_current,na.rm=TRUE)) %>%
+  mutate(TA_maize_mktthin_lag  = mean(clust_maize_mktthin_lag,na.rm=TRUE)) %>%
   mutate(TA_raincytot  = mean(raincytot,na.rm=TRUE)) %>%
   mutate(TA_day1rain  = mean(day1rain,na.rm=TRUE)) %>%
   mutate(TA_maxdaysnorain = mean(maxdaysnorain,na.rm=TRUE)) %>%
@@ -226,7 +256,93 @@ mw.master.clust = mw.master.clust %>%
 library(fastDummies)
 mw.master.clust = fastDummies::dummy_cols(mw.master.clust, select_columns = "FNID")
 
+# generate dummies for each region 
 
+mw.lsms = read.csv("data/clean/MW_household.csv",stringsAsFactors = FALSE)
+
+# 
+
+
+######################################################
+# Read in GIEWS price data (both current and one month lag)
+######################################################
+library(readr)
+GIEW_malawi <- read_csv("data/raw/price/GIEW_malawi.csv")
+
+
+colnames(GIEW_malawi)
+
+
+market.address =  unique(GIEW_malawi$Market)[1:5]
+market.address[6] = unique(GIEW_malawi$Market)[7]
+
+source("R/functions/GoogleMapApi.R")
+map.key = "YOUR GOOGLE MAP KEY HERE"
+
+# market.coord = coordFind(market.address)
+# write.csv(market.coord,"data/clean/concordance/GIEWS_mkt_coord.csv",row.names = FALSE)
+
+market.coord = read_csv("data/clean/concordance/GIEWS_mkt_coord.csv")
+
+source("R/functions/MktNearCluster.R")
+
+market.coord = market.coord %>% dplyr::mutate(mkt = search) %>% dplyr::select(mkt,lat,lon)
+
+Malawi_coord <- read_csv("data/clean/concordance/Malawi_coord.csv")
+
+near.mkt = MktNearCluster(Malawi_coord,market.coord) 
+
+near.mkt  = near.mkt[!duplicated(near.mkt$ea_id),] %>% 
+  distinct(ea_id,near_mkt)
+
+
+cluster.yearmon = mw.cluster%>% dplyr::distinct(ea_id,FS_month,FS_year) 
+
+# Join cluster and nearby market 
+cluster.yearmon.mkt = left_join(cluster.yearmon,near.mkt,by="ea_id")
+
+
+
+
+source("R/functions/Yearmon.R")
+
+cluster.yearmon.date  = yearmon(df = cluster.yearmon.mkt,year_var = "FS_year",month_var = "FS_month")
+
+cluster.yearmon.date = cluster.yearmon.date %>% distinct(ea_id,date,near_mkt)
+
+
+# Join price based on date and market 
+colnames(GIEW_malawi)[9]="real_price"
+
+library(imputeTS)
+GIEW.price = GIEW_malawi %>% 
+  dplyr::filter(Commodity == "Maize") %>%
+  dplyr::select(Market,Date,real_price) %>%
+  dplyr::filter(Market!="National Average") %>% 
+  group_by(Market) %>% 
+  dplyr::mutate( real_price = na.kalman(real_price))
+
+GIEW.price.join = GIEW.price %>% 
+  ungroup() %>%
+  dplyr::mutate(mkt = Market) %>% 
+  dplyr::mutate(date = as.Date(Date, "%m/%d/%Y")) %>%
+  dplyr::distinct(mkt,date,real_price)
+
+
+
+GIEW.cluster.joined= left_join (cluster.yearmon.date,GIEW.price.join,by = c("near_mkt"="mkt","date"="date"))
+
+GIEW.cluster.joined = GIEW.cluster.joined %>% 
+  mutate( GIEW_price= real_price ) %>%
+  distinct(ea_id,date,GIEW_price)
+
+
+
+mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
+
+mw.cluster.date =  yearmon(df = mw.cluster,year_var = "FS_year",month_var = "FS_month")
+
+mw.cluster.date.GIEW = left_join(mw.cluster.date, GIEW.cluster.joined, by=c("date"="date","ea_id"="ea_id"))
 
 
 
