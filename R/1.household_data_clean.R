@@ -32,7 +32,9 @@ source("R/functions/Yearmon.R")
 Malawi_aggregate <- read_csv("data/clean/LSMS/Malawi_aggregate.csv")
 
 #colnames(Malawi_aggregate)
-mw.concord = Malawi_aggregate %>% dplyr::select(ea_id,lat_modified,lon_modified) %>% distinct() %>% na.omit()
+mw.concord = Malawi_aggregate %>% 
+  dplyr::select(ea_id,lat_modified,lon_modified) %>% distinct() %>% na.omit() %>% 
+  arrange(ea_id)
 
 write.csv(mw.concord,file="data/clean/concordance/Malawi_coord.csv",row.names = FALSE)
  

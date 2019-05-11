@@ -29,20 +29,7 @@ mw.lsms = read.csv("data/clean/MW_household.csv",stringsAsFactors = FALSE)
 
 concoord_lhz_ea = mw.lsms %>% distinct(FNID,ea_id)
 
-
-# Locate ipczones where we don't have IPC values 
-# library(readxl)
-# FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "Common Unit", skip = 2)
-# FEWS_IPC = FEWS_IPC %>% dplyr::filter(!is.na(FNID_OLD))
-# # We have only 39 livelihood zones that have IPC 
-# length(unique(FEWS_IPC$FNID_OLD))
-#  
-# # 18 livelihood zones don't have IPC value
-# unique(concoord_lhz_ea$FNID[!(concoord_lhz_ea$FNID  %in% FEWS_IPC$FNID_OLD)])
-# 
-# # 2 IPC zones we don't have LSMS data (one on the island, one don't have observation)
-# FEWS_IPC$FNID_OLD[! (FEWS_IPC$FNID_OLD %in% concoord_lhz_ea$FNID)]
-
+ 
 mw.lsms = mw.lsms %>%
   mutate(ea_id = as.character(ea_id)) %>%
   mutate(yearmon = as.yearmon(yearmon)) %>%
@@ -183,9 +170,7 @@ lapply(mw.master.hh, class)
 #################################################################
 
 require(tidyverse)
- 
-                
- 
+
 # Collapse to cluster level  
 mw.master.clust = mw.master.hh %>% 
   group_by(ea_id,FS_year) %>%   
@@ -260,8 +245,48 @@ mw.master.clust = fastDummies::dummy_cols(mw.master.clust, select_columns = "FNI
 
 mw.lsms = read.csv("data/clean/MW_household.csv",stringsAsFactors = FALSE)
 
-# 
+ea_missing_region = mw.lsms %>% 
+  dplyr::filter(region_string=="")   %>%
+  distinct(ea_id,FS_year)
 
+library(readr)
+Malawi_coord <- read_csv("data/clean/concordance/Malawi_coord.csv")
+
+ea_lat_lon = left_join(ea_missing_region,Malawi_coord,by="ea_id") %>% group_by(ea_id,FS_year) %>% summarise_all(funs(mean(.)))
+ 
+ea_missing_region$region_string = cut(ea_lat_lon$lat_modified,3,labels=c("South", "Central","North"))
+
+
+nonduplicates = mw.lsms %>% 
+  distinct(ea_id,region_string,FS_year) %>%
+  arrange(ea_id) %>%
+  filter(region_string!="") %>%
+  group_by(ea_id,FS_year) %>%
+  filter(n()==1)
+
+duplicates = mw.lsms %>% 
+  distinct(ea_id,region_string,FS_year) %>%
+  arrange(ea_id) %>%
+  filter(region_string!="") %>%
+    group_by(ea_id,FS_year) %>%
+  filter(n()>1)
+
+duplicates_erased = duplicates[!duplicated(duplicates$ea_id),]
+
+# combine duplicates and nonduplicates
+
+region_ea = bind_rows(nonduplicates,duplicates_erased,ea_missing_region)
+
+region_ea = region_ea %>% ungroup() %>% mutate(ea_id = as.character(ea_id))
+
+
+# join with master data 
+
+mw.master.clust = left_join(mw.master.clust, region_ea,by = c("ea_id", "FS_year"))
+
+mw.master.clust = mw.master.clust %>% mutate(region = region_string)
+
+mw.master.clust = fastDummies::dummy_cols(mw.master.clust, select_columns = "region")
 
 ######################################################
 # Read in GIEWS price data (both current and one month lag)
@@ -295,8 +320,8 @@ near.mkt = MktNearCluster(Malawi_coord,market.coord)
 near.mkt  = near.mkt[!duplicated(near.mkt$ea_id),] %>% 
   distinct(ea_id,near_mkt)
 
-
-cluster.yearmon = mw.cluster%>% dplyr::distinct(ea_id,FS_month,FS_year) 
+near.mkt$ea_id = as.character(near.mkt$ea_id)
+cluster.yearmon = mw.master.clust%>% dplyr::distinct(ea_id,FS_month,FS_year) 
 
 # Join cluster and nearby market 
 cluster.yearmon.mkt = left_join(cluster.yearmon,near.mkt,by="ea_id")
@@ -308,7 +333,7 @@ source("R/functions/Yearmon.R")
 
 cluster.yearmon.date  = yearmon(df = cluster.yearmon.mkt,year_var = "FS_year",month_var = "FS_month")
 
-cluster.yearmon.date = cluster.yearmon.date %>% distinct(ea_id,date,near_mkt)
+cluster.yearmon.date = cluster.yearmon.date %>% distinct(ea_id,date,near_mkt,yearmon)
 
 
 # Join price based on date and market 
@@ -330,24 +355,92 @@ GIEW.price.join = GIEW.price %>%
 
 
 
-GIEW.cluster.joined= left_join (cluster.yearmon.date,GIEW.price.join,by = c("near_mkt"="mkt","date"="date"))
+GIEW.cluster.current= left_join (cluster.yearmon.date,GIEW.price.join,by = c("near_mkt"="mkt","date"="date"))
 
-GIEW.cluster.joined = GIEW.cluster.joined %>% 
-  mutate( GIEW_price= real_price ) %>%
-  distinct(ea_id,date,GIEW_price)
+GIEW.cluster.current = GIEW.cluster.current %>% 
+  mutate( GIEW_price_current = real_price ) %>%
+  distinct(ea_id,date,GIEW_price_current)
 
+mw.master.clust = yearmon(mw.master.clust,year_var = "FS_year",month_var = "FS_month")
 
-
-mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
-
-mw.cluster.date =  yearmon(df = mw.cluster,year_var = "FS_year",month_var = "FS_month")
-
-mw.cluster.date.GIEW = left_join(mw.cluster.date, GIEW.cluster.joined, by=c("date"="date","ea_id"="ea_id"))
+mw.master.clust = left_join(mw.master.clust, GIEW.cluster.current,by =c("ea_id","date"))
+  
 
 
+# Join lag GIEWS price 
+
+cluster.yearmon.date.lag = cluster.yearmon.date %>% mutate(yearmon = yearmon-0.05)
+  
+GIEW.cluster.lag= left_join (cluster.yearmon.date.lag,GIEW.price.join,by = c("near_mkt"="mkt","date"="date"))
 
 
+GIEW.cluster.lag = GIEW.cluster.lag %>% 
+  mutate( GIEW_price_lag= real_price) %>%
+  distinct(ea_id,date,GIEW_price_lag)
+ 
+
+mw.master.clust = left_join(mw.master.clust, GIEW.cluster.lag,by =c("ea_id","date"))
+
+mw.master.clust = mw.master.clust %>%
+  mutate( trend = as.numeric(mw.master.clust$date) - min(as.numeric(mw.master.clust$date)))
+
+mw.master.clust = mw.master.clust %>%
+  mutate(trendsq = trend^2)
 # colnames(mw.master.hh)
+
+
+# write CSV for analysis 
 write.csv(mw.master.hh, file= "data/mw_dataset_hh.csv",row.names = FALSE)
 write.csv(mw.master.clust, file= "data/mw_dataset_cluster.csv",row.names = FALSE)
+
+
+
+##########################################
+# remove missings and split year
+######################################################
+mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
+mw.cluster = mw.cluster %>% 
+  mutate(clust_maize_price  = log(clust_maize_price))
+colSums(is.na(mw.cluster))
+
+
+mw.cluster = mw.cluster %>% 
+mutate(quarter1_region_south = quarter1 * region_South   ) %>% 
+mutate(quarter1_region_central = quarter1 * region_Central   ) %>% 
+mutate(quarter1_region_north = quarter1 * region_North   ) %>% 
+mutate(quarter2_region_south = quarter2 * region_South   ) %>% 
+mutate(quarter2_region_central = quarter2 * region_Central   ) %>% 
+mutate(quarter2_region_north = quarter2 * region_North   ) %>% 
+mutate(quarter3_region_south = quarter3 * region_South   ) %>% 
+mutate(quarter3_region_central = quarter3 * region_Central   ) %>% 
+mutate(quarter3_region_north = quarter3 * region_North   ) %>% 
+mutate(quarter4_region_south = quarter4 * region_South   ) %>% 
+mutate(quarter4_region_central = quarter4 * region_Central   ) %>% 
+mutate(quarter4_region_north = quarter4 * region_North   )
+
+
+# Split by year 
+unique(mw.cluster$FS_year)
+
+mw.2010.cluster= mw.cluster %>% 
+  dplyr::filter(FS_year==2010|FS_year==2011) 
+
+
+length(unique(mw.2010.cluster$FNID))
+
+mw.2013.cluster= mw.cluster %>% 
+  dplyr::filter(FS_year==2013)  
+
+
+mw.2010.cluster.ipc1 = mw.2010.cluster %>% 
+  dplyr::filter(!is.na(IPC1))
+
+#colSums(is.na(mw.2010.cluster))
+
+mw.2013.cluster.ipc1 = mw.2013.cluster %>% 
+  dplyr::filter(!is.na(IPC1))
+
+write.csv(mw.2010.cluster.ipc1,"data/clean/mw.2010.cluster.csv",row.names = FALSE)
+ write.csv(mw.2013.cluster.ipc1,"data/clean/mw.2013.cluster.csv",row.names = FALSE)
+
 
