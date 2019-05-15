@@ -12,7 +12,7 @@
 library(caret)
 R2ComputePair = function(pair){
   r2 = cor(pair[,1],pair[,2], method = c("pearson"))^2
-   
-  return(r2)
+  r2 = format(round(r2,3),nsmall = 3)
+  return(as.numeric(r2))
 }
 

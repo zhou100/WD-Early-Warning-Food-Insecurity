@@ -61,131 +61,67 @@ ggsave("figure1.png", plot = figure1,device = "png",path = "output/graphs/",
 ## Figure 2. The share of variation in out-of-sample cluster-level food security 
 # predicted by our models improves with greater spatial granularity and richer data.
 #########################################################################################
+clust_r2matrix <- read_csv("output/results/prediction/clust/clust_r2matrix.csv")
+TA_r2matrix <- read_csv("output/results/prediction/TA/TA_r2matrix.csv")
+lhz_r2matrix <- read_csv("output/results/prediction/lhz/lhz_r2matrix.csv")
+
+colnames(clust_r2matrix)[1] = "Model"
+colnames(TA_r2matrix)[1] = "Model"
+colnames(lhz_r2matrix)[1] = "Model"
+
+# wide to long
+require(tidyverse)
+lhz_r2matrix.long = lhz_r2matrix  %>% tidyr::gather(-Model,key="Measures",value=RSquared) 
+lhz_r2matrix.long[["level"]]="IPC Zone"
+
+TA_r2matrix.long = TA_r2matrix  %>% tidyr::gather(-Model,key="Measures",value=RSquared) 
+TA_r2matrix.long[["level"]]="TA"
+
+clust_r2matrix.long = clust_r2matrix  %>% tidyr::gather(-Model,key="Measures",value=RSquared) 
+clust_r2matrix.long[["level"]]="Cluster"
+
+# combind levels 
+r2.df  = bind_rows(lhz_r2matrix.long,TA_r2matrix.long,clust_r2matrix.long)
+
+# adjust names for figure use
+r2.df$Model[r2.df$Model=="model0"]<-"Class 0 (IPC value only)"
+r2.df$Model[r2.df$Model=="model1"]<-"Class 1 data"
+r2.df$Model[r2.df$Model=="model2"]<-"Class 1 + Class 2 data"
+r2.df$Model[r2.df$Model=="model3"]<-"Class 1 + Class 2 + Class 3 data"
 
 
-source("R/functions/R2ComputePair.R")
+ # adjust factor level
+ord_measure <- c("HDDS","rCSI","logFCS")
+r2.df$Measures <- factor(r2.df$Measures,levels=ord_measure)
 
-r2list<- sapply(linear_list,R2ComputePair)
-r2list= format(r2list, digits=3, nsmall=2)
+ord_level <- c("IPC Zone","TA","Cluster")
+r2.df$level <- factor(r2.df$level,levels=ord_level)
 
-FCS_data_model3 =  FCS_data 
-FCS_data_model3 = as.data.frame(FCS_data_model3) %>% dplyr::select(-IPC_value_only)
+ord_model <- c("Class 0 (IPC value only)","Class 1 data","Class 1 + Class 2 data","Class 1 + Class 2 + Class 3 data")
+r2.df$Model <- factor(r2.df$Model,levels=ord_model)
 
-FCS_data_model0<-cbind(logFCS_IPC$clust_logFCS_predict_ipc,logFCS_IPC$clust_logFCS_predict_ipc,logFCS_IPC$clust_logFCS_predict_ipc,predict_df$clust_logFCS)
-colnames(FCS_data_model0)<-c("IPC_zone","TA","cluster","Actual")
-
-
-FCS_data_model2<-cbind(predict_df$clust_logFCS_ipczone_predict_m2,predict_df$clust_logFCS_TA_predict_m2,predict_df$clust_logFCS_clust_predict_m2,predict_df$clust_logFCS)
-colnames(FCS_data_model2)<-c("IPC_zone","TA","cluster","Actual")
+write.csv(r2.df,"output/results/prediction/r2df.csv",row.names = FALSE)
 
 
-FCS_data_model1<-cbind(predict_df$clust_logFCS_ipczone_predict_m1,predict_df$clust_logFCS_TA_predict_m1,predict_df$clust_logFCS_clust_predict_m1,predict_df$clust_logFCS)
-colnames(FCS_data_model1)<-c("IPC_zone","TA","cluster","Actual")
+# Start the plot
+figure2<-ggplot(data = r2.df, aes(x = level, y = RSquared,colour =Measures ,shape = Model )) 
+figure2<-figure2 + geom_point(size=7)
+figure2<-figure2 + labs( x = "Geo-spatial Level", y = "R Squared")
 
-FCS_List<-list(FCS_data_model0,FCS_data_model1,FCS_data_model2,FCS_data_model3)
-
-HDDS_data_model3 =  HDDS_data 
-HDDS_data_model3 = as.data.frame(HDDS_data_model3) %>% dplyr::select(-IPC_value_only)
-
-
-HDDS_data_model0<-cbind(HDDS_IPC$clust_HDDS_predict_ipc,HDDS_IPC$clust_HDDS_predict_ipc,HDDS_IPC$clust_HDDS_predict_ipc,predict_df$clust_HDDS)
-colnames(HDDS_data_model0)<-c("IPC_zone","TA","cluster","Actual")
-
-HDDS_data_model2<-cbind(predict_df$clust_HDDS_ipczone_predict_m2,predict_df$clust_HDDS_TA_predict_m2,predict_df$clust_HDDS_clust_predict_m2,predict_df$clust_HDDS)
-colnames(HDDS_data_model2)<-c("IPC_zone","TA","cluster","Actual")
+figure2 <- figure2+ theme_classic()  +    scale_colour_manual(values = c("#619CFF", "#F8766D","#00BA38"))  
+figure2 <- figure2 +  theme(plot.title = element_text(size = 12, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=18),axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
+                            axis.title=element_text(size=17,face="bold") ) 
 
 
+figure2
 
-HDDS_data_model1<-cbind(predict_df$clust_HDDS_ipczone_predict_m1,predict_df$clust_HDDS_TA_predict_m1,predict_df$clust_HDDS_clust_predict_m1,predict_df$clust_HDDS)
-colnames(HDDS_data_model1)<-c("IPC_zone","TA","cluster","Actual")
-
-HDDS_List<-list(HDDS_data_model0,HDDS_data_model1,HDDS_data_model2,HDDS_data_model3)
-
-
-RCSI_data_model3 =  RCSI_data 
-RCSI_data_model3 = as.data.frame(RCSI_data_model3) %>% dplyr::select(-IPC_value_only)
-
-RCSI_data_model0<-cbind(RCSI_IPC$clust_RCSI_predict_ipc,RCSI_IPC$clust_RCSI_predict_ipc,RCSI_IPC$clust_RCSI_predict_ipc,predict_df$clust_RCSI)
-colnames(RCSI_data_model0)<-c("IPC_zone","TA","cluster","Actual")
+ggsave("figure2.png", plot = figure2,device = "png",path = "output/graphs/",
+       dpi = 1000, limitsize = TRUE)
 
 
-RCSI_data_model2<-cbind(predict_df$clust_RCSI_ipczone_predict_m2,predict_df$clust_RCSI_TA_predict_m2,predict_df$clust_RCSI_clust_predict_m2,predict_df$clust_RCSI)
-colnames(RCSI_data_model2)<-c("IPC_zone","TA","cluster","Actual")
+# rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
 
-
-
-RCSI_data_model1<-cbind(predict_df$clust_RCSI_ipczone_predict_m1,predict_df$clust_RCSI_TA_predict_m1,predict_df$clust_RCSI_clust_predict_m1,predict_df$clust_RCSI)
-colnames(RCSI_data_model1)<-c("IPC_zone","TA","cluster","Actual")
-
-RCSI_List<-list(RCSI_data_model0,RCSI_data_model1,RCSI_data_model2,RCSI_data_model3)
-source("function/R2Compute.R")
-source("function/R2ComputeDF.R")
-
-
-r2mat_RCSI<- sapply(RCSI_List,R2ComputeDF)
-r2mat_HDDS<- sapply(HDDS_List,R2ComputeDF)
-r2mat_FCS<- sapply(FCS_List,R2ComputeDF)
-
-colnames(r2mat_RCSI) = c("m0","m1","m2","m3")
-colnames(r2mat_HDDS) = c("m0","m1","m2","m3")
-colnames(r2mat_FCS) = c("m0","m1","m2","m3")
-
-rownames(r2mat_RCSI) = c("IPC_zone","TA","cluster")
-rownames(r2mat_HDDS) = c("IPC_zone","TA","cluster")
-rownames(r2mat_FCS) = c("IPC_zone","TA","cluster")
-
-
-r2matlist<-list(r2mat_FCS,r2mat_HDDS,r2mat_RCSI)
-
-r2matlist<-lapply(r2matlist,as.data.frame)
-r2matlist<-lapply(r2matlist,function(x){tibble::rownames_to_column(x,var = "Level")})
-
-r2matlist<-lapply(r2matlist,function(x){tidyr::gather(data= x,key=model,2:5,value = rsquares)})
-
-r2matlist[[1]]["measure"] ="logFCS"
-r2matlist[[2]]["measure"] ="HDDS"
-r2matlist[[3]]["measure"] ="rCSI"
-
-r2 = bind_rows(r2matlist[[1]],r2matlist[[2]],r2matlist[[3]])
-colnames(r2)[2] = "Model"
-colnames(r2)[3] = "RSquared"
-colnames(r2)[4] = "Measures"
-
-
-r2$Level[r2$Level=="IPC_zone"]<-"IPC Zone"
-r2$Level[r2$Level=="cluster"]<-"Cluster"
-
-
-
-r2$Model[r2$Model=="m0"]<-"Class 0 (IPC value only)"
-r2$Model[r2$Model=="m1"]<-"Class 1 data"
-r2$Model[r2$Model=="m2"]<-"Class 1 + Class 2 data"
-r2$Model[r2$Model=="m3"]<-"Class 1 + Class 2 + Class 3 data"
-
-
-ord <- c("IPC_value_only","IPC Zone","TA","Cluster")
-r2$Level <- factor(r2$Level,levels=ord)
-
-
-
-ord_m <- c("Class 0 (IPC value only)","Class 1 data","Class 1 + Class 2 data","Class 1 + Class 2 + Class 3 data")
-r2$Model <- factor(r2$Model,levels=ord_m)
-
-r2$RSquared <-as.numeric(r2$RSquared)
-
-
-rplot<-ggplot(data = r2, aes(x =Level, y = RSquared,colour = Model ,shape = Measures)) 
-rplot<-rplot + geom_point(size=7)
-rplot<-rplot + labs( x = "Geo-spatial Level", y = "R Squared")
-
-rplot <- rplot+ theme_classic() 
-rplot <- rplot +  theme(plot.title = element_text(size = 12, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=18),axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
-                        axis.title=element_text(size=17,face="bold") ) 
-
-rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
-
-# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
-rplot
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines")) 
 #  grid.text("Class 1 data contains: past IPC values, precipitation,", x = unit(0.625, "npc"), y = unit(0.35, "npc"),gp=gpar(fontsize=15), check.overlap = TRUE,just="left") 
 #  grid.text("market prices, market access measures, and soil quality", x = unit(0.625, "npc"), y = unit(0.32, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left") 
 # grid.text("Class 2 data contains: share of households owing cellular", x = unit(0.625, "npc"), y = unit(0.29, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
@@ -193,49 +129,7 @@ rplot
 # grid.text("Class 3 data contains: household demographics and assets", x = unit(0.625, "npc"), y = unit(0.23, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
 
 
-
-r22 = bind_rows(r2matlist[[1]],r2matlist[[2]],r2matlist[[3]])
-colnames(r22)[2] = "Model"
-colnames(r22)[3] = "RSquared"
-colnames(r22)[4] = "Measures"
-
-
-r22$Level[r22$Level=="IPC_zone"]<-"IPC Zone"
-r22$Level[r22$Level=="cluster"]<-"Cluster"
-r22$Model[r22$Model=="m0"]<-"Class 0: IPC value only"
-r22$Model[r22$Model=="m1"]<-"Class 1"
-r22$Model[r22$Model=="m2"]<-"Class 1 + Class 2  "
-r22$Model[r22$Model=="m3"]<-"Class 1 + Class 2 + Class 3"
-
-ord <- c("IPC_value_only","IPC Zone","TA","Cluster")
-r22$Level <- factor(r22$Level,levels=ord)
-
-r22$RSquared <-as.numeric(r22$RSquared)
-
-r22 = r22 %>% arrange(Model)
-
-rplot<-ggplot(data = r22, aes(x =Model , y = RSquared,colour =Level  ,shape = Measures)) 
-rplot<-rplot + geom_point(size=7)
-rplot<-rplot + labs( x = "Model", y = "R Squared")
-
-rplot <- rplot+ theme_classic() 
-rplot <- rplot +  theme(plot.title = element_text(size = 12, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=18),axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
-                        axis.title=element_text(size=17,face="bold") ) 
-
-rplot = rplot + scale_color_grey(start = 0.8, end = 0.2) +  theme(plot.margin = unit(c(1, 9, 1, 1), "lines"))  
-rplot
-grid.text("Class 1 data contains:", x = unit(0.77, "npc"), y = unit(0.35, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left") 
-grid.text("past IPC values, precipitation,", x = unit(0.77, "npc"), y = unit(0.32, "npc"),gp=gpar(fontsize=15), check.overlap = TRUE,just="left") 
-grid.text("market prices, market access", x = unit(0.77, "npc"), y = unit(0.29, "npc"),gp=gpar(fontsize=15), check.overlap = TRUE,just="left") 
-grid.text("measures, and soil quality.", x = unit(0.77, "npc"), y = unit(0.26, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left") 
-grid.text("Class 2 data contains: ", x = unit(0.77, "npc"), y = unit(0.23, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
-grid.text("share of households owing cellular", x = unit(0.77, "npc"), y = unit(0.20, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
-grid.text("phone and share of dwellings", x = unit(0.77, "npc"), y = unit(0.17, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
-grid.text("with metal versus thatch roof.", x = unit(0.77, "npc"), y = unit(0.14, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
-
-grid.text("Class 3 data contains:", x = unit(0.77, "npc"), y = unit(0.11, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
-grid.text("household demographics and assets.", x = unit(0.77, "npc"), y = unit(0.08, "npc"),gp=gpar(fontsize=15),check.overlap = TRUE,just="left")
-
+ 
 
 
 
@@ -246,6 +140,12 @@ grid.text("household demographics and assets.", x = unit(0.77, "npc"), y = unit(
 ###############################################################################################
 ### Figure 3: logFCS  
 ###############################################################################################
+
+library(grid)
+clust_r2matrix <- read_csv("output/results/prediction/clust/clust_r2matrix.csv")
+r2list = as.numeric(clust_r2matrix[4,2:4])
+
+logFCS_pair <- read_csv("output/results/prediction/clust/logFCS_clust_model3_pair.csv")
 
 cutoffa <- data.frame( x = c(-Inf, Inf), y =3.332, cutoff = factor(3.332) )
 cutoffb <- data.frame( x = c(-Inf, Inf), y = 3.738, cutoff = factor(3.738)  )
@@ -284,16 +184,17 @@ ggplot(as.data.frame(logFCS_pair), aes(actual, predict)) +
   annotate(geom = "text", size = 7, x = 4, y = 3.5, label = "IV") +
   theme(plot.margin = unit(c(1, 11, 1, 1), "lines")) 
 
-grid.text(paste("R Squared= ",r2list[2],sep = " "), x = unit(0.84, "npc"), y = unit(0.65, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text(paste("R Squared= ",r2list[1],sep = " "), x = unit(0.84, "npc"), y = unit(0.65, "npc"),gp=gpar(fontsize=15),just="left") 
 
-grid.text("Cutoff: 0 <= logFCS ", x = unit(0.84, "npc"), y = unit(0.57, "npc"),gp=gpar(fontsize=15),just="left") 
-grid.text("< 3.33 is poor;", x = unit(0.84, "npc"), y = unit(0.54, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("Cutoff:", x = unit(0.84, "npc"), y = unit(0.60, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("0 <= logFCS ", x = unit(0.84, "npc"), y = unit(0.56, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("< 3.33 is poor;", x = unit(0.84, "npc"), y = unit(0.52, "npc"),gp=gpar(fontsize=15),just="left") 
 
-grid.text("3.33 <= logFCS ", x = unit(0.84, "npc"), y = unit(0.51, "npc"),gp=gpar(fontsize=15),just="left") 
-grid.text("< 3.74 is borderline;", x = unit(0.84, "npc"), y = unit(0.48, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("3.33 <= logFCS ", x = unit(0.84, "npc"), y = unit(0.48, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("< 3.74 is borderline;", x = unit(0.84, "npc"), y = unit(0.44, "npc"),gp=gpar(fontsize=15),just="left") 
 
-grid.text("logFCS >= 3.74 ", x = unit(0.84, "npc"), y = unit(0.45, "npc"),gp=gpar(fontsize=15),just="left") 
-grid.text("is acceptable.", x = unit(0.84, "npc"), y = unit(0.42, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("logFCS >= 3.74 ", x = unit(0.84, "npc"), y = unit(0.40, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("is acceptable.", x = unit(0.84, "npc"), y = unit(0.36, "npc"),gp=gpar(fontsize=15),just="left") 
 
 # grid.text("Area I: Overpredicting; borderline  ", x = unit(0.85, "npc"), y = unit(0.35, "npc"),gp=gpar(fontsize=15),just="left") 
 # grid.text("predicted as acceptable", x = unit(0.85, "npc"), y = unit(0.32,"npc"),gp=gpar(fontsize=15),just="left") 
@@ -308,6 +209,7 @@ grid.text("is acceptable.", x = unit(0.84, "npc"), y = unit(0.42, "npc"),gp=gpar
 ###############################################################################################
 ### Figure 3: HDDS 
 ###############################################################################################
+HDDS_pair <- read_csv("output/results/prediction/clust/HDDS_clust_model3_pair.csv")
 
 cutoffw <- data.frame( x = c(-Inf, Inf), y = 3, cutoff = factor(3) )
 cutoffx <- data.frame( x = c(-Inf, Inf), y = 6, cutoff = factor(6) )
@@ -349,19 +251,20 @@ ggplot(as.data.frame(HDDS_pair), aes(actual, predict)) +
   annotate(geom = "text", size = 7, x = 6.5, y = 6.7, label = "IIb") +
   annotate(geom = "text", size = 7, x = 6.5, y = 3.8, label = "IV") 
 
-grid.text(paste("R Squared= ",r2list[3],sep = " "), x = unit(0.85, "npc"), y = unit(0.65, "npc"),gp=gpar(fontsize=15),just="left") 
-
-grid.text("Cutoff: 0 <= HDDS < 3 ", x = unit(0.85, "npc"), y = unit(0.58, "npc"),gp=gpar(fontsize=15),just="left") 
-grid.text("is poor diversity;", x = unit(0.85, "npc"), y = unit(0.55, "npc"),gp=gpar(fontsize=15),just="left") 
-grid.text("3 <= HDDS < 6 ", x = unit(0.85, "npc"), y = unit(0.52, "npc"),gp=gpar(fontsize=15),just="left")
-grid.text("is medium diversity;", x = unit(0.85, "npc"), y = unit(0.49, "npc"),gp=gpar(fontsize=15),just="left")
-grid.text("HDDS >= 6", x = unit(0.85, "npc"), y = unit(0.46, "npc"),gp=gpar(fontsize=15),just="left") 
-grid.text("is good diversity.", x = unit(0.85, "npc"), y = unit(0.43, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text(paste("R Squared= ",r2list[2],sep = " "), x = unit(0.83, "npc"), y = unit(0.65, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("Cutoff:", x = unit(0.83, "npc"), y = unit(0.58, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("0 <= HDDS < 3 ", x = unit(0.83, "npc"), y = unit(0.54, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("is poor diversity;", x = unit(0.83, "npc"), y = unit(0.50, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("3 <= HDDS < 6 ", x = unit(0.83, "npc"), y = unit(0.46, "npc"),gp=gpar(fontsize=15),just="left")
+grid.text("is medium diversity;", x = unit(0.83, "npc"), y = unit(0.42, "npc"),gp=gpar(fontsize=15),just="left")
+grid.text("HDDS >= 6", x = unit(0.83, "npc"), y = unit(0.38, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("is good diversity.", x = unit(0.83, "npc"), y = unit(0.34, "npc"),gp=gpar(fontsize=15),just="left") 
 
 
 ###############################################################################################
 ### Figure 3: rCSI 
 ###############################################################################################
+rcsi_pair <- read_csv("output/results/prediction/clust/rCSI_clust_model3_pair.csv")
 
 # Create cutoffs
 
@@ -407,15 +310,16 @@ ggplot(rcsi_pair, aes(actual, predict )) +
   annotate(geom = "text", size = 7, x = 7, y = 10, label = "IIIb") +
   annotate(geom = "text", size = 7, x = 2, y = 10, label = "IV") 
 
-grid.text(paste("R Squared= ",r2list[1],sep = " "), x = unit(0.85, "npc"), y = unit(0.65, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text(paste("R Squared= ",r2list[3],sep = " "), x = unit(0.83, "npc"), y = unit(0.65, "npc"),gp=gpar(fontsize=14),just="left") 
 
-grid.text("Cutoff: 0 <= rCSI < 4", x = unit(0.85, "npc"), y = unit(0.57, "npc"),gp=gpar(fontsize=14),just="left") 
-grid.text("is food secure; ", x = unit(0.85, "npc"), y = unit(0.54, "npc"),gp=gpar(fontsize=14),just="left") 
-grid.text("4 <= rCSI < 17 is ", x = unit(0.85, "npc"), y = unit(0.51, "npc"),gp=gpar(fontsize=14),just="left") 
-grid.text("midly food insecure;", x = unit(0.85, "npc"), y = unit(0.48, "npc"),gp=gpar(fontsize=14),just="left") 
-grid.text("rCSI >= 17 is ", x = unit(0.85, "npc"), y = unit(0.45, "npc"),gp=gpar(fontsize=14),just="left") 
-grid.text("moderately or severely", x = unit(0.85, "npc"), y = unit(0.42, "npc"),gp=gpar(fontsize=14),just="left") 
-grid.text("food insecure.", x = unit(0.85, "npc"), y = unit(0.39, "npc"),gp=gpar(fontsize=15),just="left") 
+grid.text("Cutoff:", x = unit(0.83, "npc"), y = unit(0.57, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("0 <= rCSI < 4", x = unit(0.83, "npc"), y = unit(0.53, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("is food secure; ", x = unit(0.83, "npc"), y = unit(0.49, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("4 <= rCSI < 17 is ", x = unit(0.83, "npc"), y = unit(0.45, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("midly food insecure;", x = unit(0.83, "npc"), y = unit(0.41, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("rCSI >= 17 is ", x = unit(0.83, "npc"), y = unit(0.37, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("moderately or severely", x = unit(0.83, "npc"), y = unit(0.33, "npc"),gp=gpar(fontsize=14),just="left") 
+grid.text("food insecure.", x = unit(0.83, "npc"), y = unit(0.29, "npc"),gp=gpar(fontsize=15),just="left") 
 # 
 # 
 #  grid.text("Area I: Overpredicting; mildly food ", x = unit(0.85, "npc"), y = unit(0.41, "npc"),gp=gpar(fontsize=14),just="left") 
@@ -434,6 +338,138 @@ grid.text("food insecure.", x = unit(0.85, "npc"), y = unit(0.39, "npc"),gp=gpar
 
 
 
+# R1: suggests adding labels on each panel to show what the response variable is (not sure what the issue is?
+#                                                                                   
+#  I think R1 might be suggesting we label what I, II, etc. in the graphs themselves and remove the roman numerals).
+# 
+# I think we do need to make the figure bigger, which I tried to do by landscaping the figure.
+# In fig 3 I suggest placing labels on each panel to show clearly what the response variable is
+# (and not force readers to look at caption or axis label)
+
+
+##########################################################
+# Fig. S2: A series of fixed effect models show that spatial level and temporal frequency
+# influence food security status. Bars present the share of variation of each of the 2010 HH Food Security measures
+# explained by month and or geographic identifier
+###################################################
+
+rm(list=ls())
+
+library("reshape2")
+library("ggplot2")
+library("zoo")
+library(gtable)
+library(grid)
+
+malawi <-   read_csv("data/mw_dataset_hh.csv")
+malawi["logFCS"] = log(malawi$FCS) 
+
+# start here 
+data = malawi %>%
+  filter(FS_year!=2013) %>%
+  select(rCSI,logFCS,HDDS,FS_month,FNID,TA_names,ea_id)
+
+
+data$month_clust <-interaction(data$FS_month,data$ea_id)
+ 
+colnames(data)[4] <-"Month" 
+colnames(data)[5] <-"IPC" 
+colnames(data)[6] <-"TA"
+colnames(data)[7] <-"Cluster" 
+colnames(data)[8] <-"Month+Cluster"
+
+
+#	 bar chart of variation in FS security measures (month, IPCzone, TA, cluster, month x cluster)
+
+
+r2 = matrix(NA,3,5) 
+data$rCSI
+
+# month FE 
+my_lms <- lapply(1:3, function(x){
+  formula = paste(colnames(data)[x] ,"~as.factor(Month)",sep = "")
+  lm(formula,data=data)
+  
+} )
+
+summaries <- lapply(my_lms, summary)
+r2[,1]<-sapply(summaries, function(x) c(r_sq = x$r.squared))
+
+
+# IPC FE 
+my_lms <- lapply(1:3, function(x) {
+  formula = paste(colnames(data)[x] ,"~as.factor(IPC)",sep = "")
+  lm(formula,data=data)
+})
+  
+summaries <- lapply(my_lms, summary) 
+r2[,2]<-sapply(summaries, function(x)
+  c(r_sq = x$r.squared))
+
+# TA FE 
+
+my_lms <- lapply(1:3, function(x){
+  formula = paste(colnames(data)[x] ,"~as.factor(TA)",sep = "")
+  lm(formula,data=data)
+  } )
+summaries <- lapply(my_lms, summary) 
+r2[,3]<-sapply(summaries, function(x)
+  c(r_sq = x$r.squared))
+
+# Cluster FE 
+my_lms <- lapply(1:3, function(x){
+  formula = paste(colnames(data)[x] ,"~as.factor(Cluster)",sep = "")
+  lm(formula,data=data)
+})
+summaries <- lapply(my_lms, summary) 
+r2[,4]<-sapply(summaries, function(x)
+  c(r_sq = x$r.squared))
+
+
+# Month+Cluster FE 
+my_lms <- lapply(1:3, function(x){
+  formula = paste(colnames(data)[x] ,"~as.factor(Month+Cluster)",sep = "")
+  lm(formula,data=data)
+})
+  
+  
+summaries <- lapply(my_lms, summary)
+r2[,5]<-sapply(summaries, function(x) c(r_sq = x$r.squared))
+
+
+# Format results 
+r2 <-as.data.frame(r2)
+colnames(r2)<-c("Month","IPC","TA","Cluster","Cluster + Month")
+rownames(r2)<-c("rCSI","logFCS","HDDS") #r2$measure<-c("RCSI","FCS","HDDS")
+
+long_r2<- melt(t(r2),na.rm=TRUE,measure.vars =c("rCSI","logFCS","HDDS"))
+long_r2<-long_r2[long_r2$Var1!="measure",]
+
+colnames(long_r2)<-c("variation","Measures","Rsquared")
+
+ar<-as.character(long_r2$Rsquared)
+long_r2$ar<-as.numeric(ar)
+# rCSI_r2_fe =  .22320556
+# HDDS_r2_fe =  .30987621
+# logFCS_r2_fe =  .33045673
+
+
+## bar_plot figure of r squared
+# plot code 
+p<-ggplot(long_r2, aes(variation,ar)) +geom_bar(stat = "identity",position = "dodge",aes(fill = Measures))
+
+p <- p + labs(y = "R squares",
+              x = " ",
+              colour = "Food Security Measures",
+              shape= " ")
+
+p <- p+ theme_bw() 
+p <- p + theme(text = element_text(size=22)) 
+p               
+
+ggsave("figureS2.png", plot = p,device = "png",path = "output/graphs/",
+       dpi = 1000, limitsize = TRUE)
+
 
 
 ##########################################################
@@ -445,106 +481,496 @@ grid.text("food insecure.", x = unit(0.85, "npc"), y = unit(0.39, "npc"),gp=gpar
 # b.	Density plot (predication using different scales + household)
 # i.	Unexplored variation of household level 
 
+# model 3 at different level + cluster actual + model 0 + 
 
-csv_list <- list.files(path="data/all_predict", 
-                       pattern = "csv$",
-                       full.names=TRUE)
-dfnames<-csv_list
+rCSI_clust <- read_csv("output/results/prediction/clust/rCSI_clust_model3_pair.csv")
+rCSI_TA <- read_csv("output/results/prediction/TA/rCSI_TA_model3_pair.csv")
+rCSI_lhz <- read_csv("output/results/prediction/lhz/rCSI_lhz_model3_pair.csv")
+rCSI_model0 <- read_csv("output/results/prediction/clust/rCSI_clust_model0_pair.csv")
 
-# remove irregulars in the file names, 
-pattern<-c("data/all_predict/","clust_",".csv")
-for (i in 1:length(pattern)) {
-  dfnames <- gsub(pattern[i],"", dfnames)
-}
-
-
-
-list2env(
-  lapply(setNames(csv_list, make.names(dfnames)), 
-         function(i){read.csv(i)}), envir = .GlobalEnv)
-
-predict_df<-cbind(logFCS_predict_m3[1],RCSI_predict_m3[1],HDDS_predict_m3[1])
-
-for (i in 1:length(dfnames)){
-  # exclude unneeded cols  
-  temp <- get(dfnames[i])
-  predict_df<-cbind(predict_df,temp[2])
-}
+logFCS_clust <- read_csv("output/results/prediction/clust/rCSI_clust_model3_pair.csv")
+logFCS_TA <- read_csv("output/results/prediction/TA/rCSI_TA_model3_pair.csv")
+logFCS_lhz <- read_csv("output/results/prediction/lhz/rCSI_lhz_model3_pair.csv")
+logFCS_model0 <- read_csv("output/results/prediction/clust/rCSI_clust_model0_pair.csv")
 
 
+HDDS_clust <- read_csv("output/results/prediction/clust/rCSI_clust_model3_pair.csv")
+HDDS_TA <- read_csv("output/results/prediction/TA/rCSI_TA_model3_pair.csv")
+HDDS_lhz <- read_csv("output/results/prediction/lhz/rCSI_lhz_model3_pair.csv")
+HDDS_model0 <- read_csv("output/results/prediction/clust/rCSI_clust_model0_pair.csv")
 
+mw_dataset_hh <- read_csv("data/mw_dataset_hh.csv")
+mw13.hh = mw_dataset_hh %>% 
+  dplyr::filter(FS_year==2013) %>%
+  dplyr::mutate(logFCS = log(FCS)) %>%
+  dplyr::select(logFCS,HDDS,rCSI)
 
-malawi<- read.csv("data/cluster_fs.csv")
-
-logFCS_IPC <- read.csv("data/all_ipc/logFCS_predict_CLUST_IPC.csv")
-HDDS_IPC <- read.csv("data/all_ipc/HDDS_predict_CLUST_IPC.csv")
-RCSI_IPC <- read.csv("data/all_ipc/RCSI_predict_CLUST_IPC.csv")
+mw13.hh.logFCS = mw13.hh %>% mutate(level = "Household Actual") %>% dplyr::select(level,logFCS)
+mw13.hh.HDDS = mw13.hh %>% mutate(level = "Household Actual") %>% dplyr::select(level,HDDS)
+mw13.hh.rCSI = mw13.hh %>% mutate(level = "Household Actual") %>% dplyr::select(level,rCSI)
 
 
 
-FCS_data<-cbind(predict_df$logFCS_ipczone_predict_m3,predict_df$logFCS_TA_predict_m3,predict_df$logFCS_clust_predict_m3,predict_df$logFCS,logFCS_IPC$logFCS_predict_ipc)
-colnames(FCS_data)<-c("IPC_zone","TA","cluster","Actual","IPC_value_only")
-long_fcs<- melt(FCS_data,na.rm=TRUE)
-colnames(long_fcs)<-c("no","level","logFCS")
-plot_long<- long_fcs[long_fcs$level != "IPC_value_only",]
-plot_long_ipc_fcs<- long_fcs[long_fcs$level == "IPC_value_only",]
+# combine data at different level 
+logFCS_data = cbind(logFCS_lhz$predict,logFCS_TA$predict,logFCS_clust$predict,logFCS_clust$actual,logFCS_model0$predict)
+colnames(logFCS_data)<-c("IPC_zone","TA","Cluster","Actual","IPC_value_only")
+# Wide to long
+long_logFCS = gather( as.data.frame(logFCS_data),key= "level", value =logFCS )
+
+plot_long<- long_logFCS[long_logFCS$level != "IPC_value_only",]
+plot_long_ipc_logFCS<- long_logFCS[long_logFCS$level == "IPC_value_only",]
+plot_long_logFCS= dplyr::bind_rows(plot_long, mw13.hh.logFCS)
 
 
-plot_long_FCS= dplyr::bind_rows(plot_long, long_FCS_hh)
+HDDS_data = cbind(HDDS_lhz$predict,HDDS_TA$predict,HDDS_clust$predict,HDDS_clust$actual,HDDS_model0$predict)
+colnames(HDDS_data)<-c("IPC_zone","TA","Cluster","Actual","IPC_value_only")
+# Wide to long
+long_HDDS = gather( as.data.frame(HDDS_data),key= "level", value =HDDS )
 
-
-
-HDDS_data<-cbind(predict_df$HDDS_ipczone_predict_m3,predict_df$HDDS_TA_predict_m3,predict_df$HDDS_clust_predict_m3,predict_df$HDDS,HDDS_IPC$HDDS_predict_ipc)
-colnames(HDDS_data)<-c("IPC_zone","TA","cluster","Actual","IPC_value_only")
-long_HDDS<- melt(HDDS_data,na.rm=TRUE)
-colnames(long_HDDS)<-c("no","level","HDDS")
 plot_long<- long_HDDS[long_HDDS$level != "IPC_value_only",]
 plot_long_ipc_HDDS<- long_HDDS[long_HDDS$level == "IPC_value_only",]
-
-plot_long_HDDS= dplyr::bind_rows(plot_long, long_HDDS_hh)
-
+plot_long_HDDS= dplyr::bind_rows(plot_long, mw13.hh.HDDS)
 
 # rcsi P1 < 4
 #P2 = 4-17
 #P3 = 17-42
 #P4/5 > 42
-RCSI_data<-cbind(predict_df$rCSI_ipczone_predict_m3,predict_df$rCSI_TA_predict_m3,predict_df$rCSI_clust_predict_m3,predict_df$rCSI,RCSI_IPC$rCSI_predict_ipc)
-colnames(RCSI_data)<-c("IPC_zone","TA","cluster","Actual","IPC_value_only")
-long_rcsi<- melt(RCSI_data,na.rm=TRUE)
-colnames(long_rcsi)<-c("no","level","RCSI")
-plot_long<- long_rcsi[long_rcsi$level != "IPC_value_only",]
-plot_long_ipc_RCSI<- long_rcsi[long_rcsi$level == "IPC_value_only",]
+rCSI_data = cbind(rCSI_lhz$predict,rCSI_TA$predict,rCSI_clust$predict,rCSI_clust$actual,rCSI_model0$predict)
+colnames(rCSI_data)<-c("IPC_zone","TA","Cluster","Actual","IPC_value_only")
+# Wide to long
+long_rCSI = gather( as.data.frame(rCSI_data),key= "level", value =rCSI )
 
-plot_long_RCSI= dplyr::bind_rows(plot_long, long_RCSI_hh)
+plot_long<- long_rCSI[long_rCSI$level != "IPC_value_only",]
+plot_long_ipc_rCSI<- long_rCSI[long_rCSI$level == "IPC_value_only",]
+plot_long_rCSI= dplyr::bind_rows(plot_long, mw13.hh.rCSI)
 
-p = ggplot(as.data.frame(plot_long_FCS),aes(x=logFCS,color=level)) + geom_density(alpha=0.1) +xlim(2.8, 4.9) +
+
+####################
+# Density plot code 
+####################
+# logFCS density 
+ggplot(as.data.frame(plot_long_logFCS),aes(x=logFCS,color=level)) +
+  geom_density(alpha=0.1,size=1.5) +xlim(2.8, 4.9) +
   geom_vline(xintercept=log(28),linetype=2) + geom_vline(xintercept=log(42),linetype=2)+
-  stat_density(data=plot_long_ipc_fcs,aes(x=logFCS, y=..scaled..*3.5,color=level)) + scale_y_continuous(sec.axis = sec_axis(~.*28, name = " density (IPC value only) ")) +  
+  geom_density(data=plot_long_ipc_logFCS,size=1.5,aes(x=logFCS, y=..scaled..*1,color=level)) + 
+  scale_y_continuous(sec.axis = sec_axis(~.*1, name = " density (IPC value only) ")) +  
   theme_classic()+
-  theme(plot.title = element_text(size = 12, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=18),axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
+  theme(plot.title = element_text(size = 12, face = "bold"),
+        legend.title=element_text(size=20), 
+        legend.text=element_text(size=18),
+        axis.text.x=element_text(size=15),
+        axis.text.y=element_text(size=15),
         axis.title=element_text(size=17,face="bold") ) 
 
-p
 
-
-
-p= ggplot(as.data.frame(plot_long_HDDS),aes(x=HDDS, color=level))+ geom_density(alpha=0.25,show.legend = TRUE) +
-  xlim(1.5, 7.6) + geom_vline(xintercept=3,linetype=2) + geom_vline(xintercept=6,linetype=2) +
-  stat_density(data=plot_long_ipc_HDDS,aes(x=HDDS,y=..scaled..*1.1,color=level)) +
-  scale_y_continuous(name= "density",sec.axis = sec_axis(~.*12, name = "density (IPC value only) "))  +  theme_classic()+
-  theme(plot.title = element_text(size = 12, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=18),axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
+# HDDS density 
+ggplot(as.data.frame(plot_long_HDDS),aes(x=HDDS, color=level))+
+  geom_density(alpha=0.1,size=1.5)+
+  xlim(1.5, 7.6) + 
+  geom_vline(xintercept=3,linetype=2) + geom_vline(xintercept=6,linetype=2) +
+  geom_density(data=plot_long_ipc_HDDS,aes(x=HDDS,y=..scaled../1,color=level),alpha=0.25,size=1.5) +
+  scale_y_continuous(name= "Density",sec.axis = sec_axis(~.*1, name = "Density (IPC value only) ")) + 
+  theme_classic()+
+  theme(plot.title = element_text(size = 12, face = "bold"),
+        legend.title=element_text(size=20), legend.text=element_text(size=18),
+        axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
         axis.title=element_text(size=17,face="bold") ) 
 
-p
-
-
-
-p = ggplot(as.data.frame(plot_long_RCSI),aes(x=RCSI, color=level))+ stat_density(data=plot_long_ipc_RCSI,aes(x=RCSI,y=..scaled../2.3,color=level)) + geom_density(alpha=0.25)+xlim(0, 45) + 
+# rCSI density 
+ggplot(as.data.frame(plot_long_rCSI),aes(x=rCSI, color=level))+
+  geom_density(data=plot_long_ipc_rCSI,aes(x=rCSI,y=..scaled../1.9,color=level),alpha=0.1,size=1.5) +
+  geom_density(alpha=0.1,size=1.5)+xlim(0, 45) + 
   geom_vline(xintercept=4,linetype=2) + geom_vline(xintercept=17,linetype=2)+ geom_vline(xintercept=42,linetype=2)+
-  scale_y_continuous(name= "density",sec.axis = sec_axis(~.*3.125, name = "density (IPC value only) ")) +
-  theme(plot.title = element_text(size = 12, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=18),axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
-        axis.title=element_text(size=17,face="bold") ) +
-  theme_classic()
-p
-
+  scale_y_continuous(name= "Density",sec.axis = sec_axis(~.*1.9, name = "Density (IPC value only) ")) +
+  theme_classic() +
+  theme(plot.title = element_text(size = 12, face = "bold"),
+        legend.title=element_text(size=20), legend.text=element_text(size=18),
+        axis.text.x=element_text(size=15),axis.text.y=element_text(size=15),
+        axis.title=element_text(size=17,face="bold") )
  
+ 
+################################################# ################################################ 
+# Fig S4: We predict 2013 food security using only 2010 data,
+# limiting both sample(s) to the most food insecure households and confirm that factors 
+# that affect food security do not substantially differ for the subset of the most insecure households. 
+# The “tail” is defined by excluding the households that fall in the most food secure category of each food secure measures:
+#   rCSI greater than 4, logFCS smaller than 1.623 and HDDS smaller than 6. 
+# The cluster average tail food security measures are based on the cluster average of the remaining households at the tail.
+# The signs and significance of the coefficients on the variables included in the tails-only models closely match estimates 
+# from the full distribution. When estimating just the tails of the distribution, 
+# the length of dry spells largely negatively affects food security but other measures are consistent between the full 
+# distribution and the tails-only distribution. Results of categorical prediction for models including both full-samples 
+# and tail subsamples indicate the full sample’s accuracy is more sensitive to spatial scale and data class than tail subsample.
+# The accuracy in categorical predictions is similar between model 1 to model 3 for the same food security measure because
+# the predicted values tend to fall into the same category. The same holds for the percent of type I and type II errors.
+################################################ ################################################ ################################################ 
+
+
+################################################ 
+# generatea the categorized actual 
+#####################################################
+logFCS <- read.csv("data/all_predict/logFCS/clust_logFCS_predict_clust_m3.csv")
+HDDS <- read.csv("data/all_predict/HDDS/clust_HDDS_predict_clust_m3.csv")
+RCSI <- read.csv("data/all_predict/RCSI/clust_RCSI_predict_clust_m3.csv")
+
+colnames(logFCS)<-c("logFCS","logFCS_predict")
+colnames(HDDS)<-c("HDDS","HDDS_predict")
+colnames(RCSI)<-c("RCSI","RCSI_predict")
+
+actual_logFCS = logFCS$logFCS
+actual_HDDS = HDDS$HDDS
+actual_RCSI = RCSI$RCSI
+
+cat_logFCS<-cut(actual_logFCS, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
+cat_HDDS<-cut(actual_HDDS, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
+cat_RCSI<-cut(actual_RCSI, c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
+
+
+#"Poor_predict","Borderline_predict","Acceptable_predict"
+# Poor_actual","Borderline_actual","Acceptable_actual"
+
+
+logFCS_full_list= list.files("data/all_predict/logFCS",full.names = TRUE)
+HDDS_full_list= list.files("data/all_predict/HDDS",full.names = TRUE)
+RCSI_full_list= list.files("data/all_predict/RCSI",full.names = TRUE)
+
+
+model_name = gsub("data/all_predict/logFCS/clust_","",logFCS_full_list)
+model_name = gsub(".csv","",model_name)
+model_name = gsub("_predict","",model_name)
+
+
+info_master = data.frame(model=model_name[1],accuracy=0,type1=0,type2=0)
+info_master
+
+for (i in 1:length(logFCS_full_list)){
+  temp_file  = read.csv(logFCS_full_list[i])
+  cat_logFCS_pred<-cut(temp_file[,2], c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
+  confu_mat= as.matrix(confusionMatrix(cat_logFCS_pred,cat_logFCS))
+  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
+  # lower =  predict to be better than actual, over prediction 
+  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  model = model_name[i]
+  info_table = data.frame(model,accuracy,type1,type2)
+  info_master = bind_rows(info_master,info_table)
+}
+
+info_master
+
+
+
+model_name = gsub("data/all_predict/HDDS/clust_","",HDDS_full_list)
+model_name = gsub(".csv","",model_name)
+model_name = gsub("_predict","",model_name)
+
+for (i in 1:length(HDDS_full_list)){
+  temp_file  = read.csv(HDDS_full_list[i])
+  cat_HDDS_pred<-cut(temp_file[,2], c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
+  confu_mat= as.matrix(confusionMatrix(cat_HDDS_pred,cat_HDDS))
+  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
+  # lower =  predict to be better than actual, over prediction 
+  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  model = model_name[i]
+  info_table = data.frame(model,accuracy,type1,type2)
+  info_master = bind_rows(info_master,info_table)
+}
+
+info_master
+
+model_name = gsub("data/all_predict/RCSI/clust_","",RCSI_full_list)
+model_name = gsub(".csv","",model_name)
+model_name = gsub("_predict","",model_name)
+
+for (i in 1:length(RCSI_full_list)){
+  temp_file  = read.csv(RCSI_full_list[i])
+  cat_RCSI_pred<-cut(temp_file[,2], c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
+  confu_mat= as.matrix(confusionMatrix(cat_RCSI_pred,cat_RCSI))
+  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
+  # lower =  predict to be better than actual, over prediction 
+  type2 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  type1 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  model = model_name[i]
+  info_table = data.frame(model,accuracy,type1,type2)
+  info_master = bind_rows(info_master,info_table)
+}
+confu_mat
+
+info_master
+
+
+# Maybe we can collapse them into a couple of tables by having the following columns:
+  
+# % correct, % type I, % type II and a different row for each model.
+
+
+
+logFCS_tail_list= list.files("data/all_tail_predictions/logFCS",full.names = TRUE)
+HDDS_tail_list= list.files("data/all_tail_predictions/HDDS",full.names = TRUE)
+RCSI_tail_list= list.files("data/all_tail_predictions/RCSI",full.names = TRUE)
+model_name = gsub("data/all_tail_predictions/logFCS/","",logFCS_tail_list)
+model_name = gsub(".csv","",model_name)
+model_name = gsub("_predict","",model_name)
+logFCS_tail_list
+
+info_tail = data.frame(model=model_name[1],accuracy=0,type1=0,type2=0)
+info_tail
+
+for (i in 1:length(logFCS_tail_list)){
+  temp_file  = read.csv(logFCS_tail_list[i])
+  cat_logFCS_pred<-cut(temp_file[,1], c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
+  confu_mat= as.matrix(confusionMatrix(cat_logFCS_pred,cat_logFCS))
+  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
+  # lower =  predict to be better than actual, over prediction 
+  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  model = model_name[i]
+  info_table = data.frame(model,accuracy,type1,type2)
+  info_tail = bind_rows(info_tail,info_table)
+}
+
+info_tail
+
+model_name = gsub("data/all_tail_predictions/HDDS/","",HDDS_tail_list)
+model_name = gsub(".csv","",model_name)
+model_name = gsub("_predict","",model_name)
+
+for (i in 1:length(HDDS_tail_list)){
+  temp_file  = read.csv(HDDS_tail_list[i])
+  cat_HDDS_pred<-cut(temp_file[,1], c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
+  confu_mat= as.matrix(confusionMatrix(cat_HDDS_pred,cat_HDDS))
+  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
+  # lower =  predict to be better than actual, over prediction 
+  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  model = model_name[i]
+  info_table = data.frame(model,accuracy,type1,type2)
+  info_tail = bind_rows(info_tail,info_table)
+}
+
+
+model_name = gsub("data/all_tail_predictions/RCSI/","",RCSI_tail_list)
+model_name = gsub(".csv","",model_name)
+model_name = gsub("_predict","",model_name)
+
+for (i in 1:length(RCSI_tail_list)){
+  temp_file  = read.csv(RCSI_tail_list[i])
+  cat_RCSI_pred<-cut(temp_file[,1], c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
+  confu_mat= as.matrix(confusionMatrix(cat_RCSI_pred,cat_RCSI))
+  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
+  # lower =  predict to be better than actual, over prediction 
+  type2 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  type1 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
+  model = model_name[i]
+  info_table = data.frame(model,accuracy,type1,type2)
+  info_tail = bind_rows(info_tail,info_table)
+}
+
+
+info_tail
+
+write.csv(info_tail,"output/info_tail.csv")
+write.csv(info_master,"output/info_master.csv")
+ 
+
+tail = read.csv("output/info_tail_full.csv")
+full = read.csv("output/info_master_full.csv")
+# 
+tail$Model = as.character(tail$Model)
+tail$Model[tail$Model=="m1"]<-"Class 1 data"
+tail$Model[tail$Model=="m2"]<-"Class 1 + Class 2 data"
+tail$Model[tail$Model=="m3"]<-"Class 1 + Class 2 + Class 3 data"
+
+full$Model = as.character(full$Model)
+
+full$Model[full$Model=="m1"]<-"Class 1 data"
+full$Model[full$Model=="m2"]<-"Class 1 + Class 2 data"
+full$Model[full$Model=="m3"]<-"Class 1 + Class 2 + Class 3 data"
+# 
+
+ord <- c("IPC Zone","TA","Cluster")
+full$Level <- factor(full$Level,levels=ord)
+
+ord_measure <- c("rCSI","logFCS","HDDS")
+full$FS.Measure <- factor(full$FS.Measure,levels=ord_measure)
+
+# 
+ord_m <- c("Class 1 data","Class 1 + Class 2 data","Class 1 + Class 2 + Class 3 data")
+full$Model <- factor(full$Model,levels=ord_m)
+
+
+ord <- c("IPC Zone","TA","Cluster")
+tail$Level <- factor(tail$Level,levels=ord)
+
+ord_measure <- c("rCSI","logFCS","HDDS")
+tail$FS.Measure <- factor(tail$FS.Measure,levels=ord_measure)
+
+
+
+ord_measure <- c("rCSI","logFCS","HDDS")
+tail$FS.Measure <- factor(tail$FS.Measure,levels=ord_measure)
+
+
+ord_s <- c("Accuracy","% Type I","% Type II")
+tail$Model.Measure <- factor(tail$Model.Measure,levels=ord_s)
+full$Model.Measure <- factor(full$Model.Measure,levels=ord_s)
+
+
+
+ord_m <- c("Class 1 data","Class 1 + Class 2 data","Class 1 + Class 2 + Class 3 data")
+tail$Model <- factor(tail$Model,levels=ord_m)
+
+
+# 
+# colnames(full)[5] = "Type I Error"
+# colnames(full)[6] = "Type II Error"
+# 
+# 
+# colnames(tail)[5] = "Type I Error"
+# colnames(tail)[6] = "Type II Error"
+
+```
+
+```{r,echo=FALSE}
+
+FCS_full = full %>% filter(FS.Measure == "logFCS")
+
+rplot<-ggplot(data = FCS_full, aes(x =Level, y = Value,shape=Model)) 
+rplot<-rplot + geom_point(size=7,color='#00BA38',show.legend=FALSE)   +  facet_grid(. ~  Model.Measure)        
+
+rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
+
+rplot <- rplot    + theme_classic() theme(strip.text.x = element_text(size = 25))
+
+rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
+                        axis.title=element_text(size=35,face="bold") ) 
+
+#rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
+
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
+rplot
+
+ggsave("output/figures/accuracy/fcs_full.png", width = 15, height = 15)
+
+
+``` 
+
+```{r,echo=FALSE}
+
+HDDS = full %>% filter(FS.Measure == "HDDS")
+
+rplot<-ggplot(data = HDDS, aes(x =Level, y = Value,shape=Model))  
+rplot<-rplot + geom_point(size=7,color='#619CFF',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
+rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")  
+
+rplot <- rplot    + theme_classic() + theme(strip.text.x = element_text(size = 25))
+
+rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
+                        axis.title=element_text(size=35,face="bold") ) 
+
+
+#rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
+
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
+rplot
+
+ggsave("output/figures/accuracy/hdds_full.png", width = 15, height = 15)
+
+
+``` 
+
+```{r,echo=FALSE}
+
+rCSI = full %>% filter(FS.Measure == "rCSI")
+
+rplot<-ggplot(data = rCSI, aes(x =Level, y = Value,shape=Model)) 
+rplot<-rplot +  geom_point(size=7,color='#F8766D',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
+rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
+
+rplot <- rplot    + theme_classic() + theme(strip.text.x = element_text(size = 25))
+
+rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
+                        axis.title=element_text(size=35,face="bold") ) 
+
+
+#rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
+
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
+rplot
+
+ggsave("output/figures/accuracy/rCSI_full.png", width = 15, height = 15)
+
+
+``` 
+
+```{r,echo=FALSE}
+
+FCS_tail = tail %>% filter(FS.Measure == "logFCS")
+
+rplot<-ggplot(data = FCS_tail, aes(x =Level, y = Value,shape=Model)) 
+rplot<-rplot + geom_point(size=7,color='#00BA38',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure)
+rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
+
+
+rplot <- rplot    + theme_classic() + theme(strip.text.x = element_text(size = 25))
+
+rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
+                        axis.title=element_text(size=35,face="bold") ) 
+
+
+#rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
+
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
+rplot
+
+ggsave("output/figures/accuracy/fcs_tail.png", width = 15, height = 15)
+
+
+``` 
+
+```{r,echo=FALSE}
+
+HDDS = tail %>% filter(FS.Measure == "HDDS")
+
+rplot<-ggplot(data = HDDS, aes(x =Level, y = Value,shape=Model)) 
+rplot<-rplot + geom_point(size=7,color='#619CFF',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
+rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
+
+rplot <- rplot    + theme_classic() + theme(strip.text.x = element_text(size = 25))
+
+rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
+                        axis.title=element_text(size=35,face="bold") ) 
+
+#rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
+
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
+rplot
+
+ggsave("output/figures/accuracy/hdds_tail.png", width = 15, height = 15)
+
+
+``` 
+
+```{r,echo=FALSE}
+
+rCSI = tail %>% filter(FS.Measure == "rCSI")
+
+rplot<-ggplot(data = rCSI, aes(x =Level, y = Value,shape=Model)) 
+rplot<-rplot +  geom_point(size=7,color='#F8766D',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
+rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
+
+rplot <- rplot    + theme_classic() + theme(strip.text.x = element_text(size = 25))
+
+rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
+                        axis.title=element_text(size=35,face="bold") ) 
+
+#rplot = rplot + scale_color_grey(start = 0.8, end = 0.2)
+
+# +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
+rplot
+
+ggsave("output/figures/accuracy/rCSI_tail.png", width = 15, height = 15)
+
+
+``` 

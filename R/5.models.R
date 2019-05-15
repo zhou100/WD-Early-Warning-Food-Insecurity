@@ -317,9 +317,11 @@ ModelPerformance(model_name= "ols_trend",x_vars=x_trend,train_df=mw.cluster_Trai
 ####################################################
 # create variables at the lhz / TA level for computing formula
 ####################################################
-
+rm(list=ls())
+require(tidyverse)
+library(caret)
 library(readr)
-mw.2010 <- read_csv("data/clean/mw.2010.cluster.csv")
+ mw.2010 <- read_csv("data/clean/mw.2010.cluster.csv")
 sum(is.na(mw.2010$IPC1))
 mw.2013 <- read_csv("data/clean/mw.2013.cluster.csv")
 
@@ -333,7 +335,9 @@ colnames(TA.vars)
 mw.2010 = mw.2010 %>% 
   mutate(maize_current = clust_maize_current) %>%
   mutate(maize_mktthin_current = clust_maize_mktthin_current) %>%
-  mutate(asset = asset_index2)
+  mutate(asset = asset_index2) %>%
+  mutate(TA_maize_mktthin_current = TA_maize_mktthin)
+  
 
 mw.2010.lhz = mw.2010 %>% 
   dplyr::select(FNID,roof_natural_inverse,
@@ -386,7 +390,8 @@ mw.2010 = left_join(mw.2010,mw.2010.TA,by="TA_names" )
 mw.2013 = mw.2013 %>% 
   mutate(maize_current = clust_maize_current) %>%
   mutate(maize_mktthin_current = clust_maize_mktthin_current) %>%
-  mutate(asset = asset_index2)
+  mutate(asset = asset_index2)  %>%
+  mutate(TA_maize_mktthin_current = TA_maize_mktthin)
 
 mw.2013.lhz = mw.2013 %>% 
   dplyr::select(FNID,roof_natural_inverse,
@@ -442,6 +447,7 @@ levels<-c("lhz","TA","clust")
 # Y variables  
 yvars=c("logFCS","HDDS","rCSI")
 
+
 # variables 
 weather = c("raincytot","day1rain","floodmax","maxdaysnorain")
 access<-c("maize_current","maize_mktthin_current")
@@ -451,36 +457,46 @@ quarter = c("quarter1","quarter2","quarter3")
 asset1 <-c("roof_natural_inverse","number_celphones")
 demo<-c("hhsize","hh_age","hh_gender","asset")
 
-model3_variables<-c(weather,access,asset1,land,distance,demo,quarter)
-model2_variables<-c(weather,access,asset1,land,distance,quarter)
-model1_variables<-c(weather,access,land,distance,quarter)
+model3_variables<-c(weather,access,asset1,land,distance,demo)
+model2_variables<-c(weather,access,asset1,land,distance)
+model1_variables<-c(weather,access,land,distance)
+model0_variables = quarter
 
-# goal : combine variables at different levels using pastes 
-# output: variables lists at different levels, TA_vars, ipczone vars, etc. 
+models = c("model1","model2","model3")
+# goal : # iterate over models and levels using pastes 
+# to have all the variables for each model and level
+
 
 for (level in levels){
-  # assign levels of variables group
-  group_var_name<-paste(level,"vars",sep="_")
+  for(model in models){
+    
+  # assign levels of variables groups 
+  group_var_name<-paste(level,model,"vars",sep="_")
   assign(group_var_name,c())
   
-  for(var in model3_variables){
-    temp<-paste(level,var,sep = "_")
-    new<-append(get(group_var_name),temp)
-    assign(group_var_name,new)
+  
+  varlist = get(paste(model,"_variables",sep=""))
+  
+  level.var.list =c()
+  for(var in varlist){
+    level.var <-paste(level,var,sep = "_")
+    level.var.list<-append(get(group_var_name),level.var)
+    assign(group_var_name,level.var.list)
   }
-}
+  
+  level.var.list= append(get(group_var_name),quarter) 
+  assign(group_var_name,level.var.list)
+  
+  }
+  }
+  
 
- 
-clust_vars = gsub(clust_vars, pattern = "clust_",replacement = "")
-clust_vars
+  
+model0_vars=quarter
 
-lhz_vars = gsub(lhz_vars, pattern = "lhz_quarter",replacement = "quarter")
-lhz_vars
-
-TA_vars = gsub(TA_vars, pattern = "TA_quarter",replacement = "quarter")
-TA_vars
-
-
+clust_model1_vars = gsub(clust_model1_vars,pattern="clust_",replacement = "")
+clust_model2_vars = gsub(clust_model2_vars,pattern="clust_",replacement = "")
+clust_model3_vars = gsub(clust_model3_vars,pattern="clust_",replacement = "")
 
 ######################################
 # create pairs of predicted vs actual 
@@ -489,22 +505,18 @@ TA_vars
 source("R/functions/formula.R")
 source("R/functions/linear_fit.R")
 
-# Define function for creating the pairs for a given measure at a specific geospatial level
-CreatePairs = function( yvar=c("logFCS","HDDS","rCSI") , level=c("clust","TA","lhz") ){
+# Define function for creating the pairs for a given measure at a specific geospatial level and a model specification
+CreatePairs = function( yvar=c("logFCS","HDDS","rCSI") , level=c("clust","TA","lhz"),model = c("model0","model1","model2","model3")  ){
   formula.temp =NULL
   vars.temp =NULL
   pair.temp = NULL 
   
-  if (level=="clust") {
-    vars.temp = clust_vars
-  } else if (level=="TA") {
-    vars.temp = TA_vars
-    
-  } else if (level=="lhz") {
-    vars.temp = lhz_vars
-    
+  # get the X variables for the given level and model 
+  
+  if (model=="model0") {
+    vars.temp = model0_vars
   } else {
-    return("error")
+    vars.temp = get(paste(level,model,"vars",sep="_") )
   }
   
   # 1. Create the formulas using the formula_compose function
@@ -519,23 +531,84 @@ CreatePairs = function( yvar=c("logFCS","HDDS","rCSI") , level=c("clust","TA","l
   return(pair.temp)
 }
 
+##########################################################
+# run regression on different levels,store in list and write as csv files
+#########################################################
+# 3 vars and 3 levels and 4 models 
+#pair.list = vector("list", 36)
+
+# create folders for storing the results
+dir.create("output/results", showWarnings = TRUE, recursive = FALSE, mode = "0777")
+dir.create("output/results/prediction", showWarnings = TRUE, recursive = FALSE, mode = "0777")
+dir.create("output/results/prediction/lhz", showWarnings = TRUE, recursive = FALSE, mode = "0777")
+dir.create("output/results/prediction/TA", showWarnings = TRUE, recursive = FALSE, mode = "0777")
+dir.create("output/results/prediction/clust", showWarnings = TRUE, recursive = FALSE, mode = "0777")
+
+
+
+# yvars:"logFCS" "HDDS"   "rCSI"
+# levels :    "lhz"  "TA"    "clust" 
+# models: "model0" "model1" "model2" "model3"
+
+  
+source("R/functions/R2ComputePair.R")
+
+
+models_to_run = c("model0",models)
+models_to_run
+
 
 
 for (level in levels){
-  for(var in model3_variables){
-
+  # define a r2 matrix for storing results
+  r2matrix = matrix( nrow=4,ncol=3,NA)
+  colnames(r2matrix) = yvars
+  rownames(r2matrix) = models_to_run
+  r2matrix  
     
-  }
+    for(yvar in yvars){
+ 
+      for (model in models_to_run){
+        directory = paste("output/results/prediction/",level,"",sep = "/")
+        # Create predicted and actual 
+        pair.save  = CreatePairs(yvar,level,model)
+        
+        # save the results(pairs) in  csv files 
+        file.name = paste(yvar,level,model,"pair.csv",sep="_")
+        directory.file.name = paste(directory, file.name,sep = '')
+        write.csv(pair.save,
+                  directory.file.name,
+                  row.names = FALSE)
+        
+        # compute r2 square using r2compute and save in the r2matrix
+        
+        r2 = R2ComputePair(pair.save)
+        r2matrix[model,yvar] = r2
+        
+       }
+    }
+    
+    # write the r2 matrix in a csv file
+    r2.file.name = paste(level,"r2matrix.csv",sep="_")
+    r2.directory.file.name = paste(directory, r2.file.name,sep = '')
+    write.csv(r2matrix,
+              r2.directory.file.name,
+              row.names = TRUE)
+    
 }
 
 
 
+
+
+
+
+
+
+
+
  
-
-
-
-write.csv(rcsi_pair, row.names = FALSE)
-
+ 
 
 
 
