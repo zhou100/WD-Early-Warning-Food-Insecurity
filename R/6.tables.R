@@ -1,24 +1,6 @@
 ####################################################################################################################################
 # Goal : This script aims to replicate the tables used in this paper 
 # Yujun Zhou -  04/17/19
-
-# Make the IPC value missing map 
-# 
-# Quarter 
-# 
-# Fixed effect in the regression table 
-# 
-# Region/ ipczone fixed effect 
-# 
-# 
-# Or quarter by region fixed effect 
-# 
-# Report the level of fixed effects 
-# 
-# Variables ( Lasso choose varibale, drop some )
-
-
-
 ###################################################################
 rm(list = ls())
 require(tidyverse)
@@ -98,20 +80,20 @@ print(table1.summary.cluster)
 
 # mw.reg= mw.2010.cluster %>% na.omit(IPC12)
 
-logFCS.ols <- lm(logFCS ~ IPC1 +IPC12+raincytot + day1rain + maxdaysnorain  + 
+logFCS.ols <- lm(logFCS ~ IPC1 +raincytot + day1rain + maxdaysnorain  + 
                    clust_maize_current +  clust_maize_mktthin_current + percent_ag + 
                    elevation  + nutri_rent_moderate_constraint   + 
                    dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
                    hh_age + hh_gender + asset_index2+ quarter1 + quarter2 +quarter3, data=mw.2010.cluster)  # build linear regression model on logFCS
 
 
-hdds.ols <- lm(HDDS ~ IPC1 +IPC12+ raincytot + day1rain + maxdaysnorain  + 
+hdds.ols <- lm(HDDS ~ IPC1 + raincytot + day1rain + maxdaysnorain  + 
                  clust_maize_current +  clust_maize_mktthin_current + percent_ag + 
                  elevation  + nutri_rent_moderate_constraint   + 
                  dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
                  hh_age + hh_gender + asset_index2+ quarter1 + quarter2 +quarter3, data=mw.2010.cluster)  # build linear regression model on HDDS
 
-rcsi.ols <- lm(rCSI  ~ IPC1 +IPC12+ raincytot  + maxdaysnorain + 
+rcsi.ols <- lm(rCSI  ~ IPC1 + raincytot  + maxdaysnorain + 
                    hh_gender + percent_ag+ dist_admarc + day1rain + elevation +dist_road +
                  clust_maize_current +  clust_maize_mktthin_current  + 
                    + nutri_rent_moderate_constraint   + 
@@ -159,6 +141,7 @@ write.csv(mw.2013.cluster.ipc1,"data/clean/mw.2013.cluster.csv",row.names = FALS
 ## Full model cluster level predictions 
 ####################################################################
 # logFCS 
+
 lm.logFCS<-train(logFCS ~IPC1 + raincytot + day1rain +   floodmax + maxdaysnorain+
                clust_maize_current +  clust_maize_mktthin_current + percent_ag + 
                elevation  + nutri_rent_moderate_constraint + 
@@ -353,6 +336,7 @@ table4.matrix
 # Table s1: Regression of the tail  
 ################################################################################################
 
+
 mw.tail.fcs =  mw.2010.cluster %>%  
   dplyr::filter(logFCS<log(42))
 
@@ -362,20 +346,20 @@ mw.tail.hdds =  mw.2010.cluster %>%
 mw.tail.rcsi =  mw.2010.cluster %>%  
   dplyr::filter(rCSI>4)
 
-logFCS.ols <- lm(logFCS ~ IPC1 +IPC12+raincytot + day1rain + maxdaysnorain  + 
+logFCS.ols <- lm(logFCS ~ IPC1 +raincytot + day1rain + maxdaysnorain  + 
                    clust_maize_current +  clust_maize_mktthin_current + percent_ag + 
                    elevation  + nutri_rent_moderate_constraint   + 
                    dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
                    hh_age + hh_gender + asset_index2+ quarter1 + quarter2 +quarter3, data=mw.tail.fcs)  # build linear regression model on logFCS
 
 
-hdds.ols <- lm(HDDS ~ IPC1 +IPC12+ raincytot + day1rain + maxdaysnorain  + 
+hdds.ols <- lm(HDDS ~ IPC1 + raincytot + day1rain + maxdaysnorain  + 
                  clust_maize_current +  clust_maize_mktthin_current + percent_ag + 
                  elevation  + nutri_rent_moderate_constraint   + 
                  dist_road + dist_admarc + roof_natural_inverse + number_celphones +hhsize + 
                  hh_age + hh_gender + asset_index2+ quarter1 + quarter2 +quarter3, data=mw.tail.hdds)  # build linear regression model on HDDS
 
-rcsi.ols <- lm(rCSI  ~ IPC1 +IPC12+ raincytot  + maxdaysnorain + 
+rcsi.ols <- lm(rCSI  ~ IPC1 + raincytot  + maxdaysnorain + 
                  hh_gender + percent_ag+ dist_admarc + day1rain + elevation +dist_road +
                  clust_maize_current +  clust_maize_mktthin_current  + 
                  + nutri_rent_moderate_constraint   + 
@@ -386,4 +370,241 @@ rcsi.ols <- lm(rCSI  ~ IPC1 +IPC12+ raincytot  + maxdaysnorain +
 stargazer::stargazer(logFCS.ols,hdds.ols,rcsi.ols,type = "text")
 
 
+
+
+#####################################################
+# Table 5 and Tabel S2
+# LASSO REGRESSIONS (year split )
+#####################################################
+
+library(caret)
+source("R/functions/TrainModel.R")
+source("R/functions/TestModel.R")
+source("R/functions/R2Compute.R")
+source("R/functions/PredictMalawi.R")
+source("R/functions/FormulaComposer.R")
+source("R/functions/CategoryRecall.R")
+source("R/functions/CategoryAccuracy.R")
+source("R/functions/ModelPerformance.R")
+
+########################################################################
+# read data 
+##############################################################################
+malawi.2010 = read_csv("data/clean/mw.2010.cluster.csv" )
+malawi.2013 = read_csv("data/clean/mw.2013.cluster.csv" )
+
+# Lasso logFCS
+lambda <- 10^seq(-3, 3, length = 100)
+alpha_grid <- seq(0 , 5, 0.1)
+
+
+lasso.logFCS = train(logFCS~IPC1+raincytot+day1rain+
+                       floodmax+maxdaysnorain+gdd+tmean+heatdays+
+                       clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+
+                       GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+
+                       dist_road+dist_admarc+roof_natural_inverse+number_celphones+
+                       hhsize+hh_age+hh_gender+asset_index2 +
+                       quarter1+quarter2+quarter3+region_Central+region_South,
+                     data = malawi.2010, method = "glmnet",trControl = trainControl("cv", number = 10),
+                     tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
+predicted.logFCS = predict(lasso.logFCS, malawi.2013, se.fit = TRUE)
+
+# logFCS results
+# R squared 
+# postResample(pred = predicted.logFCS, obs = malawi.2013$logFCS)
+R2Compute(predicted.logFCS,malawi.2013$logFCS)
+
+# Recall 
+CategoryRecall(yvar="logFCS", predicted=predicted.logFCS,test.df=malawi.2013)
+
+# categorical accuracy 
+CategoryAccuracy(yvar="logFCS", predicted=predicted.logFCS,test.df=malawi.2013)
+lasso.logFCS$bestTune$alpha
+lasso.logFCS$bestTune$lambda
+
+
+coef(lasso.logFCS$finalModel,lasso.logFCS$bestTune$lambda)
+
+
+
+# HDDS Lasso results
+lambda <- 10^seq(-3, 3, length = 100)
+alpha_grid <- seq(0 , 5, 0.1)
+
+lasso.HDDS = train(HDDS~IPC1+raincytot+day1rain+
+                     floodmax+maxdaysnorain+gdd+tmean+heatdays+
+                     clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+
+                     GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+
+                     dist_road+dist_admarc+roof_natural_inverse+number_celphones+
+                     hhsize+hh_age+hh_gender+asset_index2 +
+                     quarter1+quarter2+quarter3+region_Central+region_South,
+                   data = malawi.2010, method = "glmnet",trControl = trainControl("cv", number = 10),
+                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
+predicted.HDDS = predict(lasso.HDDS, malawi.2013, se.fit = TRUE)
+# R squared 
+# postResample(pred = predicted.HDDS, obs = malawi.2013$HDDS)
+R2Compute(predicted.HDDS,malawi.2013$HDDS)
+
+# Recall 
+CategoryRecall(yvar="HDDS", predicted=predicted.HDDS,test.df=malawi.2013)
+
+# categorical accuracy 
+CategoryAccuracy(yvar="HDDS", predicted=predicted.HDDS,test.df=malawi.2013)
+
+lasso.HDDS$bestTune$alpha
+lasso.HDDS$bestTune$lambda
+
+
+coef(lasso.HDDS$finalModel,lasso.HDDS$bestTune$lambda)
+
+
+# rCSI LASSO results
+lambda <- 10^seq(-3, 3, length = 100)
+alpha_grid <- seq(0, 5, 0.1)
+
+
+lasso.rCSI = train(rCSI~IPC1+raincytot+day1rain+
+                     floodmax+maxdaysnorain+gdd+tmean+heatdays+
+                     clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+
+                     GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+
+                     dist_road+dist_admarc+roof_natural_inverse+number_celphones+
+                     hhsize+hh_age+hh_gender+asset_index2 +
+                     quarter1+quarter2+quarter3+region_Central+region_South,
+                   data = malawi.2010, method = "glmnet",trControl = trainControl("cv", number = 10),
+                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
+predicted.rCSI = predict(lasso.rCSI, malawi.2013, se.fit = TRUE)
+
+# R squared 
+# postResample(pred = predicted.rCSI, obs = malawi.2013$rCSI)
+R2Compute(predicted.rCSI,malawi.2013$rCSI)
+
+# Recall 
+CategoryRecall(yvar="rCSI", predicted=predicted.rCSI,test.df=malawi.2013)
+
+# categorical accuracy 
+CategoryAccuracy(yvar="rCSI", predicted=predicted.rCSI,test.df=malawi.2013)
+
+
+lasso.rCSI$bestTune$lambda
+
+lasso.rCSI$bestTune$alpha
+
+coef(lasso.rCSI$finalModel,lasso.rCSI$bestTune$lambda)
+
+
+#####################################################
+# LASSO REGRESSIONS (region split )
+#####################################################
+
+mw.cluster = read.csv("data/mw_dataset_cluster.csv",stringsAsFactors = FALSE)
+mw.cluster = mw.cluster %>% 
+  mutate(clust_maize_price  = log(clust_maize_price))
+colSums(is.na(mw.cluster))
+
+mw.cluster  = mw.cluster %>% 
+  dplyr::filter(!is.na(IPC1))
+table(mw.cluster$region_string)
+
+# Suppose we train it on central and SOUTH to predict North
+mw.cluster.North= mw.cluster %>% dplyr::filter(region_string=="North") 
+mw.cluster.SouthCentral= mw.cluster %>% dplyr::filter(region_string!="North") 
+library(caret)
+
+# Lasso logFCS
+lambda <- 10^seq(-3, 3, length = 100)
+alpha_grid <- seq(0 , 5, 0.1)
+
+
+lasso.logFCS = train(logFCS~IPC1+raincytot+day1rain+
+                       floodmax+maxdaysnorain+gdd+tmean+heatdays+
+                       clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+
+                       GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+
+                       dist_road+dist_admarc+roof_natural_inverse+number_celphones+
+                       hhsize+hh_age+hh_gender+asset_index2 +
+                       quarter1+quarter2+quarter3+region_Central+region_South,
+                     data = mw.cluster.SouthCentral, method = "glmnet",trControl = trainControl("cv", number = 10),
+                     tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
+predicted.logFCS = predict(lasso.logFCS, mw.cluster.North, se.fit = TRUE)
+
+# logFCS results
+# R squared 
+# postResample(pred = predicted.logFCS, obs = mw.cluster.North$logFCS)
+R2Compute(predicted.logFCS,mw.cluster.North$logFCS)
+
+# Recall 
+CategoryRecall(yvar="logFCS", predicted=predicted.logFCS,test.df=mw.cluster.North)
+
+# categorical accuracy 
+CategoryAccuracy(yvar="logFCS", predicted=predicted.logFCS,test.df=mw.cluster.North)
+lasso.logFCS$bestTune$alpha
+lasso.logFCS$bestTune$lambda
+
+
+coef(lasso.logFCS$finalModel,lasso.logFCS$bestTune$lambda)
+
+
+
+# HDDS Lasso results
+lambda <- 10^seq(-3, 3, length = 100)
+alpha_grid <- seq(0 , 5, 0.1)
+
+lasso.HDDS = train(HDDS~IPC1+raincytot+day1rain+
+                     floodmax+maxdaysnorain+gdd+tmean+heatdays+
+                     clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+
+                     GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+
+                     dist_road+dist_admarc+roof_natural_inverse+number_celphones+
+                     hhsize+hh_age+hh_gender+asset_index2 +
+                     quarter1+quarter2+quarter3+region_Central+region_South,
+                   data = mw.cluster.SouthCentral, method = "glmnet",trControl = trainControl("cv", number = 10),
+                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
+predicted.HDDS = predict(lasso.HDDS, mw.cluster.North, se.fit = TRUE)
+# R squared 
+# postResample(pred = predicted.HDDS, obs = mw.cluster.North$HDDS)
+R2Compute(predicted.HDDS,mw.cluster.North$HDDS)
+
+# Recall 
+CategoryRecall(yvar="HDDS", predicted=predicted.HDDS,test.df=mw.cluster.North)
+
+# categorical accuracy 
+CategoryAccuracy(yvar="HDDS", predicted=predicted.HDDS,test.df=mw.cluster.North)
+
+lasso.HDDS$bestTune$alpha
+lasso.HDDS$bestTune$lambda
+
+
+coef(lasso.HDDS$finalModel,lasso.HDDS$bestTune$lambda)
+
+
+# rCSI LASSO results
+lambda <- 10^seq(-3, 3, length = 100)
+alpha_grid <- seq(0, 1, 0.1)
+
+
+lasso.rCSI = train( rCSI~IPC1+raincytot+day1rain+
+                      floodmax+maxdaysnorain+gdd+tmean+heatdays+
+                      clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+
+                      GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+
+                      dist_road+dist_admarc+roof_natural_inverse+number_celphones+
+                      hhsize+hh_age+hh_gender+asset_index2 +
+                      quarter1+quarter2+quarter3+region_Central+region_South,
+                    data = mw.cluster.SouthCentral, method = "glmnet",trControl = trainControl("cv", number = 10),
+                    tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
+predicted.rCSI = predict(lasso.rCSI, mw.cluster.North, se.fit = TRUE)
+
+# R squared 
+# postResample(pred = predicted.rCSI, obs = mw.cluster.North$rCSI)
+R2Compute(predicted.rCSI,mw.cluster.North$rCSI)
+
+# Recall 
+CategoryRecall(yvar="rCSI", predicted=predicted.rCSI,test.df=mw.cluster.North)
+
+# categorical accuracy 
+CategoryAccuracy(yvar="rCSI", predicted=predicted.rCSI,test.df=mw.cluster.North)
+
+
+lasso.rCSI$bestTune$lambda
+
+lasso.rCSI$bestTune$alpha
+
+coef(lasso.rCSI$finalModel,lasso.rCSI$bestTune$lambda)
 

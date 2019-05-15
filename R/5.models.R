@@ -1,5 +1,6 @@
 ############################################################################
-# testing different specifications in terms of R squared and categorical accuracyy
+# testing different specifications in terms of R squared and categorical accuracy
+
 #######################################################################
 
 rm(list=ls())
@@ -15,6 +16,11 @@ source("R/functions/FormulaComposer.R")
 source("R/functions/CategoryRecall.R")
 source("R/functions/CategoryAccuracy.R")
 source("R/functions/ModelPerformance.R")
+
+
+################################################################################
+# Cluster level model specification comparisons (used in Table 5)
+################################################################################
 
 ########################################################################
 # read data 
@@ -115,89 +121,6 @@ ModelPerformance(model_name= "ols_month_price",x_vars=x_month_price,train_df=mal
 x_trend = paste(rain.vars,geo.vars,asset.vars,trend.vars,price.lag,sep = "+" )
 ModelPerformance(model_name= "ols_trend",x_vars=x_trend,train_df=malawi.2010,test_df=malawi.2013)
 
-#####################################################
-# LASSO REGRESSIONS (year split )
-#####################################################
- 
-library(caret)
- 
-# Lasso logFCS
-lambda <- 10^seq(-3, 3, length = 100)
-alpha_grid <- seq(0 , 5, 0.1)
-
-
-lasso.logFCS = train(logFCS~IPC1+raincytot+day1rain+floodmax+maxdaysnorain+gdd+tmean+heatdays+clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+dist_road+dist_admarc+roof_natural_inverse+number_celphones+hhsize+hh_age+quarter1+quarter2+quarter3+region_Central+region_North,data = malawi.2010, method = "glmnet",trControl = trainControl("cv", number = 10),
-                      tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
-predicted.logFCS = predict(lasso.logFCS, malawi.2013, se.fit = TRUE)
-
-# logFCS results
-# R squared 
-# postResample(pred = predicted.logFCS, obs = malawi.2013$logFCS)
-R2Compute(predicted.logFCS,malawi.2013$logFCS)
-
-# Recall 
-CategoryRecall(yvar="logFCS", predicted=predicted.logFCS,test.df=malawi.2013)
-
-# categorical accuracy 
-CategoryAccuracy(yvar="logFCS", predicted=predicted.logFCS,test.df=malawi.2013)
-lasso.logFCS$bestTune$alpha
-lasso.logFCS$bestTune$lambda
-
-
-coef(lasso.logFCS$finalModel,lasso.logFCS$bestTune$lambda)
-
-
-
-# HDDS Lasso results
-lambda <- 10^seq(-3, 3, length = 100)
-alpha_grid <- seq(0 , 5, 0.1)
-
-lasso.HDDS = train(HDDS~IPC1+raincytot+day1rain+floodmax+maxdaysnorain+gdd+tmean+heatdays+clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+dist_road+dist_admarc+roof_natural_inverse+number_celphones+hhsize+hh_age+quarter1+quarter2+quarter3+region_Central+region_North,data = malawi.2010, method = "glmnet",trControl = trainControl("cv", number = 10),
-                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
-predicted.HDDS = predict(lasso.HDDS, malawi.2013, se.fit = TRUE)
-# R squared 
-# postResample(pred = predicted.HDDS, obs = malawi.2013$HDDS)
-R2Compute(predicted.HDDS,malawi.2013$HDDS)
-
-# Recall 
-CategoryRecall(yvar="HDDS", predicted=predicted.HDDS,test.df=malawi.2013)
-
-# categorical accuracy 
-CategoryAccuracy(yvar="HDDS", predicted=predicted.HDDS,test.df=malawi.2013)
-
-lasso.HDDS$bestTune$alpha
-lasso.HDDS$bestTune$lambda
-
-
-coef(lasso.HDDS$finalModel,lasso.HDDS$bestTune$lambda)
-
-
-# rCSI LASSO results
-lambda <- 10^seq(-3, 3, length = 100)
-alpha_grid <- seq(0, 5, 0.1)
-
-
-lasso.rCSI = train(rCSI~IPC1+raincytot+day1rain+floodmax+maxdaysnorain+gdd+tmean+heatdays+clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+dist_road+dist_admarc+roof_natural_inverse+number_celphones+hhsize+hh_age+quarter1+quarter2+quarter3+region_Central+region_North,data = malawi.2010, method = "glmnet",trControl = trainControl("cv", number = 10),
-                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
-predicted.rCSI = predict(lasso.rCSI, malawi.2013, se.fit = TRUE)
-
-# R squared 
-# postResample(pred = predicted.rCSI, obs = malawi.2013$rCSI)
-R2Compute(predicted.rCSI,malawi.2013$rCSI)
-
-# Recall 
-CategoryRecall(yvar="rCSI", predicted=predicted.rCSI,test.df=malawi.2013)
-
-# categorical accuracy 
-CategoryAccuracy(yvar="rCSI", predicted=predicted.rCSI,test.df=malawi.2013)
-
-
-lasso.rCSI$bestTune$lambda
-
-lasso.rCSI$bestTune$alpha
-
-coef(lasso.rCSI$finalModel,lasso.rCSI$bestTune$lambda)
-
 
 
 
@@ -283,89 +206,6 @@ ModelPerformance(model_name= "ols_month_price",x_vars=x_month_price,train_df=mw.
 x_trend = paste(rain.vars,geo.vars,asset.vars,trend.vars,price.lag,sep = "+" )
 ModelPerformance(model_name= "ols_trend",x_vars=x_trend,train_df=mw.cluster.SouthCentral,test_df=mw.cluster.North)
 
-
-#####################################################
-# LASSO REGRESSIONS (region split )
-#####################################################
-
-library(caret)
-
-# Lasso logFCS
-lambda <- 10^seq(-3, 3, length = 100)
-alpha_grid <- seq(0 , 5, 0.1)
-
-
-lasso.logFCS = train(logFCS~IPC1+raincytot+day1rain+floodmax+maxdaysnorain+gdd+tmean+heatdays+clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+dist_road+dist_admarc+roof_natural_inverse+number_celphones+hhsize+hh_age+quarter1+quarter2+quarter3+region_Central+region_North,data = mw.cluster.SouthCentral, method = "glmnet",trControl = trainControl("cv", number = 10),
-                     tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
-predicted.logFCS = predict(lasso.logFCS, mw.cluster.North, se.fit = TRUE)
-
-# logFCS results
-# R squared 
-# postResample(pred = predicted.logFCS, obs = mw.cluster.North$logFCS)
-R2Compute(predicted.logFCS,mw.cluster.North$logFCS)
-
-# Recall 
-CategoryRecall(yvar="logFCS", predicted=predicted.logFCS,test.df=mw.cluster.North)
-
-# categorical accuracy 
-CategoryAccuracy(yvar="logFCS", predicted=predicted.logFCS,test.df=mw.cluster.North)
-lasso.logFCS$bestTune$alpha
-lasso.logFCS$bestTune$lambda
-
-
-coef(lasso.logFCS$finalModel,lasso.logFCS$bestTune$lambda)
-
-
-
-# HDDS Lasso results
-lambda <- 10^seq(-3, 3, length = 100)
-alpha_grid <- seq(0 , 5, 0.1)
-
-lasso.HDDS = train(HDDS~IPC1+raincytot+day1rain+floodmax+maxdaysnorain+gdd+tmean+heatdays+clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+dist_road+dist_admarc+roof_natural_inverse+number_celphones+hhsize+hh_age+quarter1+quarter2+quarter3+region_Central+region_North,data = mw.cluster.SouthCentral, method = "glmnet",trControl = trainControl("cv", number = 10),
-                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
-predicted.HDDS = predict(lasso.HDDS, mw.cluster.North, se.fit = TRUE)
-# R squared 
-# postResample(pred = predicted.HDDS, obs = mw.cluster.North$HDDS)
-R2Compute(predicted.HDDS,mw.cluster.North$HDDS)
-
-# Recall 
-CategoryRecall(yvar="HDDS", predicted=predicted.HDDS,test.df=mw.cluster.North)
-
-# categorical accuracy 
-CategoryAccuracy(yvar="HDDS", predicted=predicted.HDDS,test.df=mw.cluster.North)
-
-lasso.HDDS$bestTune$alpha
-lasso.HDDS$bestTune$lambda
-
-
-coef(lasso.HDDS$finalModel,lasso.HDDS$bestTune$lambda)
-
-
-# rCSI LASSO results
-lambda <- 10^seq(-3, 3, length = 100)
-alpha_grid <- seq(0, 1, 0.1)
-
-
-lasso.rCSI = train( rCSI~IPC1+raincytot+day1rain+floodmax+maxdaysnorain+gdd+tmean+heatdays+clust_maize_current+clust_maize_mktthin_current+clust_maize_lag+clust_maize_mktthin_lag+GIEW_price_current+percent_ag+elevation+nutri_rent_moderate_constraint+dist_road+dist_admarc+roof_natural_inverse+number_celphones+hhsize+hh_age+quarter1+quarter2+quarter3+region_Central+region_North,data = mw.cluster.SouthCentral, method = "glmnet",trControl = trainControl("cv", number = 10),
-                   tuneGrid = expand.grid(alpha = alpha_grid, lambda = lambda))
-predicted.rCSI = predict(lasso.rCSI, mw.cluster.North, se.fit = TRUE)
-
-# R squared 
-# postResample(pred = predicted.rCSI, obs = mw.cluster.North$rCSI)
-R2Compute(predicted.rCSI,mw.cluster.North$rCSI)
-
-# Recall 
-CategoryRecall(yvar="rCSI", predicted=predicted.rCSI,test.df=mw.cluster.North)
-
-# categorical accuracy 
-CategoryAccuracy(yvar="rCSI", predicted=predicted.rCSI,test.df=mw.cluster.North)
-
-
-lasso.rCSI$bestTune$lambda
-
-lasso.rCSI$bestTune$alpha
-
-coef(lasso.rCSI$finalModel,lasso.rCSI$bestTune$lambda)
 
 ################################################################### 
 ##  Split randomly 
@@ -467,8 +307,237 @@ ModelPerformance(model_name= "ols_trend",x_vars=x_trend,train_df=mw.cluster_Trai
 
 
 
+
 ################################################################################
-# 6. Estimate (back of the envelope?) 
-# spatial temporal variation between our good price data and GIEWS prices
+## Prediction results using variables at different levels
+##
 ################################################################################
-# change figure s1 to add the GIEWS MARKETS 
+
+
+####################################################
+# create variables at the lhz / TA level for computing formula
+####################################################
+
+library(readr)
+mw.2010 <- read_csv("data/clean/mw.2010.cluster.csv")
+sum(is.na(mw.2010$IPC1))
+mw.2013 <- read_csv("data/clean/mw.2013.cluster.csv")
+
+
+lhz.vars = mw.2010 %>% select(starts_with("lhz"))
+colnames(lhz.vars)
+
+TA.vars = mw.2010 %>% select(starts_with("TA"))
+colnames(TA.vars)
+
+mw.2010 = mw.2010 %>% 
+  mutate(maize_current = clust_maize_current) %>%
+  mutate(maize_mktthin_current = clust_maize_mktthin_current) %>%
+  mutate(asset = asset_index2)
+
+mw.2010.lhz = mw.2010 %>% 
+  dplyr::select(FNID,roof_natural_inverse,
+                number_celphones,percent_ag,elevation,
+                nutri_rent_moderate_constraint,
+                dist_road,dist_admarc,hhsize,
+                hh_age,hh_gender,asset
+  ) %>%
+  group_by(FNID) %>%
+  summarise_all(funs(mean(.))) %>%
+  mutate(lhz_roof_natural_inverse = roof_natural_inverse) %>%
+  mutate(lhz_number_celphones = number_celphones) %>%
+  mutate(lhz_percent_ag= percent_ag) %>%
+  mutate(lhz_elevation = elevation) %>%
+  mutate(lhz_nutri_rent_moderate_constraint = nutri_rent_moderate_constraint) %>%
+  mutate(lhz_dist_road = dist_road) %>%
+  mutate(lhz_dist_admarc = dist_admarc) %>%  
+  mutate(lhz_hhsize = hhsize) %>%  
+  mutate(lhz_hh_age = hh_age) %>%  
+  mutate(lhz_hh_gender = hh_gender) %>%  
+  mutate(lhz_asset = asset) %>% 
+  dplyr::select(FNID,starts_with("lhz"))
+
+
+mw.2010.TA = mw.2010 %>% 
+  dplyr::select(TA_names,roof_natural_inverse,
+                number_celphones,percent_ag,elevation,
+                nutri_rent_moderate_constraint,
+                dist_road,dist_admarc,hhsize,
+                hh_age,hh_gender,asset
+  ) %>%
+  group_by(TA_names) %>%
+  summarise_all(funs(mean(.))) %>%
+  mutate(TA_roof_natural_inverse = roof_natural_inverse) %>%
+  mutate(TA_number_celphones = number_celphones) %>%
+  mutate(TA_percent_ag= percent_ag) %>%
+  mutate(TA_elevation = elevation) %>%
+  mutate(TA_nutri_rent_moderate_constraint = nutri_rent_moderate_constraint) %>%
+  mutate(TA_dist_road = dist_road) %>%
+  mutate(TA_dist_admarc = dist_admarc) %>%  
+  mutate(TA_hhsize = hhsize) %>%  
+  mutate(TA_hh_age = hh_age) %>%  
+  mutate(TA_hh_gender = hh_gender) %>%  
+  mutate(TA_asset = asset) %>% 
+  dplyr::select( starts_with("TA"))
+
+mw.2010 = left_join(mw.2010,mw.2010.lhz,by="FNID" )  
+mw.2010 = left_join(mw.2010,mw.2010.TA,by="TA_names" )  
+
+mw.2013 = mw.2013 %>% 
+  mutate(maize_current = clust_maize_current) %>%
+  mutate(maize_mktthin_current = clust_maize_mktthin_current) %>%
+  mutate(asset = asset_index2)
+
+mw.2013.lhz = mw.2013 %>% 
+  dplyr::select(FNID,roof_natural_inverse,
+                number_celphones,percent_ag,elevation,
+                nutri_rent_moderate_constraint,
+                dist_road,dist_admarc,hhsize,
+                hh_age,hh_gender,asset
+  ) %>%
+  group_by(FNID) %>%
+  summarise_all(funs(mean(.))) %>%
+  mutate(lhz_roof_natural_inverse = roof_natural_inverse) %>%
+  mutate(lhz_number_celphones = number_celphones) %>%
+  mutate(lhz_percent_ag= percent_ag) %>%
+  mutate(lhz_elevation = elevation) %>%
+  mutate(lhz_nutri_rent_moderate_constraint = nutri_rent_moderate_constraint) %>%
+  mutate(lhz_dist_road = dist_road) %>%
+  mutate(lhz_dist_admarc = dist_admarc) %>%  
+  mutate(lhz_hhsize = hhsize) %>%  
+  mutate(lhz_hh_age = hh_age) %>%  
+  mutate(lhz_hh_gender = hh_gender) %>%  
+  mutate(lhz_asset = asset) %>% 
+  dplyr::select(FNID,starts_with("lhz"))
+
+
+mw.2013.TA = mw.2013 %>% 
+  dplyr::select(TA_names,roof_natural_inverse,
+                number_celphones,percent_ag,elevation,
+                nutri_rent_moderate_constraint,
+                dist_road,dist_admarc,hhsize,
+                hh_age,hh_gender,asset
+  ) %>%
+  group_by(TA_names) %>%
+  summarise_all(funs(mean(.))) %>%
+  mutate(TA_roof_natural_inverse = roof_natural_inverse) %>%
+  mutate(TA_number_celphones = number_celphones) %>%
+  mutate(TA_percent_ag= percent_ag) %>%
+  mutate(TA_elevation = elevation) %>%
+  mutate(TA_nutri_rent_moderate_constraint = nutri_rent_moderate_constraint) %>%
+  mutate(TA_dist_road = dist_road) %>%
+  mutate(TA_dist_admarc = dist_admarc) %>%  
+  mutate(TA_hhsize = hhsize) %>%  
+  mutate(TA_hh_age = hh_age) %>%  
+  mutate(TA_hh_gender = hh_gender) %>%  
+  mutate(TA_asset = asset) %>% 
+  dplyr::select( starts_with("TA"))
+
+mw.2013 = left_join(mw.2013,mw.2013.lhz,by="FNID" )  
+mw.2013 = left_join(mw.2013,mw.2013.TA,by="TA_names" )  
+
+# levels 
+levels<-c("lhz","TA","clust")
+
+# Y variables  
+yvars=c("logFCS","HDDS","rCSI")
+
+# variables 
+weather = c("raincytot","day1rain","floodmax","maxdaysnorain")
+access<-c("maize_current","maize_mktthin_current")
+land<-c("percent_ag","elevation","nutri_rent_moderate_constraint")
+distance<-c("dist_road","dist_admarc")
+quarter = c("quarter1","quarter2","quarter3") 
+asset1 <-c("roof_natural_inverse","number_celphones")
+demo<-c("hhsize","hh_age","hh_gender","asset")
+
+model3_variables<-c(weather,access,asset1,land,distance,demo,quarter)
+model2_variables<-c(weather,access,asset1,land,distance,quarter)
+model1_variables<-c(weather,access,land,distance,quarter)
+
+# goal : combine variables at different levels using pastes 
+# output: variables lists at different levels, TA_vars, ipczone vars, etc. 
+
+for (level in levels){
+  # assign levels of variables group
+  group_var_name<-paste(level,"vars",sep="_")
+  assign(group_var_name,c())
+  
+  for(var in model3_variables){
+    temp<-paste(level,var,sep = "_")
+    new<-append(get(group_var_name),temp)
+    assign(group_var_name,new)
+  }
+}
+
+ 
+clust_vars = gsub(clust_vars, pattern = "clust_",replacement = "")
+clust_vars
+
+lhz_vars = gsub(lhz_vars, pattern = "lhz_quarter",replacement = "quarter")
+lhz_vars
+
+TA_vars = gsub(TA_vars, pattern = "TA_quarter",replacement = "quarter")
+TA_vars
+
+
+
+######################################
+# create pairs of predicted vs actual 
+# For each measure and for each level
+####################################
+source("R/functions/formula.R")
+source("R/functions/linear_fit.R")
+
+# Define function for creating the pairs for a given measure at a specific geospatial level
+CreatePairs = function( yvar=c("logFCS","HDDS","rCSI") , level=c("clust","TA","lhz") ){
+  formula.temp =NULL
+  vars.temp =NULL
+  pair.temp = NULL 
+  
+  if (level=="clust") {
+    vars.temp = clust_vars
+  } else if (level=="TA") {
+    vars.temp = TA_vars
+    
+  } else if (level=="lhz") {
+    vars.temp = lhz_vars
+    
+  } else {
+    return("error")
+  }
+  
+  # 1. Create the formulas using the formula_compose function
+   formula.temp <-formula_compose(yvar,vars.temp)
+  # 2. generate prediction using linear fit function
+  prediction.temp <-linear_fit(formula.temp,mw.2010,mw.2013)
+  
+  # 3. combind into pairs
+  pair.temp <- cbind(mw.2013[[yvar]], prediction.temp)
+  colnames(pair.temp) <- c("actual","predict")
+  
+  return(pair.temp)
+}
+
+
+
+for (level in levels){
+  for(var in model3_variables){
+
+    
+  }
+}
+
+
+
+ 
+
+
+
+write.csv(rcsi_pair, row.names = FALSE)
+
+
+
+
+
+
