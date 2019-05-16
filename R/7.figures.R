@@ -606,194 +606,47 @@ ggplot(as.data.frame(plot_long_rCSI),aes(x=rCSI, color=level))+
 ################################################ ################################################ ################################################ 
 
 
-################################################ 
-# generatea the categorized actual 
-#####################################################
-logFCS <- read.csv("data/all_predict/logFCS/clust_logFCS_predict_clust_m3.csv")
-HDDS <- read.csv("data/all_predict/HDDS/clust_HDDS_predict_clust_m3.csv")
-RCSI <- read.csv("data/all_predict/RCSI/clust_RCSI_predict_clust_m3.csv")
-
-colnames(logFCS)<-c("logFCS","logFCS_predict")
-colnames(HDDS)<-c("HDDS","HDDS_predict")
-colnames(RCSI)<-c("RCSI","RCSI_predict")
-
-actual_logFCS = logFCS$logFCS
-actual_HDDS = HDDS$HDDS
-actual_RCSI = RCSI$RCSI
-
-cat_logFCS<-cut(actual_logFCS, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
-cat_HDDS<-cut(actual_HDDS, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
-cat_RCSI<-cut(actual_RCSI, c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
 
 
-#"Poor_predict","Borderline_predict","Acceptable_predict"
-# Poor_actual","Borderline_actual","Acceptable_actual"
+################################
+# Figure S4 plot code 
+################################
 
+tail = read.csv("output/results/figureS4_matrix_tail.csv")
+full = read.csv("output/results/figureS4_matrix_full.csv")
 
-logFCS_full_list= list.files("data/all_predict/logFCS",full.names = TRUE)
-HDDS_full_list= list.files("data/all_predict/HDDS",full.names = TRUE)
-RCSI_full_list= list.files("data/all_predict/RCSI",full.names = TRUE)
+# format column names 
+tail = tail %>%
+separate(model, c("Measures", "Level", "Model","tail"), "_") %>% 
+dplyr::select(-tail)  
 
-
-model_name = gsub("data/all_predict/logFCS/clust_","",logFCS_full_list)
-model_name = gsub(".csv","",model_name)
-model_name = gsub("_predict","",model_name)
-
-
-info_master = data.frame(model=model_name[1],accuracy=0,type1=0,type2=0)
-info_master
-
-for (i in 1:length(logFCS_full_list)){
-  temp_file  = read.csv(logFCS_full_list[i])
-  cat_logFCS_pred<-cut(temp_file[,2], c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
-  confu_mat= as.matrix(confusionMatrix(cat_logFCS_pred,cat_logFCS))
-  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
-  # lower =  predict to be better than actual, over prediction 
-  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  model = model_name[i]
-  info_table = data.frame(model,accuracy,type1,type2)
-  info_master = bind_rows(info_master,info_table)
-}
-
-info_master
+full = full %>%
+  separate(model, c("Measures", "Level", "Model"), "_")  
 
 
 
-model_name = gsub("data/all_predict/HDDS/clust_","",HDDS_full_list)
-model_name = gsub(".csv","",model_name)
-model_name = gsub("_predict","",model_name)
-
-for (i in 1:length(HDDS_full_list)){
-  temp_file  = read.csv(HDDS_full_list[i])
-  cat_HDDS_pred<-cut(temp_file[,2], c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
-  confu_mat= as.matrix(confusionMatrix(cat_HDDS_pred,cat_HDDS))
-  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
-  # lower =  predict to be better than actual, over prediction 
-  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  model = model_name[i]
-  info_table = data.frame(model,accuracy,type1,type2)
-  info_master = bind_rows(info_master,info_table)
-}
-
-info_master
-
-model_name = gsub("data/all_predict/RCSI/clust_","",RCSI_full_list)
-model_name = gsub(".csv","",model_name)
-model_name = gsub("_predict","",model_name)
-
-for (i in 1:length(RCSI_full_list)){
-  temp_file  = read.csv(RCSI_full_list[i])
-  cat_RCSI_pred<-cut(temp_file[,2], c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
-  confu_mat= as.matrix(confusionMatrix(cat_RCSI_pred,cat_RCSI))
-  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
-  # lower =  predict to be better than actual, over prediction 
-  type2 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  type1 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  model = model_name[i]
-  info_table = data.frame(model,accuracy,type1,type2)
-  info_master = bind_rows(info_master,info_table)
-}
-confu_mat
-
-info_master
-
-
-# Maybe we can collapse them into a couple of tables by having the following columns:
-  
-# % correct, % type I, % type II and a different row for each model.
-
-
-
-logFCS_tail_list= list.files("data/all_tail_predictions/logFCS",full.names = TRUE)
-HDDS_tail_list= list.files("data/all_tail_predictions/HDDS",full.names = TRUE)
-RCSI_tail_list= list.files("data/all_tail_predictions/RCSI",full.names = TRUE)
-model_name = gsub("data/all_tail_predictions/logFCS/","",logFCS_tail_list)
-model_name = gsub(".csv","",model_name)
-model_name = gsub("_predict","",model_name)
-logFCS_tail_list
-
-info_tail = data.frame(model=model_name[1],accuracy=0,type1=0,type2=0)
-info_tail
-
-for (i in 1:length(logFCS_tail_list)){
-  temp_file  = read.csv(logFCS_tail_list[i])
-  cat_logFCS_pred<-cut(temp_file[,1], c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
-  confu_mat= as.matrix(confusionMatrix(cat_logFCS_pred,cat_logFCS))
-  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
-  # lower =  predict to be better than actual, over prediction 
-  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  model = model_name[i]
-  info_table = data.frame(model,accuracy,type1,type2)
-  info_tail = bind_rows(info_tail,info_table)
-}
-
-info_tail
-
-model_name = gsub("data/all_tail_predictions/HDDS/","",HDDS_tail_list)
-model_name = gsub(".csv","",model_name)
-model_name = gsub("_predict","",model_name)
-
-for (i in 1:length(HDDS_tail_list)){
-  temp_file  = read.csv(HDDS_tail_list[i])
-  cat_HDDS_pred<-cut(temp_file[,1], c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
-  confu_mat= as.matrix(confusionMatrix(cat_HDDS_pred,cat_HDDS))
-  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
-  # lower =  predict to be better than actual, over prediction 
-  type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  type1 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  model = model_name[i]
-  info_table = data.frame(model,accuracy,type1,type2)
-  info_tail = bind_rows(info_tail,info_table)
-}
-
-
-model_name = gsub("data/all_tail_predictions/RCSI/","",RCSI_tail_list)
-model_name = gsub(".csv","",model_name)
-model_name = gsub("_predict","",model_name)
-
-for (i in 1:length(RCSI_tail_list)){
-  temp_file  = read.csv(RCSI_tail_list[i])
-  cat_RCSI_pred<-cut(temp_file[,1], c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
-  confu_mat= as.matrix(confusionMatrix(cat_RCSI_pred,cat_RCSI))
-  accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
-  # lower =  predict to be better than actual, over prediction 
-  type2 = sum(confu_mat[upper.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  type1 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
-  model = model_name[i]
-  info_table = data.frame(model,accuracy,type1,type2)
-  info_tail = bind_rows(info_tail,info_table)
-}
-
-
-info_tail
-
-write.csv(info_tail,"output/info_tail.csv")
-write.csv(info_master,"output/info_master.csv")
- 
-
-tail = read.csv("output/info_tail_full.csv")
-full = read.csv("output/info_master_full.csv")
-# 
+# formatting  values 
 tail$Model = as.character(tail$Model)
 tail$Model[tail$Model=="m1"]<-"Class 1 data"
 tail$Model[tail$Model=="m2"]<-"Class 1 + Class 2 data"
 tail$Model[tail$Model=="m3"]<-"Class 1 + Class 2 + Class 3 data"
 
 full$Model = as.character(full$Model)
-
 full$Model[full$Model=="m1"]<-"Class 1 data"
 full$Model[full$Model=="m2"]<-"Class 1 + Class 2 data"
 full$Model[full$Model=="m3"]<-"Class 1 + Class 2 + Class 3 data"
-# 
+
+full$Level = gsub(full$Level,pattern="clust" ,replacement = "Cluster")
+tail$Level = gsub(tail$Level,pattern="clust" ,replacement = "Cluster")
+full$Level = gsub(full$Level,pattern="lhz" ,replacement = "IPC Zone")
+tail$Level = gsub(tail$Level,pattern="lhz" ,replacement = "IPC Zone")
+
 
 ord <- c("IPC Zone","TA","Cluster")
 full$Level <- factor(full$Level,levels=ord)
 
 ord_measure <- c("rCSI","logFCS","HDDS")
-full$FS.Measure <- factor(full$FS.Measure,levels=ord_measure)
+full$Measures <- factor(full$Measures,levels=ord_measure)
 
 # 
 ord_m <- c("Class 1 data","Class 1 + Class 2 data","Class 1 + Class 2 + Class 3 data")
@@ -804,22 +657,28 @@ ord <- c("IPC Zone","TA","Cluster")
 tail$Level <- factor(tail$Level,levels=ord)
 
 ord_measure <- c("rCSI","logFCS","HDDS")
-tail$FS.Measure <- factor(tail$FS.Measure,levels=ord_measure)
+tail$Measures <- factor(tail$Measures,levels=ord_measure)
 
+# wide to long on the model measures 
 
+colnames(full)= c("FS.Measure", "Level","Model",  "Accuracy" ,"% Type I",    "% Type II"  )
+colnames(tail)= c("FS.Measure", "Level","Model" ,   "Accuracy", "% Type I"   , "% Type II"  )
 
-ord_measure <- c("rCSI","logFCS","HDDS")
-tail$FS.Measure <- factor(tail$FS.Measure,levels=ord_measure)
+full.long = full %>% 
+  gather(-FS.Measure,-Level,-Model,key ="Model.Measure",value="Value")
 
+tail.long = tail %>% 
+  gather(-FS.Measure,-Level,-Model,key ="Model.Measure",value="Value")
 
 ord_s <- c("Accuracy","% Type I","% Type II")
-tail$Model.Measure <- factor(tail$Model.Measure,levels=ord_s)
-full$Model.Measure <- factor(full$Model.Measure,levels=ord_s)
+tail.long$Model.Measure <- factor(tail.long$Model.Measure,levels=ord_s)
+full.long$Model.Measure <- factor(full.long$Model.Measure,levels=ord_s)
 
 
 
 ord_m <- c("Class 1 data","Class 1 + Class 2 data","Class 1 + Class 2 + Class 3 data")
-tail$Model <- factor(tail$Model,levels=ord_m)
+tail.long$Model <- factor(tail.long$Model,levels=ord_m)
+full.long$Model <- factor(full.long$Model,levels=ord_m)
 
 
 # 
@@ -830,18 +689,19 @@ tail$Model <- factor(tail$Model,levels=ord_m)
 # colnames(tail)[5] = "Type I Error"
 # colnames(tail)[6] = "Type II Error"
 
-```
+###################################
+# Figure s4 Plot code 
+####################################
+# figure S4: plot logFCS
 
-```{r,echo=FALSE}
+logFCS_full = full.long %>% filter(FS.Measure == "logFCS")
 
-FCS_full = full %>% filter(FS.Measure == "logFCS")
-
-rplot<-ggplot(data = FCS_full, aes(x =Level, y = Value,shape=Model)) 
+rplot<-ggplot(data = logFCS_full, aes(x =Level, y = Value,shape=Model)) 
 rplot<-rplot + geom_point(size=7,color='#00BA38',show.legend=FALSE)   +  facet_grid(. ~  Model.Measure)        
 
 rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
 
-rplot <- rplot    + theme_classic() theme(strip.text.x = element_text(size = 25))
+rplot <- rplot    + theme_classic() + theme(strip.text.x = element_text(size = 25))
 
 rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),legend.title=element_text(size=20), legend.text=element_text(size=25),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),
                         axis.title=element_text(size=35,face="bold") ) 
@@ -851,14 +711,12 @@ rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),lege
 # +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
 rplot
 
-ggsave("output/figures/accuracy/fcs_full.png", width = 15, height = 15)
+ggsave("output/graphs/figureS4/logFCS_full.png", width = 15, height = 15)
 
 
-``` 
-
-```{r,echo=FALSE}
-
-HDDS = full %>% filter(FS.Measure == "HDDS")
+ 
+# figure S4: plot HDDS 
+HDDS = full.long %>% filter(FS.Measure == "HDDS")
 
 rplot<-ggplot(data = HDDS, aes(x =Level, y = Value,shape=Model))  
 rplot<-rplot + geom_point(size=7,color='#619CFF',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
@@ -875,14 +733,11 @@ rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),lege
 # +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
 rplot
 
-ggsave("output/figures/accuracy/hdds_full.png", width = 15, height = 15)
+ggsave("output/graphs/figureS4/HDDS_full.png", width = 15, height = 15)
 
-
-``` 
-
-```{r,echo=FALSE}
-
-rCSI = full %>% filter(FS.Measure == "rCSI")
+ 
+# figure S4: plot rCSI
+rCSI = full.long %>% filter(FS.Measure == "rCSI")
 
 rplot<-ggplot(data = rCSI, aes(x =Level, y = Value,shape=Model)) 
 rplot<-rplot +  geom_point(size=7,color='#F8766D',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
@@ -899,16 +754,13 @@ rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),lege
 # +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
 rplot
 
-ggsave("output/figures/accuracy/rCSI_full.png", width = 15, height = 15)
+ ggsave("output/graphs/figureS4/rCSI_full.png", width = 15, height = 15)
 
 
-``` 
+ # Do the same for the tails 
+logFCS_tail  = tail.long %>% filter(FS.Measure == "logFCS")
 
-```{r,echo=FALSE}
-
-FCS_tail = tail %>% filter(FS.Measure == "logFCS")
-
-rplot<-ggplot(data = FCS_tail, aes(x =Level, y = Value,shape=Model)) 
+rplot<-ggplot(data = logFCS_tail, aes(x =Level, y = Value,shape=Model)) 
 rplot<-rplot + geom_point(size=7,color='#00BA38',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure)
 rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
 
@@ -924,16 +776,13 @@ rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),lege
 # +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
 rplot
 
-ggsave("output/figures/accuracy/fcs_tail.png", width = 15, height = 15)
+ggsave("output/graphs/figureS4/logFCS_tail.png", width = 15, height = 15)
 
 
-``` 
+# HDDS 
+HDDS.tail = tail.long %>% filter(FS.Measure == "HDDS")
 
-```{r,echo=FALSE}
-
-HDDS = tail %>% filter(FS.Measure == "HDDS")
-
-rplot<-ggplot(data = HDDS, aes(x =Level, y = Value,shape=Model)) 
+rplot<-ggplot(data = HDDS.tail, aes(x =Level, y = Value,shape=Model)) 
 rplot<-rplot + geom_point(size=7,color='#619CFF',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
 rplot<-rplot + labs( x = "Geo-spatial Level", y = "Accuracy/Type I/Type II")
 
@@ -947,14 +796,12 @@ rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),lege
 # +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
 rplot
 
-ggsave("output/figures/accuracy/hdds_tail.png", width = 15, height = 15)
+ggsave("output/graphs/figureS4/HDDS_tail.png", width = 15, height = 15)
 
 
-``` 
+# rCSI.tail
 
-```{r,echo=FALSE}
-
-rCSI = tail %>% filter(FS.Measure == "rCSI")
+rCSI.tail = tail.long %>% filter(FS.Measure == "rCSI")
 
 rplot<-ggplot(data = rCSI, aes(x =Level, y = Value,shape=Model)) 
 rplot<-rplot +  geom_point(size=7,color='#F8766D',show.legend = FALSE)   +  facet_grid(. ~  Model.Measure) 
@@ -970,7 +817,4 @@ rplot <- rplot +  theme(plot.title = element_text(size = 25, face = "bold"),lege
 # +  theme(plot.margin = unit(c(1, 2, 1, 1), "lines"))  
 rplot
 
-ggsave("output/figures/accuracy/rCSI_tail.png", width = 15, height = 15)
-
-
-``` 
+ggsave("output/graphs/figureS4/rCSI_tail.png", width = 15, height = 15)
