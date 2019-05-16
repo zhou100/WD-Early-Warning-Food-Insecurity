@@ -659,10 +659,16 @@ tail$Level <- factor(tail$Level,levels=ord)
 ord_measure <- c("rCSI","logFCS","HDDS")
 tail$Measures <- factor(tail$Measures,levels=ord_measure)
 
-# wide to long on the model measures 
 
 colnames(full)= c("FS.Measure", "Level","Model",  "Accuracy" ,"% Type I",    "% Type II"  )
 colnames(tail)= c("FS.Measure", "Level","Model" ,   "Accuracy", "% Type I"   , "% Type II"  )
+
+write.csv( tail , "output/results/figureS4_matrix_tail_formatted.csv",row.names = FALSE)
+write.csv( full , "output/results/figureS4_matrix_full_formatted.csv",row.names = FALSE)
+
+
+# wide to long on the model measures 
+
 
 full.long = full %>% 
   gather(-FS.Measure,-Level,-Model,key ="Model.Measure",value="Value")

@@ -1,0 +1,28 @@
+FS.Measure,Tail,Level,Model,Accuracy,% Type I,% Type II
+logFCS,Tail,Cluster,Class 1 data,0.088669951,0.911330049,0
+logFCS,Tail,Cluster,Class 1 + Class 2 data,0.088669951,0.911330049,0
+logFCS,Tail,Cluster,Class 1 + Class 2 + Class 3 data,0.108374384,0.891625616,0
+logFCS,Tail,IPC Zone,Class 1 data,0.088669951,0.911330049,0
+logFCS,Tail,IPC Zone,Class 1 + Class 2 data,0.088669951,0.911330049,0
+logFCS,Tail,IPC Zone,Class 1 + Class 2 + Class 3 data,0.088669951,0.911330049,0
+logFCS,Tail,TA,Class 1 data,0.088669951,0.911330049,0
+logFCS,Tail,TA,Class 1 + Class 2 data,0.088669951,0.911330049,0
+logFCS,Tail,TA,Class 1 + Class 2 + Class 3 data,0.103448276,0.896551724,0
+HDDS,Tail,Cluster,Class 1 data,0.763546798,0.236453202,0
+HDDS,Tail,Cluster,Class 1 + Class 2 data,0.862068966,0.137931034,0
+HDDS,Tail,Cluster,Class 1 + Class 2 + Class 3 data,0.852216749,0.142857143,0.004926108
+HDDS,Tail,IPC Zone,Class 1 data,0.763546798,0.236453202,0
+HDDS,Tail,IPC Zone,Class 1 + Class 2 data,0.763546798,0.236453202,0
+HDDS,Tail,IPC Zone,Class 1 + Class 2 + Class 3 data,0.763546798,0.236453202,0
+HDDS,Tail,TA,Class 1 data,0.763546798,0.236453202,0
+HDDS,Tail,TA,Class 1 + Class 2 data,0.842364532,0.15270936,0.004926108
+HDDS,Tail,TA,Class 1 + Class 2 + Class 3 data,0.857142857,0.142857143,0
+rCSI,Tail,Cluster,Class 1 data,0.458128079,0.541871921,0
+rCSI,Tail,Cluster,Class 1 + Class 2 data,0.472906404,0.527093596,0
+rCSI,Tail,Cluster,Class 1 + Class 2 + Class 3 data,0.497536946,0.492610837,0.009852217
+rCSI,Tail,IPC Zone,Class 1 data,0.458128079,0.541871921,0
+rCSI,Tail,IPC Zone,Class 1 + Class 2 data,0.458128079,0.541871921,0
+rCSI,Tail,IPC Zone,Class 1 + Class 2 + Class 3 data,0.458128079,0.512315271,0.02955665
+rCSI,Tail,TA,Class 1 data,0.463054187,0.536945813,0
+rCSI,Tail,TA,Class 1 + Class 2 data,0.492610837,0.487684729,0.019704433
+rCSI,Tail,TA,Class 1 + Class 2 + Class 3 data,0.522167488,0.463054187,0.014778325

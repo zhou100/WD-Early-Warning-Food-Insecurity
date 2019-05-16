@@ -36,8 +36,13 @@ mw.concord = Malawi_aggregate %>%
   dplyr::select(ea_id,lat_modified,lon_modified) %>% distinct() %>% na.omit() %>% 
   arrange(ea_id)
 
+mw.concord.month   = Malawi_aggregate %>% 
+  dplyr::select(ea_id,lat_modified,lon_modified,FS_year,FS_month) %>% distinct() %>% na.omit() %>% 
+  arrange(ea_id)
+
 write.csv(mw.concord,file="data/clean/concordance/Malawi_coord.csv",row.names = FALSE)
- 
+write.csv(mw.concord.month,file="data/clean/concordance/Malawi_coord_month.csv",row.names = FALSE)
+
 
 length(unique(Malawi_aggregate$ea_id)) 
 
