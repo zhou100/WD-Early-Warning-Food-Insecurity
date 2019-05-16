@@ -779,7 +779,7 @@ info_master
 for (i in 1:length(logFCS_full_list)){
   temp_file  = read.csv(logFCS_full_list[i])
   cat_logFCS_pred<-cut(temp_file[,2], c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
-  confu_mat= as.matrix(confusionMatrix(cat_logFCS_pred,cat_logFCS))
+  confu_mat= as.matrix(confusionMatrix(data=cat_logFCS_pred,reference=cat_logFCS))
   accuracy = sum(diag(confu_mat))/sum(rowSums(confu_mat))
   # lower =  predict to be better than actual, over prediction 
   type2 = sum(confu_mat[lower.tri(confu_mat, diag = FALSE)])/sum(rowSums(confu_mat))
@@ -929,10 +929,66 @@ write.csv(info_master,"output/results/figureS4_matrix_full.csv",row.names = FALS
 
 
 
+# Figure 3 statistics 
+
+HDDS <- read.csv("output/results/prediction/clust/HDDS_clust_model3_pair.csv")
+table(if_else(HDDS$predict - HDDS$actual>0,1,0))
+
+# over predict 43/203 = 21%
+# down predict 160/203 = 79%
+
+
+cat_HDDS_predict<-cut(HDDS$predict , c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
+confusionMatrix(reference = cat_HDDS_actual,data = cat_HDDS_predict)
+
+cat_HDDS_actual<-cut(HDDS$actual , c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
+HDDS["all_medium"] = 4
+
+cat_HDDS_all_medium<-cut(HDDS$all_medium , c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
+confusionMatrix(reference =cat_HDDS_actual,data =cat_HDDS_all_medium)
+
+  
+
+
+
+### logFCS 
+
+
+
+logFCS <- read.csv("output/results/prediction/clust/logFCS_clust_model3_pair.csv")
+table(if_else(logFCS$predict - logFCS$actual>0,1,0))
+
+# over predict 37/203 = 18%
+# down predict 166/203 = 82%
+
  
- 
+cat_logFCS_actual<-cut(logFCS$actual, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
+cat_logFCS_predict<-cut(logFCS$predict, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
+
+logFCS["all_secure"] = log(50)
+
+cat_logFCS_all_medium<-cut(logFCS$all_medium, c(0,log(28), log(42),Inf),labels=c("Poor","Borderline","Acceptable"))
+confusionMatrix(reference =cat_logFCS_actual,data= cat_logFCS_all_medium)
+confusionMatrix(reference = cat_logFCS_actual,data= cat_logFCS_predict)
 
 
 
+## rCSI 
 
+rCSI <- read.csv("output/results/prediction/clust/rCSI_clust_model3_pair.csv")
+table(if_else(rCSI$predict - rCSI$actual<0,1,0))
+
+# over predict 79/203 = 39%
+# down  predict 124/203 = 61%
+
+
+cat_rCSI_actual<-cut(rCSI$actual, c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
+cat_rCSI_predict<-cut(rCSI$predict, c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
+
+rCSI["all_secure"] = 2
+
+cat_rCSI_all_secure<-cut(rCSI$all_secure , c(-Inf,4,17,42,Inf),labels=c("Food Secure","Mild","Moderate","Severe"))
+confusionMatrix(reference =cat_rCSI_actual,data = cat_rCSI_all_secure)
+
+confusionMatrix(reference =cat_rCSI_actual,data = cat_rCSI_predict)
 

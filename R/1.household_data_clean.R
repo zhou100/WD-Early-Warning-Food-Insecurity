@@ -133,6 +133,54 @@ require(tidyverse)
 
 FEWS_IPC <- read_excel("data/raw/IPC_value/FEWS NET_MW_IPC_data_merge.xlsx",sheet = "MW60_2012Data", skip = 1)
  
+# checking values 
+table(FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+  gather() %>% select(value))
+
+
+table(FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+  gather() %>%
+  dplyr::filter(value==3) %>%
+  mutate(year = substr(key, 3, 6)) %>%
+  select(year))
+
+
+FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+  gather() %>%
+  dplyr::filter(value==3) %>%
+  mutate(year = substr(key, 3, 6)) %>%
+  filter(year == 2012)         
+
+
+FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+  gather() %>%
+  dplyr::filter(value==3) %>%
+  mutate(year = substr(key, 3, 6)) %>%
+  filter(year == 2015)         
+
+year_phase3 = FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+  gather() %>%
+  dplyr::filter(value==3) %>%
+  mutate(year = substr(key, 3, 6))
+unique(year_phase3$key)
+
+table(year_phase3)
+
+
+table(FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+        gather() %>%
+        mutate(year = substr(key, 3, 6)) %>% 
+        dplyr::filter(year=="2012") %>%
+        select(value)
+)
+
+
+ table(FEWS_IPC[,9:ncol(FEWS_IPC)] %>%
+  gather() %>%
+  mutate(year = substr(key, 3, 6)) %>% 
+           dplyr::filter(year=="2015") %>%
+    select(value)
+    )
 
 length(unique(FEWS_IPC$FNID_OLD))
 length(unique(FEWS_IPC$FNID))
@@ -225,7 +273,7 @@ FEWS_IPC_long = FEWS_IPC %>%
   dplyr::filter(!IPC_value==99) %>% 
   distinct()
 
-
+table()
 # generate year mon 
 source("R/functions/Yearmon.R")
 

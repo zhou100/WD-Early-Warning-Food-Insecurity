@@ -248,7 +248,7 @@ names(HDDS) = c("HDDS_predict","HDDS")
 HDDS$cat_HDDS<-cut(HDDS$HDDS, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
 HDDS$cat_HDDS_predict<-cut(HDDS$HDDS_predict, c(0,3, 6,Inf),labels=c("Low Diversity","Medium Diversity","Good Diversity"))
 
-confusionMatrix(HDDS$cat_HDDS_predict,HDDS$cat_HDDS)
+confusionMatrix(data=HDDS$cat_HDDS_predict, reference =  HDDS$cat_HDDS)
 HDDS.matrix.full = as.matrix(confusionMatrix(HDDS$cat_HDDS_predict,HDDS$cat_HDDS))
 
 
@@ -264,7 +264,7 @@ RCSI$cat_RCSI_predict<-cut(RCSI$RCSI_predict, c(-Inf,4,17,42,Inf),labels=c(c("Fo
 
 confusionMatrix(RCSI$cat_RCSI_predict,RCSI$cat_RCSI)
 
-RCSI.matrix.full = as.matrix(confusionMatrix(RCSI$cat_RCSI_predict,RCSI$cat_RCSI))
+RCSI.matrix.full = as.matrix(confusionMatrix(data=RCSI$cat_RCSI_predict,reference=RCSI$cat_RCSI))
 # Percentage of food insecure clusters correctly predicted to be food insecure
 table4.RCSI.full = RCSI.matrix.full[2,2]/(RCSI.matrix.full[1,2] + RCSI.matrix.full[2,2])
 table4.RCSI.full
