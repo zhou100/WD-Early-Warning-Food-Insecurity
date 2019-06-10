@@ -1,6 +1,10 @@
 ## Data and Code for replication
 ### "A Data-Driven Approach Improves Food Insecurity Crisis Prediction"
 
+Erin Lentz, Hope Michelson, Kathy Baylis, Yujun Zhou
+
+Forthcoming in *World Development* 
+
 [![DOI](https://zenodo.org/badge/181722482.svg)](https://zenodo.org/badge/latestdoi/181722482)
 
 
