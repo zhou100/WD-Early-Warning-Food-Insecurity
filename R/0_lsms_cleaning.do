@@ -878,7 +878,14 @@ save malawi_2013, replace
 
 * Merge in household gender, education level and age 
 
-use "Malawi_2013/IHS2013_PNAS",clear
+
+use "Malawi_2013/HH_MOD_B",clear
+
+* keep only household head
+keep if hh_b04 ==1
+* keep age and gender 
+gen hh_age = hh_b05a 
+gen hh_gender = hh_b03
 
 keep y2_hhid  hh_age hh_gender 
 
