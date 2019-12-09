@@ -4,7 +4,7 @@
 
 Erin Lentz, Hope Michelson, Kathy Baylis, Yujun Zhou
 
-Forthcoming in *World Development* Volume 122, October 2019, Pages 399-409, https://doi.org/10.1016/j.worlddev.2019.06.008
+*World Development* Volume 122, October 2019, Pages 399-409, https://doi.org/10.1016/j.worlddev.2019.06.008
 
 
 
